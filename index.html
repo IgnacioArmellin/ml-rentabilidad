@@ -53,29 +53,40 @@
 
     :root {
       --yellow: #FFE600;
-      --yellow-dark: #e6cf00;
-      --bg: #f5f5f5;
+      --yellow-soft: #FFF159;
+      --blue: #3483fa;
+      --blue-dark: #2968c8;
+      --bg: #f5f6f8;
       --card: #ffffff;
-      --text: #1a1a1a;
-      --muted: #666;
-      --border: #e0e0e0;
+      --card-alt: #f8f9fb;
+      --text: #18191f;
+      --muted: #6b7280;
+      --border: #e5e7eb;
       --green: #00a650;
+      --green-dark: #008744;
       --orange: #f5a623;
       --red: #e53935;
       --green-bg: #e8f5e9;
       --orange-bg: #fff8e1;
       --red-bg: #ffebee;
-      --radius: 12px;
-      --shadow: 0 2px 16px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 28px rgba(0,0,0,0.08);
+      --shadow-soft: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.05);
+      --ring: 0 0 0 4px rgba(52, 131, 250, 0.15);
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
+    /* ---------- Header ---------- */
     header {
       background: var(--yellow);
       padding: 0 24px;
@@ -83,49 +94,84 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
     }
 
     .logo {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--text);
       letter-spacing: -0.5px;
     }
 
-    .logo span { color: #3483fa; }
+    .logo span { color: var(--blue); }
 
+    .header-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.65);
+      color: #555;
+      padding: 5px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ---------- Hero ---------- */
     .hero {
-      background: var(--yellow);
-      padding: 40px 24px 60px;
+      background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-soft) 100%);
+      padding: 48px 24px 76px;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.7rem, 4.5vw, 2.6rem);
       font-weight: 800;
       color: var(--text);
-      margin-bottom: 12px;
-      line-height: 1.2;
+      margin-bottom: 14px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
     }
 
     .hero p {
-      font-size: 1.05rem;
-      color: #333;
-      max-width: 520px;
-      margin: 0 auto;
+      font-size: 1.08rem;
+      color: #3d3d29;
+      max-width: 540px;
+      margin: 0 auto 20px;
     }
 
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-badges span {
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(255,255,255,0.75);
+      color: #444;
+      padding: 7px 14px;
+      border-radius: 999px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* ---------- Layout ---------- */
     .container {
-      max-width: 860px;
-      margin: -32px auto 60px;
+      max-width: 880px;
+      margin: -40px auto 64px;
       padding: 0 16px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 18px;
     }
 
-    @media (max-width: 620px) {
-      .container { grid-template-columns: 1fr; }
+    @media (max-width: 640px) {
+      .container { grid-template-columns: 1fr; margin-top: -48px; }
+      .hero { padding: 36px 20px 72px; }
     }
 
     .card {
@@ -133,18 +179,19 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 28px;
+      border: 1px solid rgba(0,0,0,0.03);
     }
 
     .card h2 {
-      font-size: 1rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 20px;
-      color: var(--text);
+      color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-size: 0.78rem;
     }
 
+    /* ---------- Formulario ---------- */
     .field { margin-bottom: 18px; }
 
     label {
@@ -152,44 +199,43 @@
       font-size: 0.88rem;
       font-weight: 600;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
-    input[type="number"], select {
+    input[type="number"] {
       width: 100%;
-      padding: 12px 14px;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
+      padding: 13px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      font-weight: 600;
       color: var(--text);
-      background: #fafafa;
-      transition: border-color 0.2s;
+      background: var(--card-alt);
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
       appearance: none;
     }
 
-    input[type="number"]:focus, select:focus {
+    input[type="number"]:focus {
       outline: none;
-      border-color: #3483fa;
+      border-color: var(--blue);
       background: #fff;
+      box-shadow: var(--ring);
     }
 
-    .prefix-wrap {
-      position: relative;
-    }
+    .prefix-wrap { position: relative; }
 
     .prefix-wrap span {
       position: absolute;
-      left: 14px;
+      left: 15px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      font-weight: 600;
       color: var(--muted);
       pointer-events: none;
     }
 
-    .prefix-wrap input {
-      padding-left: 34px;
-    }
+    .prefix-wrap input { padding-left: 34px; }
 
     .toggle-group {
       display: flex;
@@ -198,59 +244,122 @@
 
     .toggle-group button {
       flex: 1;
-      padding: 10px 8px;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      background: #fafafa;
-      font-size: 0.85rem;
+      padding: 11px 8px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--card-alt);
+      font-size: 0.86rem;
       font-weight: 600;
       color: var(--muted);
       cursor: pointer;
-      transition: all 0.15s;
+      transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.1s;
     }
+
+    .toggle-group button:active { transform: scale(0.97); }
 
     .toggle-group button.active {
-      border-color: #3483fa;
+      border-color: var(--blue);
       background: #ebf2ff;
-      color: #3483fa;
+      color: var(--blue);
     }
 
-    /* Results card */
+    /* ---------- Botones ---------- */
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
+    }
+
+    .btn:active { transform: scale(0.985); }
+
+    .btn-calc {
+      margin-top: 8px;
+      background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(52, 131, 250, 0.35);
+    }
+
+    .btn-calc:hover { background: var(--blue-dark); }
+
+    .btn-verde {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-verde:hover { background: var(--green-dark); }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+    }
+
+    .btn-outline:hover { background: #ebf2ff; }
+
+    .acciones {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .acciones .btn { flex: 1; min-width: 200px; font-size: 0.92rem; padding: 13px; }
+
+    /* ---------- Resultado ---------- */
     .result-card {
       grid-column: 1 / -1;
       display: none;
+      scroll-margin-top: 76px;
     }
 
-    .result-card.visible { display: block; }
+    .result-card.visible {
+      display: block;
+      animation: fadeUp 0.45s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .result-card.visible { animation: none; }
+      html { scroll-behavior: auto; }
+    }
 
     .result-header {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 24px;
     }
 
     .semaforo {
-      width: 52px;
-      height: 52px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       flex-shrink: 0;
     }
 
-    .semaforo.green { background: var(--green-bg); }
-    .semaforo.orange { background: var(--orange-bg); }
-    .semaforo.red { background: var(--red-bg); }
+    .semaforo.green { background: var(--green-bg); box-shadow: 0 0 0 5px rgba(0,166,80,0.12); }
+    .semaforo.orange { background: var(--orange-bg); box-shadow: 0 0 0 5px rgba(245,166,35,0.14); }
+    .semaforo.red { background: var(--red-bg); box-shadow: 0 0 0 5px rgba(229,57,53,0.12); }
 
-    .result-title { font-size: 1.2rem; font-weight: 800; }
-    .result-subtitle { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+    .result-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; }
+    .result-subtitle { font-size: 0.92rem; color: var(--muted); margin-top: 3px; }
 
     .breakdown {
       border-top: 1px solid var(--border);
-      padding-top: 20px;
+      padding-top: 18px;
     }
 
     .breakdown-row {
@@ -261,12 +370,10 @@
       font-size: 0.95rem;
     }
 
-    .breakdown-row:not(:last-child) {
-      border-bottom: 1px solid #f0f0f0;
-    }
+    .breakdown-row:not(:last-child) { border-bottom: 1px solid #f1f2f4; }
 
     .breakdown-row .label { color: var(--muted); }
-    .breakdown-row .value { font-weight: 600; }
+    .breakdown-row .value { font-weight: 600; font-variant-numeric: tabular-nums; }
     .breakdown-row .value.neg { color: var(--red); }
     .breakdown-row .value.pos { color: var(--green); }
 
@@ -274,25 +381,24 @@
       border-top: 2px solid var(--border) !important;
       margin-top: 8px;
       padding-top: 16px;
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.1rem;
+      font-weight: 800;
     }
 
-    .margin-bar-wrap {
-      margin-top: 20px;
-    }
+    .margin-bar-wrap { margin-top: 20px; }
 
     .margin-bar-label {
       display: flex;
       justify-content: space-between;
       font-size: 0.85rem;
+      font-weight: 600;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .margin-bar {
-      height: 10px;
-      background: #eee;
+      height: 12px;
+      background: #eceef1;
       border-radius: 999px;
       overflow: hidden;
     }
@@ -300,43 +406,172 @@
     .margin-bar-fill {
       height: 100%;
       border-radius: 999px;
-      transition: width 0.4s ease;
+      transition: width 0.5s ease, background 0.3s;
     }
-
-    .btn-calc {
-      width: 100%;
-      margin-top: 8px;
-      padding: 14px;
-      background: #3483fa;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-calc:hover { background: #2968c8; }
 
     .tip {
       background: #f0f7ff;
-      border-left: 3px solid #3483fa;
-      border-radius: 0 8px 8px 0;
-      padding: 12px 14px;
-      font-size: 0.85rem;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 13px 15px;
+      font-size: 0.86rem;
       color: #333;
-      margin-top: 16px;
-      line-height: 1.5;
+      margin-top: 18px;
+      line-height: 1.55;
     }
 
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 0.8rem;
+    /* ---------- Gráfico de torta ---------- */
+    .desglose {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      margin-top: 20px;
+    }
+
+    .desglose h4 {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
       color: var(--muted);
     }
+
+    .desglose-body {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .pie {
+      width: 172px;
+      height: 172px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.13);
+    }
+
+    .pie-centro {
+      width: 58%;
+      height: 58%;
+      background: var(--card-alt);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .pie-centro strong { font-size: 1.25rem; letter-spacing: -0.5px; }
+    .pie-centro small { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .legend { flex: 1; min-width: 210px; }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 0;
+      font-size: 0.87rem;
+    }
+
+    .legend-item:not(:last-child) { border-bottom: 1px dashed var(--border); }
+
+    .legend-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .legend-item .nombre { flex: 1; color: #444; }
+    .legend-item strong { font-variant-numeric: tabular-nums; }
+
+    /* ---------- Historial ---------- */
+    .historial {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .historial-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .historial-head h3 {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-borrar-hist {
+      background: none;
+      border: none;
+      color: var(--red);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .btn-borrar-hist:hover { background: var(--red-bg); }
+
+    .hist-list {
+      max-height: 280px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hist-item {
+      width: 100%;
+      text-align: left;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    }
+
+    .hist-item:hover { border-color: var(--blue); background: #f4f8ff; }
+    .hist-item:active { transform: scale(0.99); }
+
+    .hist-monto { display: block; font-size: 0.92rem; }
+    .hist-monto .pos { color: var(--green); font-weight: 700; }
+    .hist-monto .neg { color: var(--red); font-weight: 700; }
+    .hist-meta { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 3px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 28px 20px 36px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
   </style>
+
+  <!-- html2canvas para exportar el resultado como imagen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8V3RFPR8P4"></script>
@@ -351,11 +586,17 @@
 
 <header>
   <div class="logo">ML<span>Rentabilidad</span></div>
+  <div class="header-badge">100% gratis</div>
 </header>
 
 <div class="hero">
   <h1>¿Cuánto ganás realmente<br>vendiendo en Mercado Libre?</h1>
-  <p>Calculá tu ganancia neta después de comisiones, IVA y envío. Gratis, sin registro.</p>
+  <p>Calculá tu ganancia neta después de comisiones, IVA y envío.</p>
+  <div class="hero-badges">
+    <span>✓ Gratis</span>
+    <span>✓ Sin registro</span>
+    <span>✓ Resultado al instante</span>
+  </div>
 </div>
 
 <div class="container">
@@ -365,18 +606,18 @@
     <h2>Tu venta</h2>
 
     <div class="field">
-      <label>Precio de venta (lo que paga el comprador)</label>
+      <label for="precio">Precio de venta (lo que paga el comprador)</label>
       <div class="prefix-wrap">
         <span>$</span>
-        <input type="number" id="precio" placeholder="10000" min="0" step="1" />
+        <input type="number" id="precio" inputmode="decimal" placeholder="10.000" min="0" step="1" />
       </div>
     </div>
 
     <div class="field">
-      <label>Costo del producto (lo que vos pagaste)</label>
+      <label for="costo">Costo del producto (lo que vos pagaste)</label>
       <div class="prefix-wrap">
         <span>$</span>
-        <input type="number" id="costo" placeholder="5000" min="0" step="1" />
+        <input type="number" id="costo" inputmode="decimal" placeholder="5.000" min="0" step="1" />
       </div>
     </div>
 
@@ -398,14 +639,14 @@
     </div>
 
     <div class="field" id="campo-envio-propio" style="display:none">
-      <label>Costo de envío propio</label>
+      <label for="envio-propio">Costo de envío propio</label>
       <div class="prefix-wrap">
         <span>$</span>
-        <input type="number" id="envio-propio" placeholder="800" min="0" step="1" />
+        <input type="number" id="envio-propio" inputmode="decimal" placeholder="800" min="0" step="1" />
       </div>
     </div>
 
-    <button class="btn-calc" onclick="calcular()">Calcular ganancia →</button>
+    <button class="btn btn-calc" onclick="calcular()">Calcular ganancia →</button>
   </div>
 
   <!-- Info card -->
@@ -489,40 +730,79 @@
 
     <div class="tip" id="r-tip"></div>
 
-    <div id="grafico-desglose" style="margin-top: 20px;"></div>
+    <div id="grafico-desglose"></div>
 
-    <div id="historial-section" style="display: none; margin-top: 20px;">
-      <h3 style="font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 12px; text-transform: uppercase;">📋 Últimos cálculos</h3>
-      <div id="historial-list" style="max-height: 300px; overflow-y: auto;"></div>
+    <div class="historial" id="historial-section">
+      <div class="historial-head">
+        <h3>📋 Últimos cálculos</h3>
+        <button type="button" class="btn-borrar-hist" onclick="borrarHistorial()">🗑️ Borrar todo</button>
+      </div>
+      <div class="hist-list" id="historial-list"></div>
+    </div>
+
+    <div class="acciones" id="acciones-resultado">
+      <button class="btn btn-verde" onclick="exportarResultado()">📥 Descargar imagen</button>
+      <button class="btn btn-outline" onclick="compartirResultado()">📤 Compartir</button>
     </div>
   </div>
 
 </div>
 
 <footer>
-  MLRentabilidad — Herramienta gratuita para vendedores de Mercado Libre Argentina.<br>
-  Los valores son estimativos. Verificá comisiones en <a href="https://www.mercadolibre.com.ar/ayuda/costos" target="_blank">Mercado Libre Ayuda</a>.
+  <strong>MLRentabilidad</strong> — Herramienta gratuita para vendedores de Mercado Libre Argentina.<br>
+  Los valores son estimativos. Verificá comisiones en <a href="https://www.mercadolibre.com.ar/ayuda/costos" target="_blank" rel="noopener">Mercado Libre Ayuda</a>.
 </footer>
 
 <script>
   let tipoPublicacion = 'clasica';
   let usaMercadoEnvios = true;
-  let graficoActual = null;
+  let ultimoResumen = '';
 
   const COMISIONES = { gratuita: 0, clasica: 0.125, premium: 0.165 };
   const IVA = 0.21;
   const ENVIO_ML_EST = 1100; // estimación promedio ARS
+  const HIST_KEY = 'historialML';
+  const SITE_URL = 'https://ignacioarmellin.github.io/ml-rentabilidad/';
+
+  /* ---------- Historial ---------- */
+
+  function leerHistorial() {
+    try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); }
+    catch (e) { return []; }
+  }
+
+  function esMismoCalculo(a, b) {
+    return !!a && !!b &&
+      a.precio === b.precio &&
+      a.costo === b.costo &&
+      a.tipoPublicacion === b.tipoPublicacion &&
+      a.costoEnvio === b.costoEnvio;
+  }
+
+  // Limpia duplicados consecutivos que hayan quedado guardados de versiones anteriores
+  function limpiarDuplicados() {
+    const h = leerHistorial();
+    const limpio = h.filter((item, i) => i === 0 || !esMismoCalculo(item, h[i - 1]));
+    if (limpio.length !== h.length) {
+      localStorage.setItem(HIST_KEY, JSON.stringify(limpio));
+    }
+  }
 
   function guardarEnHistorial(producto) {
-    let historial = JSON.parse(localStorage.getItem('historialML') || '[]');
-    historial.unshift({ ...producto, timestamp: new Date().toLocaleString('es-AR') });
-    historial = historial.slice(0, 10);
-    localStorage.setItem('historialML', JSON.stringify(historial));
+    let historial = leerHistorial();
+    // Si es idéntico al último cálculo guardado, no lo duplicamos
+    if (!esMismoCalculo(historial[0], producto)) {
+      historial.unshift({ ...producto, timestamp: new Date().toLocaleString('es-AR', {
+        day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
+      }) });
+      historial = historial.slice(0, 10);
+      localStorage.setItem(HIST_KEY, JSON.stringify(historial));
+    }
     mostrarHistorial();
   }
 
   function mostrarHistorial() {
-    const historial = JSON.parse(localStorage.getItem('historialML') || '[]');
+    const historial = leerHistorial();
     const lista = document.getElementById('historial-list');
     const section = document.getElementById('historial-section');
 
@@ -532,66 +812,142 @@
     }
 
     section.style.display = 'block';
-    lista.innerHTML = historial.map((h, i) => `
-      <div style="background: #fafafa; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 0.8rem; cursor: pointer;" onclick="cargarDelHistorial(${i})">
-        <strong>$${Math.round(h.precio).toLocaleString('es-AR')}</strong> → <span style="color: var(--green); font-weight: 600;">$${Math.round(h.ganancia).toLocaleString('es-AR')}</span><br>
-        <small style="color: var(--muted);">${h.timestamp}</small>
-      </div>
-    `).join('');
+    lista.innerHTML = historial.map((h, i) => {
+      const margen = h.precio ? (h.ganancia / h.precio) * 100 : 0;
+      const cls = h.ganancia < 0 ? 'neg' : 'pos';
+      const tipo = h.tipoPublicacion ? ' · ' + h.tipoPublicacion : '';
+      return `
+        <button type="button" class="hist-item" onclick="cargarDelHistorial(${i})">
+          <span class="hist-monto"><strong>${fmt(h.precio)}</strong> → <span class="${cls}">${fmt(h.ganancia)}</span></span>
+          <span class="hist-meta">${h.timestamp} · ${margen.toFixed(0)}% margen${tipo}</span>
+        </button>
+      `;
+    }).join('');
   }
 
   function cargarDelHistorial(index) {
-    const historial = JSON.parse(localStorage.getItem('historialML') || '[]');
+    const historial = leerHistorial();
     const item = historial[index];
+    if (!item) return;
+
     document.getElementById('precio').value = item.precio;
     document.getElementById('costo').value = item.costo;
-    calcular();
+
+    // Restaurar el tipo de publicación y envío con los que se hizo ese cálculo
+    if (item.tipoPublicacion) {
+      const btnTipo = document.querySelector('#tipo-pub button[data-val="' + item.tipoPublicacion + '"]');
+      if (btnTipo) setTipo(btnTipo);
+    }
+    if (typeof item.usaME === 'boolean') {
+      const btnEnvio = document.querySelector('#tipo-envio button[data-val="' + (item.usaME ? 'si' : 'no') + '"]');
+      if (btnEnvio) setEnvio(btnEnvio);
+      if (!item.usaME) {
+        document.getElementById('envio-propio').value = item.costoEnvio || '';
+      }
+    }
+
+    calcular(false); // false = no volver a guardar en el historial
   }
 
-  function crearGrafico(costo, comision, iva, costoEnvio, ganancia) {
+  function borrarHistorial() {
+    localStorage.removeItem(HIST_KEY);
+    mostrarHistorial();
+  }
+
+  /* ---------- Gráfico de torta ---------- */
+
+  function crearGrafico(costo, comision, iva, costoEnvio, ganancia, margen) {
     const total = costo + comision + iva + costoEnvio + Math.max(0, ganancia);
     const items = [
-      { label: '💰 Costo', valor: costo, color: '#e53935' },
-      { label: '📊 Comisión ML', valor: comision, color: '#f5a623' },
-      { label: '🏛️ IVA', valor: iva, color: '#ffc107' },
-      { label: '📦 Envío', valor: costoEnvio, color: '#ff9800' },
-      { label: '💵 Ganancia', valor: Math.max(0, ganancia), color: '#00a650' }
-    ];
+      { label: 'Costo del producto', valor: costo, color: '#e53935' },
+      { label: 'Comisión ML', valor: comision, color: '#f5a623' },
+      { label: 'IVA', valor: iva, color: '#ffc107' },
+      { label: 'Envío', valor: costoEnvio, color: '#ff9800' },
+      { label: 'Ganancia', valor: Math.max(0, ganancia), color: '#00a650' }
+    ].filter(item => item.valor > 0);
+
+    // Tramos del gráfico de torta (conic-gradient)
+    let acumulado = 0;
+    const tramos = items.map(item => {
+      const desde = (acumulado / total) * 100;
+      acumulado += item.valor;
+      const hasta = (acumulado / total) * 100;
+      return item.color + ' ' + desde + '% ' + hasta + '%';
+    }).join(', ');
+
+    const colorMargen = ganancia < 0 ? 'var(--red)' : (margen < 15 ? 'var(--orange)' : 'var(--green)');
 
     const html = `
-      <div style="background: #f9f9f9; padding: 16px; border-radius: 8px;">
-        <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; color: var(--muted);">DESGLOSE</h4>
-        ${items.map(item => {
-          const pct = (item.valor / total * 100).toFixed(1);
-          return `
-            <div style="margin-bottom: 12px;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.85rem;">
-                <span>${item.label}</span>
-                <strong>$${Math.round(item.valor).toLocaleString('es-AR')} (${pct}%)</strong>
-              </div>
-              <div style="background: #e0e0e0; height: 20px; border-radius: 4px; overflow: hidden;">
-                <div style="background: ${item.color}; height: 100%; width: ${pct}%; transition: width 0.3s;"></div>
-              </div>
+      <div class="desglose">
+        <h4>DESGLOSE: ¿A DÓNDE VA CADA PESO?</h4>
+        <div class="desglose-body">
+          <div class="pie" style="background: conic-gradient(${tramos})">
+            <div class="pie-centro">
+              <strong style="color:${colorMargen}">${margen.toFixed(1)}%</strong>
+              <small>margen</small>
             </div>
-          `;
-        }).join('')}
+          </div>
+          <div class="legend">
+            ${items.map(item => {
+              const pct = (item.valor / total * 100).toFixed(1);
+              return `
+                <div class="legend-item">
+                  <span class="legend-dot" style="background:${item.color}"></span>
+                  <span class="nombre">${item.label}</span>
+                  <strong>${fmt(item.valor)} (${pct}%)</strong>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
       </div>
     `;
 
     document.getElementById('grafico-desglose').innerHTML = html;
   }
 
+  /* ---------- Exportar y compartir ---------- */
+
   function exportarResultado() {
-    const canvas = document.getElementById('resultado');
-    html2canvas(canvas, { scale: 2, backgroundColor: '#fff' }).then(img => {
+    if (typeof html2canvas === 'undefined') {
+      alert('La herramienta de exportación aún se está cargando. Esperá unos segundos y probá de nuevo.');
+      return;
+    }
+
+    const tarjeta = document.getElementById('resultado');
+    const acciones = document.getElementById('acciones-resultado');
+
+    // Ocultar los botones para que no salgan en la imagen
+    acciones.style.visibility = 'hidden';
+
+    html2canvas(tarjeta, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
+      acciones.style.visibility = 'visible';
       const link = document.createElement('a');
-      link.href = img.toDataURL();
+      link.href = canvas.toDataURL('image/png');
       link.download = 'rentabilidad-ml.png';
       link.click();
     }).catch(() => {
-      alert('Para exportar, usa Ctrl+Print pantalla o toma una captura de pantalla.');
+      acciones.style.visibility = 'visible';
+      alert('No se pudo generar la imagen. Probá tomar una captura de pantalla con la tecla "Impr Pant".');
     });
   }
+
+  function compartirResultado() {
+    const texto = ultimoResumen || 'Calculá cuánto ganás realmente vendiendo en Mercado Libre';
+    if (navigator.share) {
+      navigator.share({ title: 'MLRentabilidad', text: texto, url: SITE_URL }).catch(() => {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(texto + '\n' + SITE_URL).then(() => {
+        alert('Resumen copiado al portapapeles 📋 ¡Pegalo donde quieras!');
+      }).catch(() => {
+        alert('Copiá el link: ' + SITE_URL);
+      });
+    } else {
+      alert('Copiá el link: ' + SITE_URL);
+    }
+  }
+
+  /* ---------- Formulario ---------- */
 
   function setTipo(btn) {
     document.querySelectorAll('#tipo-pub button').forEach(b => b.classList.remove('active'));
@@ -610,11 +966,13 @@
     return '$' + Math.round(n).toLocaleString('es-AR');
   }
 
-  function calcular() {
+  /* ---------- Cálculo ---------- */
+
+  function calcular(guardar = true) {
     const precio = parseFloat(document.getElementById('precio').value);
     const costo = parseFloat(document.getElementById('costo').value);
 
-    if (!precio || !costo || precio <= 0 || costo < 0) {
+    if (!precio || isNaN(costo) || precio <= 0 || costo < 0) {
       alert('Ingresá el precio de venta y el costo del producto.');
       return;
     }
@@ -637,15 +995,21 @@
     const ganancia = precio - costo - comision - iva - costoEnvio;
     const margen = (ganancia / precio) * 100;
 
-    // Crear gráfico y guardar
-    crearGrafico(costo, comision, iva, costoEnvio, ganancia);
-    guardarEnHistorial({ precio, costo, ganancia, comision, iva, costoEnvio, tipoPublicacion });
+    // Resumen para el botón compartir
+    ultimoResumen = 'Vendiendo a ' + fmt(precio) + ' en Mercado Libre, mi ganancia neta es ' +
+      fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen). Calculado con MLRentabilidad:';
 
-    // Mostrar
+    // Gráfico + historial (solo guarda si es un cálculo nuevo, no al cargar del historial)
+    crearGrafico(costo, comision, iva, costoEnvio, ganancia, margen);
+    if (guardar) {
+      guardarEnHistorial({ precio, costo, ganancia, comision, iva, costoEnvio, tipoPublicacion, usaME: usaMercadoEnvios });
+    }
+
+    // Mostrar desglose
     document.getElementById('r-precio').textContent = fmt(precio);
     document.getElementById('r-costo').textContent = '−' + fmt(costo);
     document.getElementById('r-comision-label').textContent =
-      `Comisión ML (${(tasaComision * 100).toFixed(1)}%)`;
+      'Comisión ML (' + (tasaComision * 100).toFixed(1) + '%)';
     document.getElementById('r-comision').textContent = comision > 0 ? '−' + fmt(comision) : '$0';
     document.getElementById('r-iva').textContent = iva > 0 ? '−' + fmt(iva) : '$0';
     document.getElementById('r-envio-label').textContent = envioLabel;
@@ -653,10 +1017,11 @@
 
     const gEl = document.getElementById('r-ganancia');
     gEl.textContent = fmt(ganancia);
+    gEl.className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
 
     document.getElementById('r-margen-pct').textContent = margen.toFixed(1) + '%';
 
-    // Barra
+    // Barra de margen
     const barPct = Math.max(0, Math.min(100, margen));
     const bar = document.getElementById('r-bar');
 
@@ -670,7 +1035,7 @@
       icon.className = 'semaforo red';
       icon.textContent = '🔴';
       title.textContent = 'Estás perdiendo plata';
-      subtitle.textContent = `Perdés ${fmt(Math.abs(ganancia))} por cada venta`;
+      subtitle.textContent = 'Perdés ' + fmt(Math.abs(ganancia)) + ' por cada venta';
       bar.style.background = '#e53935';
       bar.style.width = '0%';
       tip.textContent = '💡 Subí el precio de venta o reducí el costo del producto para volver a ser rentable.';
@@ -678,7 +1043,7 @@
       icon.className = 'semaforo orange';
       icon.textContent = '🟡';
       title.textContent = 'Margen muy ajustado';
-      subtitle.textContent = `Ganás ${fmt(ganancia)} (${margen.toFixed(1)}% de margen)`;
+      subtitle.textContent = 'Ganás ' + fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen)';
       bar.style.background = '#f5a623';
       bar.style.width = barPct + '%';
       tip.textContent = '💡 Márgenes menores al 15% son riesgosos. Cualquier devolución o gasto imprevisto te deja en rojo.';
@@ -686,7 +1051,7 @@
       icon.className = 'semaforo green';
       icon.textContent = '🟢';
       title.textContent = 'Rentable';
-      subtitle.textContent = `Ganás ${fmt(ganancia)} (${margen.toFixed(1)}% de margen)`;
+      subtitle.textContent = 'Ganás ' + fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen)';
       bar.style.background = '#00a650';
       bar.style.width = barPct + '%';
       tip.textContent = '✅ Buen margen. Considerá reinvertir parte de la ganancia en más stock para escalar.';
@@ -694,7 +1059,7 @@
       icon.className = 'semaforo green';
       icon.textContent = '🚀';
       title.textContent = '¡Excelente margen!';
-      subtitle.textContent = `Ganás ${fmt(ganancia)} (${margen.toFixed(1)}% de margen)`;
+      subtitle.textContent = 'Ganás ' + fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen)';
       bar.style.background = '#00a650';
       bar.style.width = '100%';
       tip.textContent = '🚀 Margen superior al 30%. Este producto tiene mucho potencial. ¿Ya pensaste en escalar el volumen?';
@@ -704,11 +1069,14 @@
     document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // Calcular en tiempo real con Enter
+  // Calcular con Enter
   document.addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); });
 
-  // Mostrar historial al cargar
-  window.addEventListener('load', mostrarHistorial);
+  // Al cargar: limpiar duplicados viejos y mostrar historial
+  window.addEventListener('load', () => {
+    limpiarDuplicados();
+    mostrarHistorial();
+  });
 </script>
 
 </body>
