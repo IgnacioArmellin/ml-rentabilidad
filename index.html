@@ -338,6 +338,9 @@
     }
   </style>
 
+  <!-- html2canvas para exportar el resultado como imagen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8V3RFPR8P4"></script>
   <script>
@@ -495,6 +498,8 @@
       <h3 style="font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 12px; text-transform: uppercase;">📋 Últimos cálculos</h3>
       <div id="historial-list" style="max-height: 300px; overflow-y: auto;"></div>
     </div>
+
+    <button class="btn-calc" id="btn-exportar" onclick="exportarResultado()" style="background: var(--green); margin-top: 16px;">📥 Descargar resultado como imagen</button>
   </div>
 
 </div>
@@ -582,14 +587,26 @@
   }
 
   function exportarResultado() {
-    const canvas = document.getElementById('resultado');
-    html2canvas(canvas, { scale: 2, backgroundColor: '#fff' }).then(img => {
+    if (typeof html2canvas === 'undefined') {
+      alert('La herramienta de exportación aún se está cargando. Esperá unos segundos y probá de nuevo.');
+      return;
+    }
+
+    const tarjeta = document.getElementById('resultado');
+    const boton = document.getElementById('btn-exportar');
+
+    // Ocultar el botón para que no salga en la imagen
+    boton.style.visibility = 'hidden';
+
+    html2canvas(tarjeta, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
+      boton.style.visibility = 'visible';
       const link = document.createElement('a');
-      link.href = img.toDataURL();
+      link.href = canvas.toDataURL('image/png');
       link.download = 'rentabilidad-ml.png';
       link.click();
     }).catch(() => {
-      alert('Para exportar, usa Ctrl+Print pantalla o toma una captura de pantalla.');
+      boton.style.visibility = 'visible';
+      alert('No se pudo generar la imagen. Probá tomar una captura de pantalla con la tecla "Impr Pant".');
     });
   }
 
