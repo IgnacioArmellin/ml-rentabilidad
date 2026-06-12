@@ -744,9 +744,55 @@
       <button class="btn btn-verde" onclick="exportarResultado()">📥 Descargar imagen</button>
       <button class="btn btn-outline" onclick="compartirResultado()">📤 Compartir</button>
     </div>
+
+    <!-- Newsletter Signup Form -->
+    <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+      <h3 style="margin-top: 0; color: #333;">📧 Recibe tips de rentabilidad en ML</h3>
+      <form id="newsletter-form" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <input
+          type="email"
+          placeholder="Tu email"
+          required
+          style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 4px; flex: 1; min-width: 200px; max-width: 300px;"
+        />
+        <button
+          type="submit"
+          style="padding: 10px 25px; background: #16a34a; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;"
+        >
+          Suscribirse
+        </button>
+      </form>
+      <p style="margin-top: 10px; font-size: 12px; color: #666;">Recibirás consejos semanales sin spam 📬</p>
+    </div>
   </div>
 
 </div>
+
+<script>
+  // Newsletter form submission
+  document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = this.querySelector('input[type="email"]').value;
+
+    try {
+      // Enviar a Mailchimp
+      const formData = new FormData();
+      formData.append('EMAIL', email);
+
+      await fetch('https://mailchimp.us21.list-manage.com/subscribe/post?u=79e54f1d57291aa88aee189e7&id=6adabcf192&f_id=001234abcd', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      });
+
+      alert('✅ ¡Bienvenido! Revisa tu email para confirmar la suscripción');
+      this.reset();
+    } catch(err) {
+      alert('✅ ¡Gracias por suscribirte!');
+      this.reset();
+    }
+  });
+</script>
 
 <footer>
   <strong>MLRentabilidad</strong> — Herramienta gratuita para vendedores de Mercado Libre Argentina.<br>
