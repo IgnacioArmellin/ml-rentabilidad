@@ -3,8 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora de Rentabilidad — Mercado Libre Argentina</title>
-  <meta name="description" content="Calculá cuánto ganás realmente con cada venta en Mercado Libre Argentina. Comisiones, IVA y envío incluidos." />
+
+  <!-- SEO básico -->
+  <title>Calculadora de Rentabilidad Mercado Libre Argentina | Ganancia Neta Gratis</title>
+  <meta name="description" content="Calculá gratis cuánto ganás realmente vendiendo en Mercado Libre Argentina. Descontá comisiones, IVA y Mercado Envíos en segundos. Sin registro." />
+  <meta name="keywords" content="calculadora mercado libre, rentabilidad mercado libre, comisiones mercado libre, ganancia mercado libre, vender en mercado libre, calcular ganancia ML, comisión clásica premium" />
+  <meta name="author" content="MLRentabilidad" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ignacioarmellin.github.io/ml-rentabilidad/" />
+  <meta name="theme-color" content="#FFE600" />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calculadora de Rentabilidad Mercado Libre Argentina" />
+  <meta property="og:description" content="Calculá gratis cuánto ganás realmente con cada venta en Mercado Libre. Comisiones, IVA y envío incluidos. Sin registro." />
+  <meta property="og:url" content="https://ignacioarmellin.github.io/ml-rentabilidad/" />
+  <meta property="og:site_name" content="MLRentabilidad" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Rentabilidad Mercado Libre Argentina" />
+  <meta name="twitter:description" content="Calculá gratis cuánto ganás realmente con cada venta en Mercado Libre. Comisiones, IVA y envío incluidos." />
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>" />
+
+  <!-- Schema.org: ayuda a Google a entender que es una herramienta -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Rentabilidad Mercado Libre",
+    "description": "Calculá cuánto ganás realmente vendiendo en Mercado Libre Argentina, descontando comisiones, IVA y Mercado Envíos.",
+    "url": "https://ignacioarmellin.github.io/ml-rentabilidad/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "es-AR",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "ARS"
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -296,12 +339,12 @@
   </style>
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WQS1R71S"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8V3RFPR8P4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-V8WQS1R71S');
+    gtag('config', 'G-8V3RFPR8P4');
   </script>
 </head>
 <body>
@@ -445,6 +488,13 @@
     </div>
 
     <div class="tip" id="r-tip"></div>
+
+    <div id="grafico-desglose" style="margin-top: 20px;"></div>
+
+    <div id="historial-section" style="display: none; margin-top: 20px;">
+      <h3 style="font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 12px; text-transform: uppercase;">📋 Últimos cálculos</h3>
+      <div id="historial-list" style="max-height: 300px; overflow-y: auto;"></div>
+    </div>
   </div>
 
 </div>
@@ -457,10 +507,91 @@
 <script>
   let tipoPublicacion = 'clasica';
   let usaMercadoEnvios = true;
+  let graficoActual = null;
 
   const COMISIONES = { gratuita: 0, clasica: 0.125, premium: 0.165 };
   const IVA = 0.21;
   const ENVIO_ML_EST = 1100; // estimación promedio ARS
+
+  function guardarEnHistorial(producto) {
+    let historial = JSON.parse(localStorage.getItem('historialML') || '[]');
+    historial.unshift({ ...producto, timestamp: new Date().toLocaleString('es-AR') });
+    historial = historial.slice(0, 10);
+    localStorage.setItem('historialML', JSON.stringify(historial));
+    mostrarHistorial();
+  }
+
+  function mostrarHistorial() {
+    const historial = JSON.parse(localStorage.getItem('historialML') || '[]');
+    const lista = document.getElementById('historial-list');
+    const section = document.getElementById('historial-section');
+
+    if (historial.length === 0) {
+      section.style.display = 'none';
+      return;
+    }
+
+    section.style.display = 'block';
+    lista.innerHTML = historial.map((h, i) => `
+      <div style="background: #fafafa; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 0.8rem; cursor: pointer;" onclick="cargarDelHistorial(${i})">
+        <strong>$${Math.round(h.precio).toLocaleString('es-AR')}</strong> → <span style="color: var(--green); font-weight: 600;">$${Math.round(h.ganancia).toLocaleString('es-AR')}</span><br>
+        <small style="color: var(--muted);">${h.timestamp}</small>
+      </div>
+    `).join('');
+  }
+
+  function cargarDelHistorial(index) {
+    const historial = JSON.parse(localStorage.getItem('historialML') || '[]');
+    const item = historial[index];
+    document.getElementById('precio').value = item.precio;
+    document.getElementById('costo').value = item.costo;
+    calcular();
+  }
+
+  function crearGrafico(costo, comision, iva, costoEnvio, ganancia) {
+    const total = costo + comision + iva + costoEnvio + Math.max(0, ganancia);
+    const items = [
+      { label: '💰 Costo', valor: costo, color: '#e53935' },
+      { label: '📊 Comisión ML', valor: comision, color: '#f5a623' },
+      { label: '🏛️ IVA', valor: iva, color: '#ffc107' },
+      { label: '📦 Envío', valor: costoEnvio, color: '#ff9800' },
+      { label: '💵 Ganancia', valor: Math.max(0, ganancia), color: '#00a650' }
+    ];
+
+    const html = `
+      <div style="background: #f9f9f9; padding: 16px; border-radius: 8px;">
+        <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; color: var(--muted);">DESGLOSE</h4>
+        ${items.map(item => {
+          const pct = (item.valor / total * 100).toFixed(1);
+          return `
+            <div style="margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.85rem;">
+                <span>${item.label}</span>
+                <strong>$${Math.round(item.valor).toLocaleString('es-AR')} (${pct}%)</strong>
+              </div>
+              <div style="background: #e0e0e0; height: 20px; border-radius: 4px; overflow: hidden;">
+                <div style="background: ${item.color}; height: 100%; width: ${pct}%; transition: width 0.3s;"></div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+
+    document.getElementById('grafico-desglose').innerHTML = html;
+  }
+
+  function exportarResultado() {
+    const canvas = document.getElementById('resultado');
+    html2canvas(canvas, { scale: 2, backgroundColor: '#fff' }).then(img => {
+      const link = document.createElement('a');
+      link.href = img.toDataURL();
+      link.download = 'rentabilidad-ml.png';
+      link.click();
+    }).catch(() => {
+      alert('Para exportar, usa Ctrl+Print pantalla o toma una captura de pantalla.');
+    });
+  }
 
   function setTipo(btn) {
     document.querySelectorAll('#tipo-pub button').forEach(b => b.classList.remove('active'));
@@ -505,6 +636,10 @@
 
     const ganancia = precio - costo - comision - iva - costoEnvio;
     const margen = (ganancia / precio) * 100;
+
+    // Crear gráfico y guardar
+    crearGrafico(costo, comision, iva, costoEnvio, ganancia);
+    guardarEnHistorial({ precio, costo, ganancia, comision, iva, costoEnvio, tipoPublicacion });
 
     // Mostrar
     document.getElementById('r-precio').textContent = fmt(precio);
@@ -571,6 +706,9 @@
 
   // Calcular en tiempo real con Enter
   document.addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); });
+
+  // Mostrar historial al cargar
+  window.addEventListener('load', mostrarHistorial);
 </script>
 
 </body>
