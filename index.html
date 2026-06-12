@@ -550,7 +550,7 @@
     const item = historial[index];
     document.getElementById('precio').value = item.precio;
     document.getElementById('costo').value = item.costo;
-    calcular();
+    calcular(false);
   }
 
   function crearGrafico(costo, comision, iva, costoEnvio, ganancia) {
@@ -561,25 +561,39 @@
       { label: '🏛️ IVA', valor: iva, color: '#ffc107' },
       { label: '📦 Envío', valor: costoEnvio, color: '#ff9800' },
       { label: '💵 Ganancia', valor: Math.max(0, ganancia), color: '#00a650' }
-    ];
+    ].filter(item => item.valor > 0);
+
+    // Construir los tramos del gráfico de torta (conic-gradient)
+    let acumulado = 0;
+    const tramos = items.map(item => {
+      const desde = (acumulado / total) * 100;
+      acumulado += item.valor;
+      const hasta = (acumulado / total) * 100;
+      return `${item.color} ${desde}% ${hasta}%`;
+    }).join(', ');
 
     const html = `
       <div style="background: #f9f9f9; padding: 16px; border-radius: 8px;">
-        <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; color: var(--muted);">DESGLOSE</h4>
-        ${items.map(item => {
-          const pct = (item.valor / total * 100).toFixed(1);
-          return `
-            <div style="margin-bottom: 12px;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.85rem;">
-                <span>${item.label}</span>
-                <strong>$${Math.round(item.valor).toLocaleString('es-AR')} (${pct}%)</strong>
-              </div>
-              <div style="background: #e0e0e0; height: 20px; border-radius: 4px; overflow: hidden;">
-                <div style="background: ${item.color}; height: 100%; width: ${pct}%; transition: width 0.3s;"></div>
-              </div>
-            </div>
-          `;
-        }).join('')}
+        <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; color: var(--muted);">DESGLOSE</h4>
+
+        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center;">
+          <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(${tramos}); flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+            <div style="width: 70px; height: 70px; background: #f9f9f9; border-radius: 50%; position: relative; top: 45px; left: 45px;"></div>
+          </div>
+
+          <div style="flex: 1; min-width: 200px;">
+            ${items.map(item => {
+              const pct = (item.valor / total * 100).toFixed(1);
+              return `
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 0.85rem;">
+                  <span style="width: 12px; height: 12px; border-radius: 3px; background: ${item.color}; flex-shrink: 0;"></span>
+                  <span style="flex: 1;">${item.label}</span>
+                  <strong>$${Math.round(item.valor).toLocaleString('es-AR')} (${pct}%)</strong>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
       </div>
     `;
 
@@ -627,7 +641,7 @@
     return '$' + Math.round(n).toLocaleString('es-AR');
   }
 
-  function calcular() {
+  function calcular(guardar = true) {
     const precio = parseFloat(document.getElementById('precio').value);
     const costo = parseFloat(document.getElementById('costo').value);
 
@@ -654,9 +668,11 @@
     const ganancia = precio - costo - comision - iva - costoEnvio;
     const margen = (ganancia / precio) * 100;
 
-    // Crear gráfico y guardar
+    // Crear gráfico y guardar (solo si es un cálculo nuevo, no al cargar del historial)
     crearGrafico(costo, comision, iva, costoEnvio, ganancia);
-    guardarEnHistorial({ precio, costo, ganancia, comision, iva, costoEnvio, tipoPublicacion });
+    if (guardar) {
+      guardarEnHistorial({ precio, costo, ganancia, comision, iva, costoEnvio, tipoPublicacion });
+    }
 
     // Mostrar
     document.getElementById('r-precio').textContent = fmt(precio);
