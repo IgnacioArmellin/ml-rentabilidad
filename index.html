@@ -3,53 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO básico -->
-  <title>Calculadora de Rentabilidad Mercado Libre Argentina | Ganancia Neta Gratis</title>
-  <meta name="description" content="Calculá gratis cuánto ganás realmente vendiendo en Mercado Libre Argentina. Descontá comisiones, IVA y Mercado Envíos en segundos. Sin registro." />
-  <meta name="keywords" content="calculadora mercado libre, rentabilidad mercado libre, comisiones mercado libre, ganancia mercado libre, vender en mercado libre, calcular ganancia ML, comisión clásica premium" />
+  <title>Profit Calculator | Mercado Libre, Amazon & eBay | Free</title>
+  <meta name="description" content="Calculate your real profit on Mercado Libre, Amazon & eBay. Deduct fees, taxes & shipping instantly. Free, no registration." />
   <meta name="author" content="MLRentabilidad" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://ignacioarmellin.github.io/ml-rentabilidad/" />
   <meta name="theme-color" content="#FFE600" />
-
-  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Calculadora de Rentabilidad Mercado Libre Argentina" />
-  <meta property="og:description" content="Calculá gratis cuánto ganás realmente con cada venta en Mercado Libre. Comisiones, IVA y envío incluidos. Sin registro." />
-  <meta property="og:url" content="https://ignacioarmellin.github.io/ml-rentabilidad/" />
-  <meta property="og:site_name" content="MLRentabilidad" />
-  <meta property="og:locale" content="es_AR" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Calculadora de Rentabilidad Mercado Libre Argentina" />
-  <meta name="twitter:description" content="Calculá gratis cuánto ganás realmente con cada venta en Mercado Libre. Comisiones, IVA y envío incluidos." />
-
-  <!-- Favicon (emoji) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>" />
-
-  <!-- Google AdSense Account -->
   <meta name="google-adsense-account" content="ca-pub-7098385470186490">
-
-  <!-- Schema.org: ayuda a Google a entender que es una herramienta -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Calculadora de Rentabilidad Mercado Libre",
-    "description": "Calculá cuánto ganás realmente vendiendo en Mercado Libre Argentina, descontando comisiones, IVA y Mercado Envíos.",
-    "url": "https://ignacioarmellin.github.io/ml-rentabilidad/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "inLanguage": "es-AR",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "ARS"
-    }
-  }
-  </script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -75,8 +34,6 @@
       --radius: 16px;
       --radius-sm: 10px;
       --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 28px rgba(0,0,0,0.08);
-      --shadow-soft: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.05);
-      --ring: 0 0 0 4px rgba(52, 131, 250, 0.15);
     }
 
     html { scroll-behavior: smooth; }
@@ -89,60 +46,144 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ---------- Header ---------- */
     header {
       background: var(--yellow);
-      padding: 0 24px;
-      height: 60px;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
       box-shadow: 0 1px 0 rgba(0,0,0,0.06);
     }
 
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.5px;
-    }
-
+    .logo { font-size: 1.25rem; font-weight: 800; color: var(--text); }
     .logo span { color: var(--blue); }
 
-    .header-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      background: rgba(255,255,255,0.65);
-      color: #555;
-      padding: 5px 12px;
-      border-radius: 999px;
-      letter-spacing: 0.3px;
+    .lang-selector {
+      display: flex;
+      gap: 8px;
     }
 
-    /* ---------- Hero ---------- */
+    .lang-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.08);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: rgba(0,0,0,0.15);
+    }
+
+    /* MENU PRINCIPAL */
+    .menu-principal {
+      background: white;
+      padding: 40px 24px;
+      text-align: center;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .menu-principal h2 {
+      margin-bottom: 30px;
+      color: var(--text);
+      font-size: 1.5rem;
+    }
+
+    .menu-botones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .menu-btn {
+      padding: 30px 20px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu-btn:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 16px rgba(52, 131, 250, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .menu-btn.active {
+      border-color: var(--blue);
+      background: #ebf2ff;
+      color: var(--blue);
+    }
+
+    .menu-emoji {
+      font-size: 2.5rem;
+    }
+
+    .menu-texto {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-nombre {
+      font-size: 1.1rem;
+    }
+
+    .menu-desc {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.7;
+      margin-top: 5px;
+    }
+
+    /* CALCULADORAS */
+    .calculadora {
+      display: none;
+      padding: 40px 24px;
+    }
+
+    .calculadora.activa {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .hero {
       background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-soft) 100%);
-      padding: 48px 24px 76px;
+      padding: 40px 24px;
       text-align: center;
+      border-radius: 16px;
+      margin-bottom: 40px;
     }
 
     .hero h1 {
-      font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+      font-size: 2rem;
       font-weight: 800;
+      margin-bottom: 10px;
       color: var(--text);
-      margin-bottom: 14px;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
     }
 
     .hero p {
-      font-size: 1.08rem;
+      font-size: 1rem;
       color: #3d3d29;
-      max-width: 540px;
-      margin: 0 auto 20px;
+      margin-bottom: 15px;
     }
 
     .hero-badges {
@@ -153,28 +194,24 @@
     }
 
     .hero-badges span {
-      font-size: 0.82rem;
-      font-weight: 600;
-      background: rgba(255,255,255,0.75);
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.8);
       color: #444;
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: 999px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
-    /* ---------- Layout ---------- */
     .container {
-      max-width: 880px;
-      margin: -40px auto 64px;
-      padding: 0 16px;
+      max-width: 1000px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 24px;
     }
 
-    @media (max-width: 640px) {
-      .container { grid-template-columns: 1fr; margin-top: -48px; }
-      .hero { padding: 36px 20px 72px; }
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.5rem; }
     }
 
     .card {
@@ -194,8 +231,9 @@
       font-size: 0.78rem;
     }
 
-    /* ---------- Formulario ---------- */
-    .field { margin-bottom: 18px; }
+    .field {
+      margin-bottom: 18px;
+    }
 
     label {
       display: block;
@@ -214,39 +252,42 @@
       font-weight: 600;
       color: var(--text);
       background: var(--card-alt);
-      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
-      appearance: none;
+      transition: border-color 0.2s;
     }
 
     input[type="number"]:focus {
       outline: none;
       border-color: var(--blue);
       background: #fff;
-      box-shadow: var(--ring);
     }
 
-    .prefix-wrap { position: relative; }
+    .prefix-wrap {
+      position: relative;
+    }
 
     .prefix-wrap span {
       position: absolute;
       left: 15px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.05rem;
       font-weight: 600;
       color: var(--muted);
       pointer-events: none;
     }
 
-    .prefix-wrap input { padding-left: 34px; }
+    .prefix-wrap input {
+      padding-left: 34px;
+    }
 
     .toggle-group {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .toggle-group button {
+    .toggle-btn {
       flex: 1;
+      min-width: 100px;
       padding: 11px 8px;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
@@ -255,18 +296,15 @@
       font-weight: 600;
       color: var(--muted);
       cursor: pointer;
-      transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.1s;
+      transition: all 0.2s;
     }
 
-    .toggle-group button:active { transform: scale(0.97); }
-
-    .toggle-group button.active {
+    .toggle-btn.active {
       border-color: var(--blue);
       background: #ebf2ff;
       color: var(--blue);
     }
 
-    /* ---------- Botones ---------- */
     .btn {
       width: 100%;
       padding: 15px;
@@ -275,71 +313,73 @@
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
-    }
-
-    .btn:active { transform: scale(0.985); }
-
-    .btn-calc {
-      margin-top: 8px;
       background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(52, 131, 250, 0.35);
+      color: white;
+      margin-top: 8px;
+      transition: all 0.2s;
     }
 
-    .btn-calc:hover { background: var(--blue-dark); }
-
-    .btn-verde {
-      background: var(--green);
-      color: #fff;
+    .btn:hover {
+      background: var(--blue-dark);
     }
 
-    .btn-verde:hover { background: var(--green-dark); }
-
-    .btn-outline {
-      background: #fff;
-      color: var(--blue);
-      border: 1.5px solid var(--blue);
-    }
-
-    .btn-outline:hover { background: #ebf2ff; }
-
-    .acciones {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .acciones .btn { flex: 1; min-width: 200px; font-size: 0.92rem; padding: 13px; }
-
-    /* ---------- Resultado ---------- */
     .result-card {
       grid-column: 1 / -1;
       display: none;
-      scroll-margin-top: 76px;
     }
 
     .result-card.visible {
       display: block;
-      animation: fadeUp 0.45s ease both;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
+    .breakdown {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .result-card.visible { animation: none; }
-      html { scroll-behavior: auto; }
-    }
-
-    .result-header {
+    .breakdown-row {
       display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
+      justify-content: space-between;
+      padding: 9px 0;
+      font-size: 0.95rem;
+    }
+
+    .breakdown-row:not(:last-child) {
+      border-bottom: 1px solid #f1f2f4;
+    }
+
+    .breakdown-row .label {
+      color: var(--muted);
+    }
+
+    .breakdown-row .value {
+      font-weight: 600;
+    }
+
+    .breakdown-row .value.neg {
+      color: var(--red);
+    }
+
+    .breakdown-row .value.pos {
+      color: var(--green);
+    }
+
+    .breakdown-row.total {
+      border-top: 2px solid var(--border) !important;
+      margin-top: 8px;
+      padding-top: 16px;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .tip {
+      background: #f0f7ff;
+      border-left: 3px solid var(--blue);
+      padding: 13px 15px;
+      font-size: 0.86rem;
+      color: #333;
+      margin-top: 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
 
     .semaforo {
@@ -353,244 +393,94 @@
       flex-shrink: 0;
     }
 
-    .semaforo.green { background: var(--green-bg); box-shadow: 0 0 0 5px rgba(0,166,80,0.12); }
-    .semaforo.orange { background: var(--orange-bg); box-shadow: 0 0 0 5px rgba(245,166,35,0.14); }
-    .semaforo.red { background: var(--red-bg); box-shadow: 0 0 0 5px rgba(229,57,53,0.12); }
-
-    .result-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; }
-    .result-subtitle { font-size: 0.92rem; color: var(--muted); margin-top: 3px; }
-
-    .breakdown {
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
+    .semaforo.green {
+      background: var(--green-bg);
     }
 
-    .breakdown-row {
+    .semaforo.orange {
+      background: var(--orange-bg);
+    }
+
+    .semaforo.red {
+      background: var(--red-bg);
+    }
+
+    .result-header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 9px 0;
-      font-size: 0.95rem;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .breakdown-row:not(:last-child) { border-bottom: 1px solid #f1f2f4; }
-
-    .breakdown-row .label { color: var(--muted); }
-    .breakdown-row .value { font-weight: 600; font-variant-numeric: tabular-nums; }
-    .breakdown-row .value.neg { color: var(--red); }
-    .breakdown-row .value.pos { color: var(--green); }
-
-    .breakdown-row.total {
-      border-top: 2px solid var(--border) !important;
-      margin-top: 8px;
-      padding-top: 16px;
-      font-size: 1.1rem;
+    .result-title {
+      font-size: 1.3rem;
       font-weight: 800;
     }
 
-    .margin-bar-wrap { margin-top: 20px; }
-
-    .margin-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      font-weight: 600;
+    .result-subtitle {
+      font-size: 0.92rem;
       color: var(--muted);
-      margin-bottom: 7px;
+      margin-top: 3px;
     }
 
-    .margin-bar {
-      height: 12px;
-      background: #eceef1;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .margin-bar-fill {
-      height: 100%;
-      border-radius: 999px;
-      transition: width 0.5s ease, background 0.3s;
-    }
-
-    .tip {
-      background: #f0f7ff;
-      border-left: 3px solid var(--blue);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      padding: 13px 15px;
-      font-size: 0.86rem;
-      color: #333;
-      margin-top: 18px;
-      line-height: 1.55;
-    }
-
-    /* ---------- Gráfico de torta ---------- */
-    .desglose {
-      background: var(--card-alt);
-      border: 1px solid var(--border);
+    .productos {
+      margin-top: 40px;
       padding: 20px;
-      border-radius: var(--radius-sm);
-      margin-top: 20px;
+      background: #f0f7ff;
+      border-radius: 8px;
+      border-left: 4px solid var(--blue);
     }
 
-    .desglose h4 {
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
-      color: var(--muted);
+    .productos h3 {
+      margin-top: 0;
+      color: #1f2937;
+      margin-bottom: 15px;
     }
 
-    .desglose-body {
-      display: flex;
-      gap: 26px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
+    .productos p {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 15px;
     }
 
-    .pie {
-      width: 172px;
-      height: 172px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.13);
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
     }
 
-    .pie-centro {
-      width: 58%;
-      height: 58%;
-      background: var(--card-alt);
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .pie-centro strong { font-size: 1.25rem; letter-spacing: -0.5px; }
-    .pie-centro small { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .legend { flex: 1; min-width: 210px; }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 6px 0;
-      font-size: 0.87rem;
-    }
-
-    .legend-item:not(:last-child) { border-bottom: 1px dashed var(--border); }
-
-    .legend-dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 4px;
-      flex-shrink: 0;
-    }
-
-    .legend-item .nombre { flex: 1; color: #444; }
-    .legend-item strong { font-variant-numeric: tabular-nums; }
-
-    /* ---------- Historial ---------- */
-    .historial {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .historial-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .historial-head h3 {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .btn-borrar-hist {
-      background: none;
-      border: none;
-      color: var(--red);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 4px 8px;
+    .producto-link {
+      padding: 12px;
+      background: white;
+      border: 1px solid #e5e7eb;
       border-radius: 6px;
-      transition: background 0.15s;
+      text-decoration: none;
+      color: var(--blue);
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.2s;
+      font-size: 0.9rem;
     }
 
-    .btn-borrar-hist:hover { background: var(--red-bg); }
-
-    .hist-list {
-      max-height: 280px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .producto-link:hover {
+      box-shadow: 0 2px 8px rgba(52,131,250,0.2);
     }
 
-    .hist-item {
-      width: 100%;
-      text-align: left;
-      background: var(--card-alt);
-      border: 1px solid var(--border);
-      padding: 11px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-family: inherit;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s, transform 0.1s;
-    }
-
-    .hist-item:hover { border-color: var(--blue); background: #f4f8ff; }
-    .hist-item:active { transform: scale(0.99); }
-
-    .hist-monto { display: block; font-size: 0.92rem; }
-    .hist-monto .pos { color: var(--green); font-weight: 700; }
-    .hist-monto .neg { color: var(--red); font-weight: 700; }
-    .hist-meta { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 3px; }
-
-    /* ---------- Footer ---------- */
     footer {
       text-align: center;
-      padding: 28px 20px 36px;
+      padding: 28px 20px;
       font-size: 0.82rem;
       color: var(--muted);
-      line-height: 1.8;
+      margin-top: 40px;
     }
 
-    footer a { color: var(--blue); text-decoration: none; font-weight: 600; }
-    footer a:hover { text-decoration: underline; }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @media (max-width: 640px) {
-      div[style*="justify-content: center; gap: 40px"] {
-        gap: 20px !important;
-      }
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
     }
   </style>
 
-  <!-- html2canvas para exportar el resultado como imagen -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8V3RFPR8P4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -598,430 +488,50 @@
     gtag('js', new Date());
     gtag('config', 'G-8V3RFPR8P4');
   </script>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7098385470186490"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7098385470186490" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <header>
   <div class="logo">ML<span>Rentabilidad</span></div>
-  <div style="display: flex; gap: 20px; align-items: center;">
-    <div style="font-size: 0.85rem; font-weight: 600;">
-      <button onclick="cambiarIdioma('es')" id="btn-es" style="color: #18191f; text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(0,0,0,0.15); border: none; cursor: pointer; font-weight: 600;">ES</button>
-      <button onclick="cambiarIdioma('en')" id="btn-en" style="color: #18191f; text-decoration: none; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600;">EN</button>
-    </div>
+  <div class="lang-selector">
+    <button class="lang-btn active" onclick="cambiarIdioma('es')" id="btn-es">ES</button>
+    <button class="lang-btn" onclick="cambiarIdioma('en')" id="btn-en">EN</button>
   </div>
-  <div class="header-badge">100% gratis</div>
 </header>
 
-<div style="background: white; border-bottom: 2px solid #e5e7eb; display: flex; justify-content: center; gap: 40px; padding: 0 24px; height: 60px; align-items: center; position: sticky; top: 60px; z-index: 40;">
-  <button onclick="cambiarTab('ml')" id="tab-ml" style="border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--blue); cursor: pointer; padding: 20px 0; border-bottom: 3px solid var(--blue); transition: all 0.2s;">
-    💰 Mercado Libre
-  </button>
-  <button onclick="cambiarTab('ebay')" id="tab-ebay" style="border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--muted); cursor: pointer; padding: 20px 0; border-bottom: 3px solid transparent; transition: all 0.2s;">
-    🏪 eBay & Amazon
-  </button>
-</div>
-
-<div class="tab-content active" id="tab-ml-content">
-<div class="hero">
-  <h1 id="hero-title">¿Cuánto ganás realmente<br>vendiendo en Mercado Libre?</h1>
-  <p id="hero-subtitle">Calculá tu ganancia neta después de comisiones, IVA y envío.</p>
-  <div class="hero-badges">
-    <span>✓ Gratis</span>
-    <span>✓ Sin registro</span>
-    <span>✓ Resultado al instante</span>
+<div class="menu-principal">
+  <h2 id="menu-titulo">Elige tu plataforma</h2>
+  <div class="menu-botones">
+    <button class="menu-btn active" onclick="cambiarCalculadora('ml')">
+      <div class="menu-emoji">💰</div>
+      <div class="menu-texto">
+        <div class="menu-nombre" id="ml-nombre">Mercado Libre</div>
+        <div class="menu-desc" id="ml-desc">(Argentina)</div>
+      </div>
+    </button>
+    <button class="menu-btn" onclick="cambiarCalculadora('amazon')">
+      <div class="menu-emoji">📦</div>
+      <div class="menu-texto">
+        <div class="menu-nombre" id="amazon-nombre">Amazon</div>
+        <div class="menu-desc" id="amazon-desc">(USA)</div>
+      </div>
+    </button>
+    <button class="menu-btn" onclick="cambiarCalculadora('ebay')">
+      <div class="menu-emoji">🏪</div>
+      <div class="menu-texto">
+        <div class="menu-nombre" id="ebay-nombre">eBay</div>
+        <div class="menu-desc" id="ebay-desc">(USA)</div>
+      </div>
+    </button>
   </div>
 </div>
 
-<div class="container">
-
-  <!-- Inputs -->
-  <div class="card">
-    <h2>Tu venta</h2>
-
-    <div class="field">
-      <label for="precio">Precio de venta (lo que paga el comprador)</label>
-      <div class="prefix-wrap">
-        <span>$</span>
-        <input type="number" id="precio" inputmode="decimal" placeholder="10.000" min="0" step="1" />
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="costo">Costo del producto (lo que vos pagaste)</label>
-      <div class="prefix-wrap">
-        <span>$</span>
-        <input type="number" id="costo" inputmode="decimal" placeholder="5.000" min="0" step="1" />
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Tipo de publicación</label>
-      <div class="toggle-group" id="tipo-pub">
-        <button data-val="gratuita" onclick="setTipo(this)">Gratuita<br><small style="font-weight:400;color:#999">0%</small></button>
-        <button data-val="clasica" onclick="setTipo(this)" class="active">Clásica<br><small style="font-weight:400;color:#999">12,5%</small></button>
-        <button data-val="premium" onclick="setTipo(this)">Premium<br><small style="font-weight:400;color:#999">16,5%</small></button>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>¿Usás Mercado Envíos?</label>
-      <div class="toggle-group" id="tipo-envio">
-        <button data-val="si" onclick="setEnvio(this)" class="active">Sí, lo uso</button>
-        <button data-val="no" onclick="setEnvio(this)">No, envío propio</button>
-      </div>
-    </div>
-
-    <div class="field" id="campo-envio-propio" style="display:none">
-      <label for="envio-propio">Costo de envío propio</label>
-      <div class="prefix-wrap">
-        <span>$</span>
-        <input type="number" id="envio-propio" inputmode="decimal" placeholder="800" min="0" step="1" />
-      </div>
-    </div>
-
-    <button class="btn btn-calc" onclick="calcular()">Calcular ganancia →</button>
-  </div>
-
-  <!-- Info card -->
-  <div class="card">
-    <h2>¿Cómo funciona?</h2>
-
-    <div class="breakdown">
-      <div class="breakdown-row">
-        <span class="label">🟢 Publicación Gratuita</span>
-        <span class="value">0% comisión</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label">🔵 Publicación Clásica</span>
-        <span class="value">12,5% comisión</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label">⭐ Publicación Premium</span>
-        <span class="value">16,5% comisión</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label">IVA sobre comisión</span>
-        <span class="value">21%</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label">Mercado Envíos (est.)</span>
-        <span class="value">~$900–1.500</span>
-      </div>
-    </div>
-
-    <div class="tip">
-      💡 <strong>Tip:</strong> La publicación Gratuita tiene 0% de comisión pero no acepta cuotas con tarjeta. La Clásica es la más usada por el equilibrio entre costo y alcance.
-    </div>
-  </div>
-
-  <!-- Result -->
-  <div class="card result-card" id="resultado">
-    <div class="result-header">
-      <div class="semaforo" id="semaforo-icon">✅</div>
-      <div>
-        <div class="result-title" id="result-title">Cargando...</div>
-        <div class="result-subtitle" id="result-subtitle"></div>
-      </div>
-    </div>
-
-    <div class="breakdown">
-      <div class="breakdown-row">
-        <span class="label">Precio de venta</span>
-        <span class="value pos" id="r-precio">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label">Costo del producto</span>
-        <span class="value neg" id="r-costo">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label" id="r-comision-label">Comisión ML</span>
-        <span class="value neg" id="r-comision">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label">IVA sobre comisión (21%)</span>
-        <span class="value neg" id="r-iva">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="label" id="r-envio-label">Costo de envío</span>
-        <span class="value neg" id="r-envio">—</span>
-      </div>
-      <div class="breakdown-row total">
-        <span>Ganancia neta</span>
-        <span class="value" id="r-ganancia">—</span>
-      </div>
-    </div>
-
-    <div class="margin-bar-wrap">
-      <div class="margin-bar-label">
-        <span>Margen</span>
-        <span id="r-margen-pct">—</span>
-      </div>
-      <div class="margin-bar">
-        <div class="margin-bar-fill" id="r-bar" style="width:0%"></div>
-      </div>
-    </div>
-
-    <div class="tip" id="r-tip"></div>
-
-    <div id="grafico-desglose"></div>
-
-    <div class="historial" id="historial-section">
-      <div class="historial-head">
-        <h3>📋 Últimos cálculos</h3>
-        <button type="button" class="btn-borrar-hist" onclick="borrarHistorial()">🗑️ Borrar todo</button>
-      </div>
-      <div class="hist-list" id="historial-list"></div>
-    </div>
-
-    <div class="acciones" id="acciones-resultado">
-      <button class="btn btn-verde" onclick="exportarResultado()">📥 Descargar imagen</button>
-      <button class="btn btn-outline" onclick="compartirResultado()">📤 Compartir</button>
-    </div>
-
-    <!-- Productos Recomendados -->
-    <div style="margin-top: 40px; padding: 20px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid #3483fa;">
-      <h3 style="margin-top: 0; color: #1f2937; margin-bottom: 15px;">📦 Balanzas Recomendadas</h3>
-      <p style="color: #6b7280; font-size: 14px; margin-bottom: 15px;">Herramientas esenciales para vender en Mercado Libre</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-        <a href="https://meli.la/1fRvz4J" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s; hover: box-shadow: 0 2px 8px rgba(52,131,250,0.2);">
-          🔗 Balanza Digital Montoya
-        </a>
-        <a href="https://meli.la/1o3izmY" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s; hover: box-shadow: 0 2px 8px rgba(52,131,250,0.2);">
-          🔗 Balanza San Up Medivita
-        </a>
-        <a href="https://meli.la/2sHQWYV" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s; hover: box-shadow: 0 2px 8px rgba(52,131,250,0.2);">
-          🔗 Balanza Comercial Systel
-        </a>
-        <a href="https://meli.la/27RVRvr" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s; hover: box-shadow: 0 2px 8px rgba(52,131,250,0.2);">
-          🔗 Otra balanza recomendada
-        </a>
-      </div>
-      <p style="margin-top: 12px; font-size: 12px; color: #6b7280;">💡 <strong>¿Cómo funciona?</strong> Cuando alguien compra desde estos links, ganamos una pequeña comisión (sin costo para el comprador). Gracias por apoyar MLRentabilidad 💪</p>
-    </div>
-
-    <!-- Newsletter Signup Form - MailerLite -->
-    <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1781524");</style>
-    <style type="text/css">
-    .ml-form-embedSubmitLoad {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-    }
-    .g-recaptcha {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    transform-origin: 0 0;
-    -webkit-transform-origin: 0 0;
-    height: ;
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      border: 0;
-    }
-    .ml-form-embedSubmitLoad:after {
-      content: " ";
-      display: block;
-      width: 11px;
-      height: 11px;
-      margin: 1px;
-      border-radius: 50%;
-      border: 4px solid #fff;
-    border-color: #ffffff #ffffff #ffffff transparent;
-    animation: ml-form-embedSubmitLoad 1.2s linear infinite;
-    }
-    @keyframes ml-form-embedSubmitLoad {
-      0% {
-      transform: rotate(0deg);
-      }
-      100% {
-      transform: rotate(360deg);
-      }
-    }
-      #mlb2-42647506.ml-form-embedContainer {
-        box-sizing: border-box;
-        display: table;
-        margin: 0 auto;
-        position: static;
-        width: 100% !important;
-      }
-      #mlb2-42647506.ml-form-embedContainer h4,
-      #mlb2-42647506.ml-form-embedContainer p,
-      #mlb2-42647506.ml-form-embedContainer span,
-      #mlb2-42647506.ml-form-embedContainer button {
-        text-transform: none !important;
-        letter-spacing: normal !important;
-      }
-      #mlb2-42647506.ml-form-embedWrapper {
-        background-color: #f6f6f6;
-        border-width: 0px;
-        border-color: transparent;
-        border-radius: 4px;
-        border-style: solid;
-        box-sizing: border-box;
-        display: inline-block !important;
-        margin: 0;
-        padding: 0;
-        position: relative;
-      }
-      #mlb2-42647506.ml-form-embedWrapper.embedPopup,
-      #mlb2-42647506.ml-form-embedWrapper.embedDefault { width: 400px; }
-      #mlb2-42647506.ml-form-embedWrapper.embedForm { max-width: 400px; width: 100%; }
-      #mlb2-42647506.ml-form-align-left { text-align: left; }
-      #mlb2-42647506.ml-form-align-center { text-align: center; }
-      #mlb2-42647506.ml-form-align-default { display: table-cell !important; vertical-align: middle !important; text-align: center !important; }
-      #mlb2-42647506.ml-form-align-right { text-align: right; }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody,
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-successBody {
-        padding: 20px 20px 0 20px;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent,
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-successBody .ml-form-successContent {
-        text-align: left;
-        margin: 0 0 20px 0;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4,
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 {
-        color: #000000;
-        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-        font-size: 30px;
-        font-weight: 400;
-        margin: 0 0 10px 0;
-        text-align: left;
-        word-break: break-word;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p,
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p {
-        color: #000000;
-        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-        margin: 0 0 10px 0;
-        text-align: left;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
-        background-color: #ffffff !important;
-        color: #333333 !important;
-        border-color: #cccccc;
-        border-radius: 4px !important;
-        border-style: solid !important;
-        border-width: 1px !important;
-        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-        font-size: 14px !important;
-        height: auto;
-        line-height: 21px !important;
-        margin-bottom: 0;
-        margin-top: 0;
-        padding: 10px 10px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        max-width: 100% !important;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::-webkit-input-placeholder { color: #333333; }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::-moz-placeholder { color: #333333; }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:-ms-input-placeholder { color: #333333; }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit {
-        margin: 0 0 20px 0;
-        float: left;
-        width: 100%;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
-        background-color: #000000 !important;
-        border: none !important;
-        border-radius: 4px !important;
-        box-shadow: none !important;
-        color: #ffffff !important;
-        cursor: pointer;
-        font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        line-height: 21px !important;
-        height: auto;
-        padding: 10px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      #mlb2-42647506.ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover {
-        background-color: #333333 !important;
-      }
-      .ml-error input {
-        border-color: red!important;
-      }
-      .ml-error .label-description {
-        color: #ff0000 !important;
-      }
-      @media only screen and (max-width: 400px){
-        #mlb2-42647506.ml-form-embedWrapper.embedDefault { width: 100%!important; }
-      }
-    </style>
-
-    <div id="mlb2-42647506" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42647506">
-      <div class="ml-form-align-center">
-        <div class="ml-form-embedWrapper embedForm">
-          <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-            <div class="ml-form-embedContent">
-              <h4>Recibe tips de rentabilidad</h4>
-              <p><strong>Recibirás consejos semanales sin spam 📬</strong></p>
-            </div>
-            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2447552/forms/190378521948849420/subscribe" data-code="" method="post" target="_blank">
-              <div class="ml-form-formContent">
-                <div class="ml-form-fieldRow ml-last-item">
-                  <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                    <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Tu email" autocomplete="email">
-                  </div>
-                </div>
-              </div>
-              <input type="hidden" name="ml-submit" value="1">
-              <div class="ml-form-embedSubmit">
-                <button type="submit" class="primary">Suscribirse</button>
-                <button disabled="disabled" style="display: none;" type="button" class="loading">
-                  <div class="ml-form-embedSubmitLoad"></div>
-                  <span class="sr-only">Loading...</span>
-                </button>
-              </div>
-              <input type="hidden" name="anticsrf" value="true">
-            </form>
-          </div>
-          <div class="ml-form-successBody row-success" style="display: none">
-            <div class="ml-form-successContent">
-              <h4>¡Gracias!</h4>
-              <p>Te has suscrito correctamente a nuestro newsletter.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script>
-      function ml_webform_success_42647506() {
-        var $ = ml_jQuery || jQuery;
-        $('.ml-subscribe-form-42647506 .row-success').show();
-        $('.ml-subscribe-form-42647506 .row-form').hide();
-      }
-    </script>
-    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
-    <script>
-      fetch("https://assets.mailerlite.com/jsonp/2447552/forms/190378521948849420/takel")
-    </script>
-  </div>
-
-</div>
-<!-- FIN TAB MERCADO LIBRE -->
-
-<!-- INICIO TAB EBAY/AMAZON -->
-<div class="tab-content" id="tab-ebay-content">
+<!-- CALCULADORA MERCADO LIBRE -->
+<div class="calculadora activa" id="calc-ml">
   <div class="hero">
-    <h1>¿Cuánto ganás realmente<br>vendiendo en eBay?</h1>
-    <p>Calculá tu ganancia neta después de comisiones, impuestos y envío.</p>
+    <h1 id="ml-hero-title">¿Cuánto ganás en Mercado Libre?</h1>
+    <p id="ml-hero-subtitle">Calculá tu ganancia neta con comisiones y IVA</p>
     <div class="hero-badges">
       <span>✓ Gratis</span>
       <span>✓ Sin registro</span>
@@ -1030,757 +540,531 @@
   </div>
 
   <div class="container">
-    <!-- Inputs eBay -->
     <div class="card">
-      <h2>Tu venta en eBay</h2>
-
+      <h2 id="ml-venta">Tu venta</h2>
       <div class="field">
-        <label for="precio-ebay">Sale Price (USD)</label>
+        <label id="ml-precio-label">Precio de venta</label>
         <div class="prefix-wrap">
           <span>$</span>
-          <input type="number" id="precio-ebay" inputmode="decimal" placeholder="50" min="0" step="0.01" />
+          <input type="number" id="ml-precio" placeholder="10000" min="0" step="1">
         </div>
       </div>
-
       <div class="field">
-        <label for="costo-ebay">Product Cost</label>
+        <label id="ml-costo-label">Costo del producto</label>
         <div class="prefix-wrap">
           <span>$</span>
-          <input type="number" id="costo-ebay" inputmode="decimal" placeholder="25" min="0" step="0.01" />
+          <input type="number" id="ml-costo" placeholder="5000" min="0" step="1">
         </div>
       </div>
-
       <div class="field">
-        <label>Marketplace</label>
-        <div class="toggle-group" id="tipo-pub-ebay">
-          <button data-val="gratuita" onclick="setTipoEbay(this)" class="active">eBay<br><small style="font-weight:400;color:#999">12,5%</small></button>
-          <button data-val="clasica" onclick="setTipoEbay(this)">eBay Plus<br><small style="font-weight:400;color:#999">14,5%</small></button>
-          <button data-val="premium" onclick="setTipoEbay(this)">Amazon<br><small style="font-weight:400;color:#999">15%</small></button>
+        <label id="ml-tipo-label">Tipo de publicación</label>
+        <div class="toggle-group" id="ml-tipos">
+          <button class="toggle-btn active" onclick="setTipoML(this, 'gratuita')">Gratuita<br><small style="font-weight:400">0%</small></button>
+          <button class="toggle-btn" onclick="setTipoML(this, 'clasica')">Clásica<br><small style="font-weight:400">12,5%</small></button>
+          <button class="toggle-btn" onclick="setTipoML(this, 'premium')">Premium<br><small style="font-weight:400">16,5%</small></button>
         </div>
       </div>
-
-      <div class="field">
-        <label>Shipping</label>
-        <div class="toggle-group" id="tipo-envio-ebay">
-          <button data-val="si" onclick="setEnvioEbay(this)" class="active">Calculated</button>
-          <button data-val="no" onclick="setEnvioEbay(this)">Custom Cost</button>
-        </div>
-      </div>
-
-      <div class="field" id="campo-envio-ebay" style="display:none">
-        <label for="envio-propio-ebay">Shipping Cost</label>
-        <div class="prefix-wrap">
-          <span>$</span>
-          <input type="number" id="envio-propio-ebay" inputmode="decimal" placeholder="10" min="0" step="0.01" />
-        </div>
-      </div>
-
-      <button class="btn btn-calc" onclick="calcularEbay()">Calculate Profit →</button>
+      <button class="btn" onclick="calcularML()">Calcular →</button>
     </div>
 
-    <!-- Info card eBay -->
     <div class="card">
-      <h2>How it works</h2>
-
+      <h2 id="ml-como">¿Cómo funciona?</h2>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">🔵 eBay Standard</span>
-          <span class="value">12,5% fee</span>
+          <span class="label">🟢 Gratuita</span>
+          <span class="value">0%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">⭐ eBay Plus</span>
-          <span class="value">14,5% fee</span>
+          <span class="label">🔵 Clásica</span>
+          <span class="value">12,5%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">🟡 Amazon</span>
-          <span class="value">15% fee</span>
+          <span class="label">⭐ Premium</span>
+          <span class="value">16,5%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">IVA (21%)</span>
+          <span class="value">Sobre comisión</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Envío (est.)</span>
+          <span class="value">~$900-$1500</span>
+        </div>
+      </div>
+      <div class="tip">
+        💡 Los valores son estimativos. Verificá en Mercado Libre Ayuda los costos exactos.
+      </div>
+    </div>
+
+    <div class="card result-card" id="ml-resultado">
+      <div class="result-header">
+        <div class="semaforo" id="ml-semaforo">✅</div>
+        <div>
+          <div class="result-title" id="ml-result-title">Rentable</div>
+          <div class="result-subtitle" id="ml-result-subtitle">Ganancia neta</div>
+        </div>
+      </div>
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="label" id="ml-r-precio-label">Precio</span>
+          <span class="value pos" id="ml-r-precio">$0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label" id="ml-r-costo-label">Costo</span>
+          <span class="value neg" id="ml-r-costo">-$0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label" id="ml-r-comision-label">Comisión</span>
+          <span class="value neg" id="ml-r-comision">-$0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label" id="ml-r-iva-label">IVA</span>
+          <span class="value neg" id="ml-r-iva">-$0</span>
+        </div>
+        <div class="breakdown-row total">
+          <span id="ml-r-ganancia-label">Ganancia neta</span>
+          <span class="value" id="ml-r-ganancia">$0</span>
+        </div>
+      </div>
+
+      <div class="productos">
+        <h3>📦 Productos Recomendados</h3>
+        <p>Herramientas esenciales para vender en Mercado Libre</p>
+        <div class="productos-grid">
+          <a href="https://meli.la/1fRvz4J" target="_blank" class="producto-link">Balanza Digital</a>
+          <a href="https://meli.la/1o3izmY" target="_blank" class="producto-link">Balanza San Up</a>
+          <a href="https://meli.la/2sHQWYV" target="_blank" class="producto-link">Balanza Systel</a>
+          <a href="https://meli.la/27RVRvr" target="_blank" class="producto-link">Más productos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULADORA AMAZON -->
+<div class="calculadora" id="calc-amazon">
+  <div class="hero" style="background: linear-gradient(180deg, #FF9900 0%, #FFB84D 100%);">
+    <h1 id="amazon-hero-title">How much do you earn on Amazon?</h1>
+    <p id="amazon-hero-subtitle">Calculate your net profit with fees and taxes</p>
+    <div class="hero-badges">
+      <span>✓ Free</span>
+      <span>✓ No registration</span>
+      <span>✓ Instant result</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h2 id="amazon-venta">Your Sale</h2>
+      <div class="field">
+        <label id="amazon-precio-label">Sale Price (USD)</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="amazon-precio" placeholder="50" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="field">
+        <label id="amazon-costo-label">Product Cost</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="amazon-costo" placeholder="25" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="field">
+        <label id="amazon-categoria-label">Category</label>
+        <div class="toggle-group" id="amazon-categorias">
+          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')">Books<br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')">Electronics<br><small style="font-weight:400">8%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')">Home<br><small style="font-weight:400">15%</small></button>
+        </div>
+      </div>
+      <button class="btn" onclick="calcularAmazon()">Calculate →</button>
+    </div>
+
+    <div class="card">
+      <h2 id="amazon-como">How it works</h2>
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="label">📚 Books</span>
+          <span class="value">15%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">📱 Electronics</span>
+          <span class="value">8%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">🏠 Home & Garden</span>
+          <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
           <span class="label">Sales Tax</span>
-          <span class="value">~8% estimate</span>
+          <span class="value">~8-10%</span>
         </div>
         <div class="breakdown-row">
           <span class="label">Shipping (est.)</span>
-          <span class="value">$5–15</span>
+          <span class="value">$5-$15</span>
         </div>
       </div>
-
       <div class="tip">
-        💡 <strong>Tip:</strong> Platform fees and taxes can significantly reduce profits. Always factor them in before listing.
+        💡 Amazon fees vary by category. Check your category's exact fee.
       </div>
     </div>
 
-    <!-- Result eBay -->
-    <div class="card result-card" id="resultado-ebay">
+    <div class="card result-card" id="amazon-resultado">
       <div class="result-header">
-        <div class="semaforo" id="semaforo-icon-ebay">✅</div>
+        <div class="semaforo" id="amazon-semaforo">✅</div>
         <div>
-          <div class="result-title" id="result-title-ebay">Cargando...</div>
-          <div class="result-subtitle" id="result-subtitle-ebay"></div>
+          <div class="result-title" id="amazon-result-title">Profitable</div>
+          <div class="result-subtitle" id="amazon-result-subtitle">Net profit</div>
         </div>
       </div>
-
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">Sale Price</span>
-          <span class="value pos" id="r-precio-ebay">—</span>
+          <span class="label">Price</span>
+          <span class="value pos" id="amazon-r-precio">$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Product Cost</span>
-          <span class="value neg" id="r-costo-ebay">—</span>
+          <span class="label">Cost</span>
+          <span class="value neg" id="amazon-r-costo">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label" id="r-comision-label-ebay">Platform Fee</span>
-          <span class="value neg" id="r-comision-ebay">—</span>
+          <span class="label" id="amazon-r-comision-label">Fee</span>
+          <span class="value neg" id="amazon-r-comision">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Sales Tax (est.)</span>
-          <span class="value neg" id="r-iva-ebay">—</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="label" id="r-envio-label-ebay">Shipping Cost</span>
-          <span class="value neg" id="r-envio-ebay">—</span>
+          <span class="label">Tax (est.)</span>
+          <span class="value neg" id="amazon-r-iva">-$0</span>
         </div>
         <div class="breakdown-row total">
           <span>Net Profit</span>
-          <span class="value" id="r-ganancia-ebay">—</span>
+          <span class="value" id="amazon-r-ganancia">$0</span>
         </div>
       </div>
 
-      <div class="margin-bar-wrap">
-        <div class="margin-bar-label">
-          <span>Margin</span>
-          <span id="r-margen-pct-ebay">—</span>
-        </div>
-        <div class="margin-bar">
-          <div class="margin-bar-fill" id="r-bar-ebay" style="width:0%"></div>
+      <div class="productos">
+        <h3>📦 Recommended Tools</h3>
+        <p>Essential supplies for online sellers</p>
+        <div class="productos-grid">
+          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Scales</a>
+          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Printers</a>
+          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Mailers</a>
+          <a href="https://amazon.com/s?k=packing+tape" target="_blank" class="producto-link">Tape</a>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-      <div class="tip" id="r-tip-ebay"></div>
+<!-- CALCULADORA EBAY -->
+<div class="calculadora" id="calc-ebay">
+  <div class="hero" style="background: linear-gradient(180deg, #E53238 0%, #FF6B6B 100%);">
+    <h1 id="ebay-hero-title">How much do you earn on eBay?</h1>
+    <p id="ebay-hero-subtitle">Calculate your net profit with fees and taxes</p>
+    <div class="hero-badges">
+      <span>✓ Free</span>
+      <span>✓ No registration</span>
+      <span>✓ Instant result</span>
+    </div>
+  </div>
 
-      <div class="acciones" id="acciones-resultado-ebay">
-        <button class="btn btn-verde" onclick="exportarResultadoEbay()">📥 Download Image</button>
-        <button class="btn btn-outline" onclick="compartirResultadoEbay()">📤 Share</button>
-      </div>
-
-      <!-- Productos eBay/Amazon -->
-      <div style="margin-top: 40px; padding: 20px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid #3483fa;">
-        <h3 style="margin-top: 0; color: #1f2937; margin-bottom: 15px;">📦 Recommended Shipping & Tools</h3>
-        <p style="color: #6b7280; font-size: 14px; margin-bottom: 15px;">Essential tools for online sellers</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
-            🔗 Digital Scales
-          </a>
-          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
-            🔗 Label Printers
-          </a>
-          <a href="https://amazon.com/s?k=shipping+supplies+box" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
-            🔗 Boxes & Packing
-          </a>
-          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
-            🔗 Mailers
-          </a>
+  <div class="container">
+    <div class="card">
+      <h2 id="ebay-venta">Your Sale</h2>
+      <div class="field">
+        <label id="ebay-precio-label">Sale Price (USD)</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="ebay-precio" placeholder="50" min="0" step="0.01">
         </div>
-        <p style="margin-top: 12px; font-size: 12px; color: #6b7280;">💡 When you buy through these links, we earn a small commission at no cost to you. 💪</p>
+      </div>
+      <div class="field">
+        <label id="ebay-costo-label">Product Cost</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="ebay-costo" placeholder="25" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="field">
+        <label id="ebay-tipo-label">Plan</label>
+        <div class="toggle-group" id="ebay-tipos">
+          <button class="toggle-btn active" onclick="setTipoEbay(this, 'standard')">eBay<br><small style="font-weight:400">12.9%</small></button>
+          <button class="toggle-btn" onclick="setTipoEbay(this, 'plus')">eBay Plus<br><small style="font-weight:400">14.5%</small></button>
+        </div>
+      </div>
+      <button class="btn" onclick="calcularEbay()">Calculate →</button>
+    </div>
+
+    <div class="card">
+      <h2 id="ebay-como">How it works</h2>
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="label">🔵 eBay Standard</span>
+          <span class="value">12.9%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">⭐ eBay Plus</span>
+          <span class="value">14.5%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Sales Tax</span>
+          <span class="value">~8-10%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Shipping (est.)</span>
+          <span class="value">$5-$15</span>
+        </div>
+      </div>
+      <div class="tip">
+        💡 Always factor in fees and shipping before listing. Most new sellers underestimate costs.
       </div>
     </div>
 
+    <div class="card result-card" id="ebay-resultado">
+      <div class="result-header">
+        <div class="semaforo" id="ebay-semaforo">✅</div>
+        <div>
+          <div class="result-title" id="ebay-result-title">Profitable</div>
+          <div class="result-subtitle" id="ebay-result-subtitle">Net profit</div>
+        </div>
+      </div>
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="label">Price</span>
+          <span class="value pos" id="ebay-r-precio">$0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Cost</span>
+          <span class="value neg" id="ebay-r-costo">-$0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label" id="ebay-r-comision-label">Fee</span>
+          <span class="value neg" id="ebay-r-comision">-$0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Tax (est.)</span>
+          <span class="value neg" id="ebay-r-iva">-$0</span>
+        </div>
+        <div class="breakdown-row total">
+          <span>Net Profit</span>
+          <span class="value" id="ebay-r-ganancia">$0</span>
+        </div>
+      </div>
+
+      <div class="productos">
+        <h3>📦 Recommended Tools</h3>
+        <p>Essential supplies for sellers</p>
+        <div class="productos-grid">
+          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Scales</a>
+          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Printers</a>
+          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Mailers</a>
+          <a href="https://amazon.com/s?k=boxes" target="_blank" class="producto-link">Boxes</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<!-- FIN TAB EBAY/AMAZON -->
-
-</div>
-
-<script>
-  // Newsletter form submission
-  document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const email = this.querySelector('input[type="email"]').value;
-
-    try {
-      // Enviar a Mailchimp
-      const formData = new FormData();
-      formData.append('EMAIL', email);
-
-      await fetch('https://mailchimp.us21.list-manage.com/subscribe/post?u=79e54f1d57291aa88aee189e7&id=6adabcf192&f_id=001234abcd', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-      });
-
-      alert('✅ ¡Bienvenido! Revisa tu email para confirmar la suscripción');
-      this.reset();
-    } catch(err) {
-      alert('✅ ¡Gracias por suscribirte!');
-      this.reset();
-    }
-  });
-</script>
 
 <footer>
-  <strong>MLRentabilidad</strong> — Herramienta gratuita para vendedores de Mercado Libre Argentina.<br>
-  Los valores son estimativos. Verificá comisiones en <a href="https://www.mercadolibre.com.ar/ayuda/costos" target="_blank" rel="noopener">Mercado Libre Ayuda</a>.
+  <strong>MLRentabilidad</strong> — Calculadora GRATIS para vendedores en Mercado Libre, Amazon y eBay.<br>
+  Los valores son estimativos. Verificá los costos exactos en cada plataforma.
 </footer>
 
 <script>
-  let tipoPublicacion = 'clasica';
-  let usaMercadoEnvios = true;
-  let ultimoResumen = '';
-
-  const COMISIONES = { gratuita: 0, clasica: 0.125, premium: 0.165 };
-  const IVA = 0.21;
-  const ENVIO_ML_EST = 1100; // estimación promedio ARS
-  const HIST_KEY = 'historialML';
-  const SITE_URL = 'https://ignacioarmellin.github.io/ml-rentabilidad/';
-
-  /* ---------- Historial ---------- */
-
-  function leerHistorial() {
-    try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); }
-    catch (e) { return []; }
-  }
-
-  function esMismoCalculo(a, b) {
-    return !!a && !!b &&
-      a.precio === b.precio &&
-      a.costo === b.costo &&
-      a.tipoPublicacion === b.tipoPublicacion &&
-      a.costoEnvio === b.costoEnvio;
-  }
-
-  // Limpia duplicados consecutivos que hayan quedado guardados de versiones anteriores
-  function limpiarDuplicados() {
-    const h = leerHistorial();
-    const limpio = h.filter((item, i) => i === 0 || !esMismoCalculo(item, h[i - 1]));
-    if (limpio.length !== h.length) {
-      localStorage.setItem(HIST_KEY, JSON.stringify(limpio));
-    }
-  }
-
-  function guardarEnHistorial(producto) {
-    let historial = leerHistorial();
-    // Si es idéntico al último cálculo guardado, no lo duplicamos
-    if (!esMismoCalculo(historial[0], producto)) {
-      historial.unshift({ ...producto, timestamp: new Date().toLocaleString('es-AR', {
-        day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
-      }) });
-      historial = historial.slice(0, 10);
-      localStorage.setItem(HIST_KEY, JSON.stringify(historial));
-    }
-    mostrarHistorial();
-  }
-
-  function mostrarHistorial() {
-    const historial = leerHistorial();
-    const lista = document.getElementById('historial-list');
-    const section = document.getElementById('historial-section');
-
-    if (historial.length === 0) {
-      section.style.display = 'none';
-      return;
-    }
-
-    section.style.display = 'block';
-    lista.innerHTML = historial.map((h, i) => {
-      const margen = h.precio ? (h.ganancia / h.precio) * 100 : 0;
-      const cls = h.ganancia < 0 ? 'neg' : 'pos';
-      const tipo = h.tipoPublicacion ? ' · ' + h.tipoPublicacion : '';
-      return `
-        <button type="button" class="hist-item" onclick="cargarDelHistorial(${i})">
-          <span class="hist-monto"><strong>${fmt(h.precio)}</strong> → <span class="${cls}">${fmt(h.ganancia)}</span></span>
-          <span class="hist-meta">${h.timestamp} · ${margen.toFixed(0)}% margen${tipo}</span>
-        </button>
-      `;
-    }).join('');
-  }
-
-  function cargarDelHistorial(index) {
-    const historial = leerHistorial();
-    const item = historial[index];
-    if (!item) return;
-
-    document.getElementById('precio').value = item.precio;
-    document.getElementById('costo').value = item.costo;
-
-    // Restaurar el tipo de publicación y envío con los que se hizo ese cálculo
-    if (item.tipoPublicacion) {
-      const btnTipo = document.querySelector('#tipo-pub button[data-val="' + item.tipoPublicacion + '"]');
-      if (btnTipo) setTipo(btnTipo);
-    }
-    if (typeof item.usaME === 'boolean') {
-      const btnEnvio = document.querySelector('#tipo-envio button[data-val="' + (item.usaME ? 'si' : 'no') + '"]');
-      if (btnEnvio) setEnvio(btnEnvio);
-      if (!item.usaME) {
-        document.getElementById('envio-propio').value = item.costoEnvio || '';
-      }
-    }
-
-    calcular(false); // false = no volver a guardar en el historial
-  }
-
-  function borrarHistorial() {
-    localStorage.removeItem(HIST_KEY);
-    mostrarHistorial();
-  }
-
-  /* ---------- Gráfico de torta ---------- */
-
-  function crearGrafico(costo, comision, iva, costoEnvio, ganancia, margen) {
-    const total = costo + comision + iva + costoEnvio + Math.max(0, ganancia);
-    const items = [
-      { label: 'Costo del producto', valor: costo, color: '#e53935' },
-      { label: 'Comisión ML', valor: comision, color: '#f5a623' },
-      { label: 'IVA', valor: iva, color: '#ffc107' },
-      { label: 'Envío', valor: costoEnvio, color: '#ff9800' },
-      { label: 'Ganancia', valor: Math.max(0, ganancia), color: '#00a650' }
-    ].filter(item => item.valor > 0);
-
-    // Tramos del gráfico de torta (conic-gradient)
-    let acumulado = 0;
-    const tramos = items.map(item => {
-      const desde = (acumulado / total) * 100;
-      acumulado += item.valor;
-      const hasta = (acumulado / total) * 100;
-      return item.color + ' ' + desde + '% ' + hasta + '%';
-    }).join(', ');
-
-    const colorMargen = ganancia < 0 ? 'var(--red)' : (margen < 15 ? 'var(--orange)' : 'var(--green)');
-
-    const html = `
-      <div class="desglose">
-        <h4>DESGLOSE: ¿A DÓNDE VA CADA PESO?</h4>
-        <div class="desglose-body">
-          <div class="pie" style="background: conic-gradient(${tramos})">
-            <div class="pie-centro">
-              <strong style="color:${colorMargen}">${margen.toFixed(1)}%</strong>
-              <small>margen</small>
-            </div>
-          </div>
-          <div class="legend">
-            ${items.map(item => {
-              const pct = (item.valor / total * 100).toFixed(1);
-              return `
-                <div class="legend-item">
-                  <span class="legend-dot" style="background:${item.color}"></span>
-                  <span class="nombre">${item.label}</span>
-                  <strong>${fmt(item.valor)} (${pct}%)</strong>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.getElementById('grafico-desglose').innerHTML = html;
-  }
-
-  /* ---------- Exportar y compartir ---------- */
-
-  function exportarResultado() {
-    if (typeof html2canvas === 'undefined') {
-      alert('La herramienta de exportación aún se está cargando. Esperá unos segundos y probá de nuevo.');
-      return;
-    }
-
-    const tarjeta = document.getElementById('resultado');
-    const acciones = document.getElementById('acciones-resultado');
-
-    // Ocultar los botones para que no salgan en la imagen
-    acciones.style.visibility = 'hidden';
-
-    html2canvas(tarjeta, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
-      acciones.style.visibility = 'visible';
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL('image/png');
-      link.download = 'rentabilidad-ml.png';
-      link.click();
-    }).catch(() => {
-      acciones.style.visibility = 'visible';
-      alert('No se pudo generar la imagen. Probá tomar una captura de pantalla con la tecla "Impr Pant".');
-    });
-  }
-
-  function compartirResultado() {
-    const texto = ultimoResumen || 'Calculá cuánto ganás realmente vendiendo en Mercado Libre';
-    if (navigator.share) {
-      navigator.share({ title: 'MLRentabilidad', text: texto, url: SITE_URL }).catch(() => {});
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(texto + '\n' + SITE_URL).then(() => {
-        alert('Resumen copiado al portapapeles 📋 ¡Pegalo donde quieras!');
-      }).catch(() => {
-        alert('Copiá el link: ' + SITE_URL);
-      });
-    } else {
-      alert('Copiá el link: ' + SITE_URL);
-    }
-  }
-
-  /* ---------- Formulario ---------- */
-
-  function setTipo(btn) {
-    document.querySelectorAll('#tipo-pub button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    tipoPublicacion = btn.dataset.val;
-  }
-
-  function setEnvio(btn) {
-    document.querySelectorAll('#tipo-envio button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    usaMercadoEnvios = btn.dataset.val === 'si';
-    document.getElementById('campo-envio-propio').style.display = usaMercadoEnvios ? 'none' : 'block';
-  }
-
-  function fmt(n) {
-    return '$' + Math.round(n).toLocaleString('es-AR');
-  }
-
-  /* ---------- Cálculo ---------- */
-
-  function calcular(guardar = true) {
-    const precio = parseFloat(document.getElementById('precio').value);
-    const costo = parseFloat(document.getElementById('costo').value);
-
-    if (!precio || isNaN(costo) || precio <= 0 || costo < 0) {
-      alert('Ingresá el precio de venta y el costo del producto.');
-      return;
-    }
-
-    const tasaComision = COMISIONES[tipoPublicacion];
-    const comision = precio * tasaComision;
-    const iva = comision * IVA;
-
-    let costoEnvio = 0;
-    let envioLabel = 'Sin envío';
-    if (usaMercadoEnvios) {
-      costoEnvio = ENVIO_ML_EST;
-      envioLabel = 'Mercado Envíos (est.)';
-    } else {
-      const ep = parseFloat(document.getElementById('envio-propio').value);
-      costoEnvio = ep || 0;
-      envioLabel = 'Envío propio';
-    }
-
-    const ganancia = precio - costo - comision - iva - costoEnvio;
-    const margen = (ganancia / precio) * 100;
-
-    // Resumen para el botón compartir
-    ultimoResumen = 'Vendiendo a ' + fmt(precio) + ' en Mercado Libre, mi ganancia neta es ' +
-      fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen). Calculado con MLRentabilidad:';
-
-    // Gráfico + historial (solo guarda si es un cálculo nuevo, no al cargar del historial)
-    crearGrafico(costo, comision, iva, costoEnvio, ganancia, margen);
-    if (guardar) {
-      guardarEnHistorial({ precio, costo, ganancia, comision, iva, costoEnvio, tipoPublicacion, usaME: usaMercadoEnvios });
-    }
-
-    // Mostrar desglose
-    document.getElementById('r-precio').textContent = fmt(precio);
-    document.getElementById('r-costo').textContent = '−' + fmt(costo);
-    document.getElementById('r-comision-label').textContent =
-      'Comisión ML (' + (tasaComision * 100).toFixed(1) + '%)';
-    document.getElementById('r-comision').textContent = comision > 0 ? '−' + fmt(comision) : '$0';
-    document.getElementById('r-iva').textContent = iva > 0 ? '−' + fmt(iva) : '$0';
-    document.getElementById('r-envio-label').textContent = envioLabel;
-    document.getElementById('r-envio').textContent = costoEnvio > 0 ? '−' + fmt(costoEnvio) : '$0';
-
-    const gEl = document.getElementById('r-ganancia');
-    gEl.textContent = fmt(ganancia);
-    gEl.className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
-
-    document.getElementById('r-margen-pct').textContent = margen.toFixed(1) + '%';
-
-    // Barra de margen
-    const barPct = Math.max(0, Math.min(100, margen));
-    const bar = document.getElementById('r-bar');
-
-    // Semáforo
-    const icon = document.getElementById('semaforo-icon');
-    const title = document.getElementById('result-title');
-    const subtitle = document.getElementById('result-subtitle');
-    const tip = document.getElementById('r-tip');
-
-    if (ganancia < 0) {
-      icon.className = 'semaforo red';
-      icon.textContent = '🔴';
-      title.textContent = 'Estás perdiendo plata';
-      subtitle.textContent = 'Perdés ' + fmt(Math.abs(ganancia)) + ' por cada venta';
-      bar.style.background = '#e53935';
-      bar.style.width = '0%';
-      tip.textContent = '💡 Subí el precio de venta o reducí el costo del producto para volver a ser rentable.';
-    } else if (margen < 15) {
-      icon.className = 'semaforo orange';
-      icon.textContent = '🟡';
-      title.textContent = 'Margen muy ajustado';
-      subtitle.textContent = 'Ganás ' + fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen)';
-      bar.style.background = '#f5a623';
-      bar.style.width = barPct + '%';
-      tip.textContent = '💡 Márgenes menores al 15% son riesgosos. Cualquier devolución o gasto imprevisto te deja en rojo.';
-    } else if (margen < 30) {
-      icon.className = 'semaforo green';
-      icon.textContent = '🟢';
-      title.textContent = 'Rentable';
-      subtitle.textContent = 'Ganás ' + fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen)';
-      bar.style.background = '#00a650';
-      bar.style.width = barPct + '%';
-      tip.textContent = '✅ Buen margen. Considerá reinvertir parte de la ganancia en más stock para escalar.';
-    } else {
-      icon.className = 'semaforo green';
-      icon.textContent = '🚀';
-      title.textContent = '¡Excelente margen!';
-      subtitle.textContent = 'Ganás ' + fmt(ganancia) + ' (' + margen.toFixed(1) + '% de margen)';
-      bar.style.background = '#00a650';
-      bar.style.width = '100%';
-      tip.textContent = '🚀 Margen superior al 30%. Este producto tiene mucho potencial. ¿Ya pensaste en escalar el volumen?';
-    }
-
-    document.getElementById('resultado').classList.add('visible');
-    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  // Calcular con Enter
-  document.addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); });
-
-  // Al cargar: limpiar duplicados viejos y mostrar historial
-  window.addEventListener('load', () => {
-    limpiarDuplicados();
-    mostrarHistorial();
-  });
-
-  /* ---------- Tabs y Idiomas ---------- */
   let idioma = localStorage.getItem('idioma') || 'es';
+  let calculadoraActiva = 'ml';
+  let tipoML = 'gratuita';
+  let categoriaAmazon = 'books';
+  let tipoEbay = 'standard';
 
   const textos = {
     es: {
-      'hero-title': '¿Cuánto ganás realmente<br>vendiendo en Mercado Libre?',
-      'hero-subtitle': 'Calculá tu ganancia neta después de comisiones, IVA y envío.',
-      'tab-ml': '💰 Mercado Libre',
-      'tab-ebay': '🏪 eBay & Amazon',
-      'tu-venta': 'Tu venta',
-      'precio-label': 'Precio de venta (lo que paga el comprador)',
-      'costo-label': 'Costo del producto (lo que vos pagaste)',
-      'tipo-pub': 'Tipo de publicación',
-      'envio': '¿Usás Mercado Envíos?',
-      'calcular': 'Calcular ganancia →',
-      'comisiones-ml': ['Gratuita<br><small style="font-weight:400;color:#999">0%</small>', 'Clásica<br><small style="font-weight:400;color:#999">12,5%</small>', 'Premium<br><small style="font-weight:400;color:#999">16,5%</small>'],
-      'comisiones-ebay': ['eBay<br><small style="font-weight:400;color:#999">12,5%</small>', 'eBay Plus<br><small style="font-weight:400;color:#999">14,5%</small>', 'Amazon<br><small style="font-weight:400;color:#999">15%</small>']
+      'menu-titulo': 'Elige tu plataforma',
+      'ml-nombre': 'Mercado Libre',
+      'ml-desc': '(Argentina)',
+      'amazon-nombre': 'Amazon',
+      'amazon-desc': '(USA)',
+      'ebay-nombre': 'eBay',
+      'ebay-desc': '(USA)',
     },
     en: {
-      'hero-title': 'How much do you really earn<br>selling on Mercado Libre or eBay?',
-      'hero-subtitle': 'Calculate your net profit after fees, taxes, and shipping.',
-      'tab-ml': '💰 Mercado Libre',
-      'tab-ebay': '🏪 eBay & Amazon',
-      'tu-venta': 'Your Sale',
-      'precio-label': 'Sale Price (what buyer pays)',
-      'costo-label': 'Product Cost (what you paid)',
-      'tipo-pub': 'Marketplace',
-      'envio': 'Shipping Method',
-      'calcular': 'Calculate Profit →',
-      'comisiones-ml': ['Free<br><small style="font-weight:400;color:#999">0%</small>', 'Standard<br><small style="font-weight:400;color:#999">13.5%</small>', 'Premium<br><small style="font-weight:400;color:#999">16.5%</small>'],
-      'comisiones-ebay': ['eBay<br><small style="font-weight:400;color:#999">12.5%</small>', 'eBay Plus<br><small style="font-weight:400;color:#999">14.5%</small>', 'Amazon<br><small style="font-weight:400;color:#999">15%</small>']
+      'menu-titulo': 'Choose your platform',
+      'ml-nombre': 'Mercado Libre',
+      'ml-desc': '(Argentina)',
+      'amazon-nombre': 'Amazon',
+      'amazon-desc': '(USA)',
+      'ebay-nombre': 'eBay',
+      'ebay-desc': '(USA)',
     }
   };
 
   function cambiarIdioma(lng) {
     idioma = lng;
     localStorage.setItem('idioma', lng);
-    document.documentElement.lang = lng;
-    document.getElementById('btn-es').style.background = lng === 'es' ? 'rgba(0,0,0,0.15)' : 'transparent';
-    document.getElementById('btn-en').style.background = lng === 'en' ? 'rgba(0,0,0,0.15)' : 'transparent';
+    document.getElementById('btn-es').classList.toggle('active', lng === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lng === 'en');
 
-    // Actualizar textos
     const t = textos[lng];
-    if (document.getElementById('hero-title')) document.getElementById('hero-title').innerHTML = t['hero-title'];
-    if (document.getElementById('hero-subtitle')) document.getElementById('hero-subtitle').textContent = t['hero-subtitle'];
+    for (const [key, value] of Object.entries(t)) {
+      const el = document.getElementById(key);
+      if (el) el.textContent = value;
+    }
   }
 
-  function cambiarTab(tab) {
-    document.getElementById('tab-ml-content').classList.toggle('active', tab === 'ml');
-    document.getElementById('tab-ebay-content').classList.toggle('active', tab === 'ebay');
+  function cambiarCalculadora(calc) {
+    document.querySelectorAll('.calculadora').forEach(c => c.classList.remove('activa'));
+    document.getElementById('calc-' + calc).classList.add('activa');
 
-    document.getElementById('tab-ml').style.color = tab === 'ml' ? 'var(--blue)' : 'var(--muted)';
-    document.getElementById('tab-ml').style.borderBottom = tab === 'ml' ? '3px solid var(--blue)' : '3px solid transparent';
+    document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+    event.target.closest('.menu-btn').classList.add('active');
 
-    document.getElementById('tab-ebay').style.color = tab === 'ebay' ? 'var(--blue)' : 'var(--muted)';
-    document.getElementById('tab-ebay').style.borderBottom = tab === 'ebay' ? '3px solid var(--blue)' : '3px solid transparent';
+    calculadoraActiva = calc;
+  }
 
-    // Cambiar comisiones
-    const tipoPub = document.getElementById('tipo-pub');
-    if (tab === 'ml') {
-      COMISIONES.gratuita = 0;
-      COMISIONES.clasica = 0.125;
-      COMISIONES.premium = 0.165;
-      IVA = 0.21;
-      ENVIO_ML_EST = 1100;
-    } else {
-      COMISIONES.gratuita = 0.125; // eBay
-      COMISIONES.clasica = 0.145; // eBay Plus
-      COMISIONES.premium = 0.15; // Amazon
-      IVA = 0.08;
-      ENVIO_ML_EST = 8;
+  function setTipoML(btn, tipo) {
+    document.querySelectorAll('#ml-tipos .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tipoML = tipo;
+  }
+
+  function setCategoriaAmazon(btn, cat) {
+    document.querySelectorAll('#amazon-categorias .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    categoriaAmazon = cat;
+  }
+
+  function setTipoEbay(btn, tipo) {
+    document.querySelectorAll('#ebay-tipos .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tipoEbay = tipo;
+  }
+
+  function calcularML() {
+    const precio = parseFloat(document.getElementById('ml-precio').value);
+    const costo = parseFloat(document.getElementById('ml-costo').value);
+
+    if (!precio || !costo || precio <= 0 || costo < 0) {
+      alert('Completá precio y costo');
+      return;
     }
 
-    // Resetear calculadora
-    document.getElementById('precio').value = '';
-    document.getElementById('costo').value = '';
-    document.getElementById('resultado').classList.remove('visible');
+    const comisiones = { gratuita: 0, clasica: 0.125, premium: 0.165 };
+    const comision = precio * comisiones[tipoML];
+    const iva = comision * 0.21;
+    const envio = 1100;
+    const ganancia = precio - costo - comision - iva - envio;
+
+    document.getElementById('ml-r-precio').textContent = '$' + precio.toLocaleString();
+    document.getElementById('ml-r-costo').textContent = '-$' + costo.toLocaleString();
+    document.getElementById('ml-r-comision').textContent = '-$' + comision.toFixed(0);
+    document.getElementById('ml-r-iva').textContent = '-$' + iva.toFixed(0);
+    document.getElementById('ml-r-ganancia').textContent = '$' + ganancia.toFixed(0);
+    document.getElementById('ml-r-ganancia').className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
+
+    const margen = (ganancia / precio) * 100;
+    const icon = document.getElementById('ml-semaforo');
+    const title = document.getElementById('ml-result-title');
+
+    if (ganancia < 0) {
+      icon.textContent = '🔴';
+      title.textContent = 'Perdiendo plata';
+    } else if (margen < 15) {
+      icon.textContent = '🟡';
+      title.textContent = 'Margen bajo';
+    } else {
+      icon.textContent = '🟢';
+      title.textContent = 'Rentable';
+    }
+
+    document.getElementById('ml-resultado').classList.add('visible');
+    document.getElementById('ml-resultado').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Initializar idioma al cargar
+  function calcularAmazon() {
+    const precio = parseFloat(document.getElementById('amazon-precio').value);
+    const costo = parseFloat(document.getElementById('amazon-costo').value);
+
+    if (!precio || !costo || precio <= 0 || costo < 0) {
+      alert('Enter price and cost');
+      return;
+    }
+
+    const fees = { books: 0.15, electronics: 0.08, home: 0.15 };
+    const comision = precio * fees[categoriaAmazon];
+    const tax = precio * 0.08;
+    const envio = 8;
+    const ganancia = precio - costo - comision - tax - envio;
+
+    document.getElementById('amazon-r-precio').textContent = '$' + precio.toFixed(2);
+    document.getElementById('amazon-r-costo').textContent = '-$' + costo.toFixed(2);
+    document.getElementById('amazon-r-comision').textContent = '-$' + comision.toFixed(2);
+    document.getElementById('amazon-r-iva').textContent = '-$' + tax.toFixed(2);
+    document.getElementById('amazon-r-ganancia').textContent = '$' + ganancia.toFixed(2);
+    document.getElementById('amazon-r-ganancia').className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
+
+    const margen = (ganancia / precio) * 100;
+    const icon = document.getElementById('amazon-semaforo');
+    const title = document.getElementById('amazon-result-title');
+
+    if (ganancia < 0) {
+      icon.textContent = '🔴';
+      title.textContent = 'Losing money';
+    } else if (margen < 15) {
+      icon.textContent = '🟡';
+      title.textContent = 'Tight margin';
+    } else {
+      icon.textContent = '🟢';
+      title.textContent = 'Profitable';
+    }
+
+    document.getElementById('amazon-resultado').classList.add('visible');
+    document.getElementById('amazon-resultado').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function calcularEbay() {
+    const precio = parseFloat(document.getElementById('ebay-precio').value);
+    const costo = parseFloat(document.getElementById('ebay-costo').value);
+
+    if (!precio || !costo || precio <= 0 || costo < 0) {
+      alert('Enter price and cost');
+      return;
+    }
+
+    const fees = { standard: 0.129, plus: 0.145 };
+    const comision = precio * fees[tipoEbay];
+    const tax = precio * 0.09;
+    const envio = 8;
+    const ganancia = precio - costo - comision - tax - envio;
+
+    document.getElementById('ebay-r-precio').textContent = '$' + precio.toFixed(2);
+    document.getElementById('ebay-r-costo').textContent = '-$' + costo.toFixed(2);
+    document.getElementById('ebay-r-comision').textContent = '-$' + comision.toFixed(2);
+    document.getElementById('ebay-r-iva').textContent = '-$' + tax.toFixed(2);
+    document.getElementById('ebay-r-ganancia').textContent = '$' + ganancia.toFixed(2);
+    document.getElementById('ebay-r-ganancia').className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
+
+    const margen = (ganancia / precio) * 100;
+    const icon = document.getElementById('ebay-semaforo');
+    const title = document.getElementById('ebay-result-title');
+
+    if (ganancia < 0) {
+      icon.textContent = '🔴';
+      title.textContent = 'Losing money';
+    } else if (margen < 15) {
+      icon.textContent = '🟡';
+      title.textContent = 'Tight margin';
+    } else {
+      icon.textContent = '🟢';
+      title.textContent = 'Profitable';
+    }
+
+    document.getElementById('ebay-resultado').classList.add('visible');
+    document.getElementById('ebay-resultado').scrollIntoView({ behavior: 'smooth' });
+  }
+
   window.addEventListener('load', () => {
     cambiarIdioma(idioma);
   });
-
-  /* ---------- CALCULADORA EBAY ---------- */
-  let tipoPublicacionEbay = 'gratuita';
-  let usaMercadoEnviosEbay = true;
-
-  const COMISIONES_EBAY = { gratuita: 0.125, clasica: 0.145, premium: 0.15 };
-  const IVA_EBAY = 0.08;
-  const ENVIO_EBAY_EST = 8;
-
-  function setTipoEbay(btn) {
-    document.querySelectorAll('#tipo-pub-ebay button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    tipoPublicacionEbay = btn.dataset.val;
-  }
-
-  function setEnvioEbay(btn) {
-    document.querySelectorAll('#tipo-envio-ebay button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    usaMercadoEnviosEbay = btn.dataset.val === 'si';
-    document.getElementById('campo-envio-ebay').style.display = usaMercadoEnviosEbay ? 'none' : 'block';
-  }
-
-  function calcularEbay(guardar = true) {
-    const precio = parseFloat(document.getElementById('precio-ebay').value);
-    const costo = parseFloat(document.getElementById('costo-ebay').value);
-
-    if (!precio || isNaN(costo) || precio <= 0 || costo < 0) {
-      alert('Please enter the sale price and product cost.');
-      return;
-    }
-
-    const tasaComision = COMISIONES_EBAY[tipoPublicacionEbay];
-    const comision = precio * tasaComision;
-    const iva = comision * IVA_EBAY;
-
-    let costoEnvio = 0;
-    let envioLabel = 'No shipping';
-    if (usaMercadoEnviosEbay) {
-      costoEnvio = ENVIO_EBAY_EST;
-      envioLabel = 'Calculated shipping';
-    } else {
-      const ep = parseFloat(document.getElementById('envio-propio-ebay').value);
-      costoEnvio = ep || 0;
-      envioLabel = 'Custom shipping';
-    }
-
-    const ganancia = precio - costo - comision - iva - costoEnvio;
-    const margen = (ganancia / precio) * 100;
-
-    document.getElementById('r-precio-ebay').textContent = '$' + precio.toFixed(2);
-    document.getElementById('r-costo-ebay').textContent = '−$' + costo.toFixed(2);
-    document.getElementById('r-comision-label-ebay').textContent = 'Platform Fee (' + (tasaComision * 100).toFixed(1) + '%)';
-    document.getElementById('r-comision-ebay').textContent = comision > 0 ? '−$' + comision.toFixed(2) : '$0.00';
-    document.getElementById('r-iva-ebay').textContent = iva > 0 ? '−$' + iva.toFixed(2) : '$0.00';
-    document.getElementById('r-envio-label-ebay').textContent = envioLabel;
-    document.getElementById('r-envio-ebay').textContent = costoEnvio > 0 ? '−$' + costoEnvio.toFixed(2) : '$0.00';
-
-    const gEl = document.getElementById('r-ganancia-ebay');
-    gEl.textContent = '$' + ganancia.toFixed(2);
-    gEl.className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
-
-    document.getElementById('r-margen-pct-ebay').textContent = margen.toFixed(1) + '%';
-
-    const barPct = Math.max(0, Math.min(100, margen));
-    const bar = document.getElementById('r-bar-ebay');
-    const icon = document.getElementById('semaforo-icon-ebay');
-    const title = document.getElementById('result-title-ebay');
-    const subtitle = document.getElementById('result-subtitle-ebay');
-    const tip = document.getElementById('r-tip-ebay');
-
-    if (ganancia < 0) {
-      icon.className = 'semaforo red';
-      icon.textContent = '🔴';
-      title.textContent = 'You\'re losing money';
-      subtitle.textContent = 'Loss of $' + Math.abs(ganancia).toFixed(2) + ' per sale';
-      bar.style.background = '#e53935';
-      bar.style.width = '0%';
-      tip.textContent = '💡 Increase your price or reduce costs to break even.';
-    } else if (margen < 15) {
-      icon.className = 'semaforo orange';
-      icon.textContent = '🟡';
-      title.textContent = 'Tight margin';
-      subtitle.textContent = 'Profit: $' + ganancia.toFixed(2) + ' (' + margen.toFixed(1) + '% margin)';
-      bar.style.background = '#f5a623';
-      bar.style.width = barPct + '%';
-      tip.textContent = '💡 Margins below 15% are risky.';
-    } else if (margen < 30) {
-      icon.className = 'semaforo green';
-      icon.textContent = '🟢';
-      title.textContent = 'Profitable';
-      subtitle.textContent = 'Profit: $' + ganancia.toFixed(2) + ' (' + margen.toFixed(1) + '% margin)';
-      bar.style.background = '#00a650';
-      bar.style.width = barPct + '%';
-      tip.textContent = '✅ Good margin. Consider scaling up.';
-    } else {
-      icon.className = 'semaforo green';
-      icon.textContent = '🚀';
-      title.textContent = 'Excellent margin!';
-      subtitle.textContent = 'Profit: $' + ganancia.toFixed(2) + ' (' + margen.toFixed(1) + '% margin)';
-      bar.style.background = '#00a650';
-      bar.style.width = '100%';
-      tip.textContent = '🚀 Margin above 30%. Great potential!';
-    }
-
-    document.getElementById('resultado-ebay').classList.add('visible');
-    document.getElementById('resultado-ebay').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function exportarResultadoEbay() {
-    if (typeof html2canvas === 'undefined') {
-      alert('Export tool is loading. Try again in a few seconds.');
-      return;
-    }
-    const tarjeta = document.getElementById('resultado-ebay');
-    const acciones = document.getElementById('acciones-resultado-ebay');
-    acciones.style.visibility = 'hidden';
-    html2canvas(tarjeta, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
-      acciones.style.visibility = 'visible';
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL('image/png');
-      link.download = 'profit-calculation-ebay.png';
-      link.click();
-    }).catch(() => {
-      acciones.style.visibility = 'visible';
-      alert('Could not generate image. Take a screenshot instead.');
-    });
-  }
-
-  function compartirResultadoEbay() {
-    const texto = 'My profit calculation on eBay/Amazon with MLRentabilidad';
-    if (navigator.share) {
-      navigator.share({ title: 'MLRentabilidad', text: texto, url: SITE_URL }).catch(() => {});
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(texto + '\n' + SITE_URL).then(() => {
-        alert('Summary copied! 📋');
-      }).catch(() => {
-        alert('Copy this link: ' + SITE_URL);
-      });
-    }
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Enter') {
-    const activeTab = document.getElementById('tab-ml-content').classList.contains('active') ? 'ml' : 'ebay';
-    if (activeTab === 'ml') calcular();
-    else calcularEbay();
-  }});
 </script>
-
-<!-- Mailchimp Newsletter Form -->
-<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/79e54f1d57291aa88aee189e7/6adabcf192571ffbc5d635622.js");</script>
 
 </body>
 </html>
