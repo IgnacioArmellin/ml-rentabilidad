@@ -1029,6 +1029,13 @@
     event.target.closest('.menu-btn').classList.add('active');
 
     calculadoraActiva = calc;
+
+    // Cambiar idioma automáticamente según la plataforma
+    if (calc === 'ml') {
+      cambiarIdioma('es');
+    } else if (calc === 'amazon' || calc === 'ebay') {
+      cambiarIdioma('en');
+    }
   }
 
   function setTipoML(btn, tipo) {
