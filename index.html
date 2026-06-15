@@ -571,6 +571,20 @@
 
     footer a { color: var(--blue); text-decoration: none; font-weight: 600; }
     footer a:hover { text-decoration: underline; }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      div[style*="justify-content: center; gap: 40px"] {
+        gap: 20px !important;
+      }
+    }
   </style>
 
   <!-- html2canvas para exportar el resultado como imagen -->
@@ -593,18 +607,28 @@
 
 <header>
   <div class="logo">ML<span>Rentabilidad</span></div>
-  <div style="display: flex; gap: 15px; align-items: center;">
+  <div style="display: flex; gap: 20px; align-items: center;">
     <div style="font-size: 0.85rem; font-weight: 600;">
-      <a href="/" style="color: #18191f; text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(0,0,0,0.15);">ES</a>
-      <a href="/en/" style="color: #18191f; text-decoration: none; padding: 6px 12px; border-radius: 6px;">EN</a>
+      <button onclick="cambiarIdioma('es')" id="btn-es" style="color: #18191f; text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(0,0,0,0.15); border: none; cursor: pointer; font-weight: 600;">ES</button>
+      <button onclick="cambiarIdioma('en')" id="btn-en" style="color: #18191f; text-decoration: none; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600;">EN</button>
     </div>
   </div>
   <div class="header-badge">100% gratis</div>
 </header>
 
+<div style="background: white; border-bottom: 2px solid #e5e7eb; display: flex; justify-content: center; gap: 40px; padding: 0 24px; height: 60px; align-items: center; position: sticky; top: 60px; z-index: 40;">
+  <button onclick="cambiarTab('ml')" id="tab-ml" style="border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--blue); cursor: pointer; padding: 20px 0; border-bottom: 3px solid var(--blue); transition: all 0.2s;">
+    💰 Mercado Libre
+  </button>
+  <button onclick="cambiarTab('ebay')" id="tab-ebay" style="border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--muted); cursor: pointer; padding: 20px 0; border-bottom: 3px solid transparent; transition: all 0.2s;">
+    🏪 eBay & Amazon
+  </button>
+</div>
+
+<div class="tab-content active" id="tab-ml-content">
 <div class="hero">
-  <h1>¿Cuánto ganás realmente<br>vendiendo en Mercado Libre?</h1>
-  <p>Calculá tu ganancia neta después de comisiones, IVA y envío.</p>
+  <h1 id="hero-title">¿Cuánto ganás realmente<br>vendiendo en Mercado Libre?</h1>
+  <p id="hero-subtitle">Calculá tu ganancia neta después de comisiones, IVA y envío.</p>
   <div class="hero-badges">
     <span>✓ Gratis</span>
     <span>✓ Sin registro</span>
@@ -991,6 +1015,182 @@
   </div>
 
 </div>
+<!-- FIN TAB MERCADO LIBRE -->
+
+<!-- INICIO TAB EBAY/AMAZON -->
+<div class="tab-content" id="tab-ebay-content">
+  <div class="hero">
+    <h1>¿Cuánto ganás realmente<br>vendiendo en eBay?</h1>
+    <p>Calculá tu ganancia neta después de comisiones, impuestos y envío.</p>
+    <div class="hero-badges">
+      <span>✓ Gratis</span>
+      <span>✓ Sin registro</span>
+      <span>✓ Resultado al instante</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Inputs eBay -->
+    <div class="card">
+      <h2>Tu venta en eBay</h2>
+
+      <div class="field">
+        <label for="precio-ebay">Sale Price (USD)</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="precio-ebay" inputmode="decimal" placeholder="50" min="0" step="0.01" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="costo-ebay">Product Cost</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="costo-ebay" inputmode="decimal" placeholder="25" min="0" step="0.01" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Marketplace</label>
+        <div class="toggle-group" id="tipo-pub-ebay">
+          <button data-val="gratuita" onclick="setTipoEbay(this)" class="active">eBay<br><small style="font-weight:400;color:#999">12,5%</small></button>
+          <button data-val="clasica" onclick="setTipoEbay(this)">eBay Plus<br><small style="font-weight:400;color:#999">14,5%</small></button>
+          <button data-val="premium" onclick="setTipoEbay(this)">Amazon<br><small style="font-weight:400;color:#999">15%</small></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Shipping</label>
+        <div class="toggle-group" id="tipo-envio-ebay">
+          <button data-val="si" onclick="setEnvioEbay(this)" class="active">Calculated</button>
+          <button data-val="no" onclick="setEnvioEbay(this)">Custom Cost</button>
+        </div>
+      </div>
+
+      <div class="field" id="campo-envio-ebay" style="display:none">
+        <label for="envio-propio-ebay">Shipping Cost</label>
+        <div class="prefix-wrap">
+          <span>$</span>
+          <input type="number" id="envio-propio-ebay" inputmode="decimal" placeholder="10" min="0" step="0.01" />
+        </div>
+      </div>
+
+      <button class="btn btn-calc" onclick="calcularEbay()">Calculate Profit →</button>
+    </div>
+
+    <!-- Info card eBay -->
+    <div class="card">
+      <h2>How it works</h2>
+
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="label">🔵 eBay Standard</span>
+          <span class="value">12,5% fee</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">⭐ eBay Plus</span>
+          <span class="value">14,5% fee</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">🟡 Amazon</span>
+          <span class="value">15% fee</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Sales Tax</span>
+          <span class="value">~8% estimate</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Shipping (est.)</span>
+          <span class="value">$5–15</span>
+        </div>
+      </div>
+
+      <div class="tip">
+        💡 <strong>Tip:</strong> Platform fees and taxes can significantly reduce profits. Always factor them in before listing.
+      </div>
+    </div>
+
+    <!-- Result eBay -->
+    <div class="card result-card" id="resultado-ebay">
+      <div class="result-header">
+        <div class="semaforo" id="semaforo-icon-ebay">✅</div>
+        <div>
+          <div class="result-title" id="result-title-ebay">Cargando...</div>
+          <div class="result-subtitle" id="result-subtitle-ebay"></div>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="label">Sale Price</span>
+          <span class="value pos" id="r-precio-ebay">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Product Cost</span>
+          <span class="value neg" id="r-costo-ebay">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label" id="r-comision-label-ebay">Platform Fee</span>
+          <span class="value neg" id="r-comision-ebay">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label">Sales Tax (est.)</span>
+          <span class="value neg" id="r-iva-ebay">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="label" id="r-envio-label-ebay">Shipping Cost</span>
+          <span class="value neg" id="r-envio-ebay">—</span>
+        </div>
+        <div class="breakdown-row total">
+          <span>Net Profit</span>
+          <span class="value" id="r-ganancia-ebay">—</span>
+        </div>
+      </div>
+
+      <div class="margin-bar-wrap">
+        <div class="margin-bar-label">
+          <span>Margin</span>
+          <span id="r-margen-pct-ebay">—</span>
+        </div>
+        <div class="margin-bar">
+          <div class="margin-bar-fill" id="r-bar-ebay" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="tip" id="r-tip-ebay"></div>
+
+      <div class="acciones" id="acciones-resultado-ebay">
+        <button class="btn btn-verde" onclick="exportarResultadoEbay()">📥 Download Image</button>
+        <button class="btn btn-outline" onclick="compartirResultadoEbay()">📤 Share</button>
+      </div>
+
+      <!-- Productos eBay/Amazon -->
+      <div style="margin-top: 40px; padding: 20px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid #3483fa;">
+        <h3 style="margin-top: 0; color: #1f2937; margin-bottom: 15px;">📦 Recommended Shipping & Tools</h3>
+        <p style="color: #6b7280; font-size: 14px; margin-bottom: 15px;">Essential tools for online sellers</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
+            🔗 Digital Scales
+          </a>
+          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
+            🔗 Label Printers
+          </a>
+          <a href="https://amazon.com/s?k=shipping+supplies+box" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
+            🔗 Boxes & Packing
+          </a>
+          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" rel="noopener" style="padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 6px; text-decoration: none; color: #3483fa; font-weight: 500; text-align: center; transition: all 0.2s;">
+            🔗 Mailers
+          </a>
+        </div>
+        <p style="margin-top: 12px; font-size: 12px; color: #6b7280;">💡 When you buy through these links, we earn a small commission at no cost to you. 💪</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- FIN TAB EBAY/AMAZON -->
+
+</div>
 
 <script>
   // Newsletter form submission
@@ -1347,6 +1547,236 @@
     limpiarDuplicados();
     mostrarHistorial();
   });
+
+  /* ---------- Tabs y Idiomas ---------- */
+  let idioma = localStorage.getItem('idioma') || 'es';
+
+  const textos = {
+    es: {
+      'hero-title': '¿Cuánto ganás realmente<br>vendiendo en Mercado Libre?',
+      'hero-subtitle': 'Calculá tu ganancia neta después de comisiones, IVA y envío.',
+      'tab-ml': '💰 Mercado Libre',
+      'tab-ebay': '🏪 eBay & Amazon',
+      'tu-venta': 'Tu venta',
+      'precio-label': 'Precio de venta (lo que paga el comprador)',
+      'costo-label': 'Costo del producto (lo que vos pagaste)',
+      'tipo-pub': 'Tipo de publicación',
+      'envio': '¿Usás Mercado Envíos?',
+      'calcular': 'Calcular ganancia →',
+      'comisiones-ml': ['Gratuita<br><small style="font-weight:400;color:#999">0%</small>', 'Clásica<br><small style="font-weight:400;color:#999">12,5%</small>', 'Premium<br><small style="font-weight:400;color:#999">16,5%</small>'],
+      'comisiones-ebay': ['eBay<br><small style="font-weight:400;color:#999">12,5%</small>', 'eBay Plus<br><small style="font-weight:400;color:#999">14,5%</small>', 'Amazon<br><small style="font-weight:400;color:#999">15%</small>']
+    },
+    en: {
+      'hero-title': 'How much do you really earn<br>selling on Mercado Libre or eBay?',
+      'hero-subtitle': 'Calculate your net profit after fees, taxes, and shipping.',
+      'tab-ml': '💰 Mercado Libre',
+      'tab-ebay': '🏪 eBay & Amazon',
+      'tu-venta': 'Your Sale',
+      'precio-label': 'Sale Price (what buyer pays)',
+      'costo-label': 'Product Cost (what you paid)',
+      'tipo-pub': 'Marketplace',
+      'envio': 'Shipping Method',
+      'calcular': 'Calculate Profit →',
+      'comisiones-ml': ['Free<br><small style="font-weight:400;color:#999">0%</small>', 'Standard<br><small style="font-weight:400;color:#999">13.5%</small>', 'Premium<br><small style="font-weight:400;color:#999">16.5%</small>'],
+      'comisiones-ebay': ['eBay<br><small style="font-weight:400;color:#999">12.5%</small>', 'eBay Plus<br><small style="font-weight:400;color:#999">14.5%</small>', 'Amazon<br><small style="font-weight:400;color:#999">15%</small>']
+    }
+  };
+
+  function cambiarIdioma(lng) {
+    idioma = lng;
+    localStorage.setItem('idioma', lng);
+    document.documentElement.lang = lng;
+    document.getElementById('btn-es').style.background = lng === 'es' ? 'rgba(0,0,0,0.15)' : 'transparent';
+    document.getElementById('btn-en').style.background = lng === 'en' ? 'rgba(0,0,0,0.15)' : 'transparent';
+
+    // Actualizar textos
+    const t = textos[lng];
+    if (document.getElementById('hero-title')) document.getElementById('hero-title').innerHTML = t['hero-title'];
+    if (document.getElementById('hero-subtitle')) document.getElementById('hero-subtitle').textContent = t['hero-subtitle'];
+  }
+
+  function cambiarTab(tab) {
+    document.getElementById('tab-ml-content').classList.toggle('active', tab === 'ml');
+    document.getElementById('tab-ebay-content').classList.toggle('active', tab === 'ebay');
+
+    document.getElementById('tab-ml').style.color = tab === 'ml' ? 'var(--blue)' : 'var(--muted)';
+    document.getElementById('tab-ml').style.borderBottom = tab === 'ml' ? '3px solid var(--blue)' : '3px solid transparent';
+
+    document.getElementById('tab-ebay').style.color = tab === 'ebay' ? 'var(--blue)' : 'var(--muted)';
+    document.getElementById('tab-ebay').style.borderBottom = tab === 'ebay' ? '3px solid var(--blue)' : '3px solid transparent';
+
+    // Cambiar comisiones
+    const tipoPub = document.getElementById('tipo-pub');
+    if (tab === 'ml') {
+      COMISIONES.gratuita = 0;
+      COMISIONES.clasica = 0.125;
+      COMISIONES.premium = 0.165;
+      IVA = 0.21;
+      ENVIO_ML_EST = 1100;
+    } else {
+      COMISIONES.gratuita = 0.125; // eBay
+      COMISIONES.clasica = 0.145; // eBay Plus
+      COMISIONES.premium = 0.15; // Amazon
+      IVA = 0.08;
+      ENVIO_ML_EST = 8;
+    }
+
+    // Resetear calculadora
+    document.getElementById('precio').value = '';
+    document.getElementById('costo').value = '';
+    document.getElementById('resultado').classList.remove('visible');
+  }
+
+  // Initializar idioma al cargar
+  window.addEventListener('load', () => {
+    cambiarIdioma(idioma);
+  });
+
+  /* ---------- CALCULADORA EBAY ---------- */
+  let tipoPublicacionEbay = 'gratuita';
+  let usaMercadoEnviosEbay = true;
+
+  const COMISIONES_EBAY = { gratuita: 0.125, clasica: 0.145, premium: 0.15 };
+  const IVA_EBAY = 0.08;
+  const ENVIO_EBAY_EST = 8;
+
+  function setTipoEbay(btn) {
+    document.querySelectorAll('#tipo-pub-ebay button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tipoPublicacionEbay = btn.dataset.val;
+  }
+
+  function setEnvioEbay(btn) {
+    document.querySelectorAll('#tipo-envio-ebay button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    usaMercadoEnviosEbay = btn.dataset.val === 'si';
+    document.getElementById('campo-envio-ebay').style.display = usaMercadoEnviosEbay ? 'none' : 'block';
+  }
+
+  function calcularEbay(guardar = true) {
+    const precio = parseFloat(document.getElementById('precio-ebay').value);
+    const costo = parseFloat(document.getElementById('costo-ebay').value);
+
+    if (!precio || isNaN(costo) || precio <= 0 || costo < 0) {
+      alert('Please enter the sale price and product cost.');
+      return;
+    }
+
+    const tasaComision = COMISIONES_EBAY[tipoPublicacionEbay];
+    const comision = precio * tasaComision;
+    const iva = comision * IVA_EBAY;
+
+    let costoEnvio = 0;
+    let envioLabel = 'No shipping';
+    if (usaMercadoEnviosEbay) {
+      costoEnvio = ENVIO_EBAY_EST;
+      envioLabel = 'Calculated shipping';
+    } else {
+      const ep = parseFloat(document.getElementById('envio-propio-ebay').value);
+      costoEnvio = ep || 0;
+      envioLabel = 'Custom shipping';
+    }
+
+    const ganancia = precio - costo - comision - iva - costoEnvio;
+    const margen = (ganancia / precio) * 100;
+
+    document.getElementById('r-precio-ebay').textContent = '$' + precio.toFixed(2);
+    document.getElementById('r-costo-ebay').textContent = '−$' + costo.toFixed(2);
+    document.getElementById('r-comision-label-ebay').textContent = 'Platform Fee (' + (tasaComision * 100).toFixed(1) + '%)';
+    document.getElementById('r-comision-ebay').textContent = comision > 0 ? '−$' + comision.toFixed(2) : '$0.00';
+    document.getElementById('r-iva-ebay').textContent = iva > 0 ? '−$' + iva.toFixed(2) : '$0.00';
+    document.getElementById('r-envio-label-ebay').textContent = envioLabel;
+    document.getElementById('r-envio-ebay').textContent = costoEnvio > 0 ? '−$' + costoEnvio.toFixed(2) : '$0.00';
+
+    const gEl = document.getElementById('r-ganancia-ebay');
+    gEl.textContent = '$' + ganancia.toFixed(2);
+    gEl.className = 'value ' + (ganancia < 0 ? 'neg' : 'pos');
+
+    document.getElementById('r-margen-pct-ebay').textContent = margen.toFixed(1) + '%';
+
+    const barPct = Math.max(0, Math.min(100, margen));
+    const bar = document.getElementById('r-bar-ebay');
+    const icon = document.getElementById('semaforo-icon-ebay');
+    const title = document.getElementById('result-title-ebay');
+    const subtitle = document.getElementById('result-subtitle-ebay');
+    const tip = document.getElementById('r-tip-ebay');
+
+    if (ganancia < 0) {
+      icon.className = 'semaforo red';
+      icon.textContent = '🔴';
+      title.textContent = 'You\'re losing money';
+      subtitle.textContent = 'Loss of $' + Math.abs(ganancia).toFixed(2) + ' per sale';
+      bar.style.background = '#e53935';
+      bar.style.width = '0%';
+      tip.textContent = '💡 Increase your price or reduce costs to break even.';
+    } else if (margen < 15) {
+      icon.className = 'semaforo orange';
+      icon.textContent = '🟡';
+      title.textContent = 'Tight margin';
+      subtitle.textContent = 'Profit: $' + ganancia.toFixed(2) + ' (' + margen.toFixed(1) + '% margin)';
+      bar.style.background = '#f5a623';
+      bar.style.width = barPct + '%';
+      tip.textContent = '💡 Margins below 15% are risky.';
+    } else if (margen < 30) {
+      icon.className = 'semaforo green';
+      icon.textContent = '🟢';
+      title.textContent = 'Profitable';
+      subtitle.textContent = 'Profit: $' + ganancia.toFixed(2) + ' (' + margen.toFixed(1) + '% margin)';
+      bar.style.background = '#00a650';
+      bar.style.width = barPct + '%';
+      tip.textContent = '✅ Good margin. Consider scaling up.';
+    } else {
+      icon.className = 'semaforo green';
+      icon.textContent = '🚀';
+      title.textContent = 'Excellent margin!';
+      subtitle.textContent = 'Profit: $' + ganancia.toFixed(2) + ' (' + margen.toFixed(1) + '% margin)';
+      bar.style.background = '#00a650';
+      bar.style.width = '100%';
+      tip.textContent = '🚀 Margin above 30%. Great potential!';
+    }
+
+    document.getElementById('resultado-ebay').classList.add('visible');
+    document.getElementById('resultado-ebay').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function exportarResultadoEbay() {
+    if (typeof html2canvas === 'undefined') {
+      alert('Export tool is loading. Try again in a few seconds.');
+      return;
+    }
+    const tarjeta = document.getElementById('resultado-ebay');
+    const acciones = document.getElementById('acciones-resultado-ebay');
+    acciones.style.visibility = 'hidden';
+    html2canvas(tarjeta, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
+      acciones.style.visibility = 'visible';
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'profit-calculation-ebay.png';
+      link.click();
+    }).catch(() => {
+      acciones.style.visibility = 'visible';
+      alert('Could not generate image. Take a screenshot instead.');
+    });
+  }
+
+  function compartirResultadoEbay() {
+    const texto = 'My profit calculation on eBay/Amazon with MLRentabilidad';
+    if (navigator.share) {
+      navigator.share({ title: 'MLRentabilidad', text: texto, url: SITE_URL }).catch(() => {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(texto + '\n' + SITE_URL).then(() => {
+        alert('Summary copied! 📋');
+      }).catch(() => {
+        alert('Copy this link: ' + SITE_URL);
+      });
+    }
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Enter') {
+    const activeTab = document.getElementById('tab-ml-content').classList.contains('active') ? 'ml' : 'ebay';
+    if (activeTab === 'ml') calcular();
+    else calcularEbay();
+  }});
 </script>
 
 <!-- Mailchimp Newsletter Form -->
