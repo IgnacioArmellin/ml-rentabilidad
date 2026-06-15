@@ -854,14 +854,25 @@
         <h3 id="ebay-productos-title">📦 Herramientas Recomendadas</h3>
         <p id="ebay-productos-desc">Suministros esenciales para vendedores</p>
         <div class="productos-grid">
-          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Balanzas</a>
-          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Impresoras</a>
-          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Sobres</a>
-          <a href="https://amazon.com/s?k=boxes" target="_blank" class="producto-link">Cajas</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=shipping+scale" target="_blank" class="producto-link">Balanzas</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=thermal+label+printer" target="_blank" class="producto-link">Impresoras</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=poly+mailers" target="_blank" class="producto-link">Sobres</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=boxes" target="_blank" class="producto-link">Cajas</a>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- NEWSLETTER MAILERLITE -->
+<div style="background: #f0f7ff; padding: 40px 24px; text-align: center; border-top: 2px solid var(--border);">
+  <h3 style="color: var(--text); margin-bottom: 10px;">📧 Recibí actualizaciones</h3>
+  <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem;">Nuevas calculadoras y tips para vendedores</p>
+
+  <form onsubmit="handleNewsletterSubmit(event)" style="max-width: 400px; margin: 0 auto; display: flex; gap: 8px;">
+    <input type="email" placeholder="Tu email" required style="flex: 1; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; background: white;">
+    <button type="submit" style="padding: 12px 20px; background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%); color: white; border: none; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; transition: all 0.2s;">Suscribir</button>
+  </form>
 </div>
 
 <footer>
@@ -1161,6 +1172,46 @@
 
     document.getElementById('ebay-resultado').classList.add('visible');
     document.getElementById('ebay-resultado').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const button = e.target.querySelector('button');
+
+    button.disabled = true;
+    button.textContent = 'Enviando...';
+
+    try {
+      const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Nvbm5lY3QubWFpbGVybGl0ZS5jb20iLCJhdWQiOiJodHRwczovL2FwaS5tYWlsZXJsaXRlLmNvbSIsImlhdCI6MTczMDQ5MzEwOCwiZXhwIjoyMDQ1ODUzMTA4LCJzdWIiOiI0OTUzNjMxIn0.IpBw0GgvQYBzIpE9pFpCQhMV-fpPOuQyXlEQo0RTN4Q'
+        },
+        body: JSON.stringify({
+          email: email,
+          groups: [89568768]
+        })
+      });
+
+      if (response.ok) {
+        button.textContent = '✓ Suscrito';
+        e.target.reset();
+        setTimeout(() => {
+          button.disabled = false;
+          button.textContent = 'Suscribir';
+        }, 3000);
+      } else {
+        throw new Error('Error en la suscripción');
+      }
+    } catch (error) {
+      button.textContent = '✗ Error';
+      button.disabled = false;
+      setTimeout(() => {
+        button.textContent = 'Suscribir';
+      }, 3000);
+    }
   }
 
   window.addEventListener('load', () => {
