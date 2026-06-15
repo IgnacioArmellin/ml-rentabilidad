@@ -644,69 +644,69 @@
 <!-- CALCULADORA AMAZON -->
 <div class="calculadora" id="calc-amazon">
   <div class="hero" style="background: linear-gradient(180deg, #FF9900 0%, #FFB84D 100%);">
-    <h1 id="amazon-hero-title">How much do you earn on Amazon?</h1>
-    <p id="amazon-hero-subtitle">Calculate your net profit with fees and taxes</p>
+    <h1 id="amazon-hero-title">¿Cuánto ganás en Amazon?</h1>
+    <p id="amazon-hero-subtitle">Calculá tu ganancia neta con comisiones e impuestos</p>
     <div class="hero-badges">
-      <span>✓ Free</span>
-      <span>✓ No registration</span>
-      <span>✓ Instant result</span>
+      <span>✓ Gratis</span>
+      <span>✓ Sin registro</span>
+      <span>✓ Resultado al instante</span>
     </div>
   </div>
 
   <div class="container">
     <div class="card">
-      <h2 id="amazon-venta">Your Sale</h2>
+      <h2 id="amazon-venta">Tu venta</h2>
       <div class="field">
-        <label id="amazon-precio-label">Sale Price (USD)</label>
+        <label id="amazon-precio-label">Precio de venta (USD)</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="amazon-precio" placeholder="50" min="0" step="0.01">
         </div>
       </div>
       <div class="field">
-        <label id="amazon-costo-label">Product Cost</label>
+        <label id="amazon-costo-label">Costo del producto</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="amazon-costo" placeholder="25" min="0" step="0.01">
         </div>
       </div>
       <div class="field">
-        <label id="amazon-categoria-label">Category</label>
+        <label id="amazon-categoria-label">Categoría</label>
         <div class="toggle-group" id="amazon-categorias">
-          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')">Books<br><small style="font-weight:400">15%</small></button>
-          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')">Electronics<br><small style="font-weight:400">8%</small></button>
-          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')">Home<br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')">Libros<br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')">Electrónica<br><small style="font-weight:400">8%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')">Hogar<br><small style="font-weight:400">15%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularAmazon()">Calculate →</button>
+      <button class="btn" onclick="calcularAmazon()">Calcular →</button>
     </div>
 
     <div class="card">
-      <h2 id="amazon-como">How it works</h2>
+      <h2 id="amazon-como">¿Cómo funciona?</h2>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">📚 Books</span>
+          <span class="label">📚 Libros</span>
           <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">📱 Electronics</span>
+          <span class="label">📱 Electrónica</span>
           <span class="value">8%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">🏠 Home & Garden</span>
+          <span class="label">🏠 Hogar y Jardín</span>
           <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Sales Tax</span>
+          <span class="label" id="amazon-tax-label">Impuesto a las ventas</span>
           <span class="value">~8-10%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Shipping (est.)</span>
+          <span class="label" id="amazon-shipping-label">Envío (est.)</span>
           <span class="value">$5-$15</span>
         </div>
       </div>
       <div class="tip">
-        💡 Amazon fees vary by category. Check your category's exact fee.
+        💡 Las comisiones de Amazon varían según la categoría. Verificá la comisión exacta en tu categoría.
       </div>
     </div>
 
@@ -714,41 +714,41 @@
       <div class="result-header">
         <div class="semaforo" id="amazon-semaforo">✅</div>
         <div>
-          <div class="result-title" id="amazon-result-title">Profitable</div>
-          <div class="result-subtitle" id="amazon-result-subtitle">Net profit</div>
+          <div class="result-title" id="amazon-result-title">Rentable</div>
+          <div class="result-subtitle" id="amazon-result-subtitle">Ganancia neta</div>
         </div>
       </div>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">Price</span>
+          <span class="label" id="amazon-r-precio-label">Precio</span>
           <span class="value pos" id="amazon-r-precio">$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Cost</span>
+          <span class="label" id="amazon-r-costo-label">Costo</span>
           <span class="value neg" id="amazon-r-costo">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label" id="amazon-r-comision-label">Fee</span>
+          <span class="label" id="amazon-r-comision-label">Comisión</span>
           <span class="value neg" id="amazon-r-comision">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Tax (est.)</span>
+          <span class="label" id="amazon-r-iva-label">Impuesto (est.)</span>
           <span class="value neg" id="amazon-r-iva">-$0</span>
         </div>
         <div class="breakdown-row total">
-          <span>Net Profit</span>
+          <span id="amazon-r-ganancia-label">Ganancia neta</span>
           <span class="value" id="amazon-r-ganancia">$0</span>
         </div>
       </div>
 
       <div class="productos">
-        <h3>📦 Recommended Tools</h3>
-        <p>Essential supplies for online sellers</p>
+        <h3 id="amazon-productos-title">📦 Herramientas Recomendadas</h3>
+        <p id="amazon-productos-desc">Suministros esenciales para vendedores online</p>
         <div class="productos-grid">
-          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Scales</a>
-          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Printers</a>
-          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Mailers</a>
-          <a href="https://amazon.com/s?k=packing+tape" target="_blank" class="producto-link">Tape</a>
+          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Balanzas</a>
+          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Impresoras</a>
+          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Sobres</a>
+          <a href="https://amazon.com/s?k=packing+tape" target="_blank" class="producto-link">Cinta</a>
         </div>
       </div>
     </div>
@@ -758,27 +758,27 @@
 <!-- CALCULADORA EBAY -->
 <div class="calculadora" id="calc-ebay">
   <div class="hero" style="background: linear-gradient(180deg, #E53238 0%, #FF6B6B 100%);">
-    <h1 id="ebay-hero-title">How much do you earn on eBay?</h1>
-    <p id="ebay-hero-subtitle">Calculate your net profit with fees and taxes</p>
+    <h1 id="ebay-hero-title">¿Cuánto ganás en eBay?</h1>
+    <p id="ebay-hero-subtitle">Calculá tu ganancia neta con comisiones e impuestos</p>
     <div class="hero-badges">
-      <span>✓ Free</span>
-      <span>✓ No registration</span>
-      <span>✓ Instant result</span>
+      <span>✓ Gratis</span>
+      <span>✓ Sin registro</span>
+      <span>✓ Resultado al instante</span>
     </div>
   </div>
 
   <div class="container">
     <div class="card">
-      <h2 id="ebay-venta">Your Sale</h2>
+      <h2 id="ebay-venta">Tu venta</h2>
       <div class="field">
-        <label id="ebay-precio-label">Sale Price (USD)</label>
+        <label id="ebay-precio-label">Precio de venta (USD)</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="ebay-precio" placeholder="50" min="0" step="0.01">
         </div>
       </div>
       <div class="field">
-        <label id="ebay-costo-label">Product Cost</label>
+        <label id="ebay-costo-label">Costo del producto</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="ebay-costo" placeholder="25" min="0" step="0.01">
@@ -791,11 +791,11 @@
           <button class="toggle-btn" onclick="setTipoEbay(this, 'plus')">eBay Plus<br><small style="font-weight:400">14.5%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularEbay()">Calculate →</button>
+      <button class="btn" onclick="calcularEbay()">Calcular →</button>
     </div>
 
     <div class="card">
-      <h2 id="ebay-como">How it works</h2>
+      <h2 id="ebay-como">¿Cómo funciona?</h2>
       <div class="breakdown">
         <div class="breakdown-row">
           <span class="label">🔵 eBay Standard</span>
@@ -806,16 +806,16 @@
           <span class="value">14.5%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Sales Tax</span>
+          <span class="label" id="ebay-tax-label">Impuesto a las ventas</span>
           <span class="value">~8-10%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Shipping (est.)</span>
+          <span class="label" id="ebay-shipping-label">Envío (est.)</span>
           <span class="value">$5-$15</span>
         </div>
       </div>
       <div class="tip">
-        💡 Always factor in fees and shipping before listing. Most new sellers underestimate costs.
+        💡 Siempre considera las comisiones y envío antes de listar. La mayoría de vendedores nuevos subestiman los costos.
       </div>
     </div>
 
@@ -823,41 +823,41 @@
       <div class="result-header">
         <div class="semaforo" id="ebay-semaforo">✅</div>
         <div>
-          <div class="result-title" id="ebay-result-title">Profitable</div>
-          <div class="result-subtitle" id="ebay-result-subtitle">Net profit</div>
+          <div class="result-title" id="ebay-result-title">Rentable</div>
+          <div class="result-subtitle" id="ebay-result-subtitle">Ganancia neta</div>
         </div>
       </div>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">Price</span>
+          <span class="label" id="ebay-r-precio-label">Precio</span>
           <span class="value pos" id="ebay-r-precio">$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Cost</span>
+          <span class="label" id="ebay-r-costo-label">Costo</span>
           <span class="value neg" id="ebay-r-costo">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label" id="ebay-r-comision-label">Fee</span>
+          <span class="label" id="ebay-r-comision-label">Comisión</span>
           <span class="value neg" id="ebay-r-comision">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Tax (est.)</span>
+          <span class="label" id="ebay-r-iva-label">Impuesto (est.)</span>
           <span class="value neg" id="ebay-r-iva">-$0</span>
         </div>
         <div class="breakdown-row total">
-          <span>Net Profit</span>
+          <span id="ebay-r-ganancia-label">Ganancia neta</span>
           <span class="value" id="ebay-r-ganancia">$0</span>
         </div>
       </div>
 
       <div class="productos">
-        <h3>📦 Recommended Tools</h3>
-        <p>Essential supplies for sellers</p>
+        <h3 id="ebay-productos-title">📦 Herramientas Recomendadas</h3>
+        <p id="ebay-productos-desc">Suministros esenciales para vendedores</p>
         <div class="productos-grid">
-          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Scales</a>
-          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Printers</a>
-          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Mailers</a>
-          <a href="https://amazon.com/s?k=boxes" target="_blank" class="producto-link">Boxes</a>
+          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Balanzas</a>
+          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Impresoras</a>
+          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Sobres</a>
+          <a href="https://amazon.com/s?k=boxes" target="_blank" class="producto-link">Cajas</a>
         </div>
       </div>
     </div>
@@ -885,6 +885,56 @@
       'amazon-desc': '(USA)',
       'ebay-nombre': 'eBay',
       'ebay-desc': '(USA)',
+      'ml-hero-title': '¿Cuánto ganás en Mercado Libre?',
+      'ml-hero-subtitle': 'Calculá tu ganancia neta con comisiones y IVA',
+      'ml-venta': 'Tu venta',
+      'ml-precio-label': 'Precio de venta',
+      'ml-costo-label': 'Costo del producto',
+      'ml-tipo-label': 'Tipo de publicación',
+      'ml-como': '¿Cómo funciona?',
+      'ml-result-title': 'Rentable',
+      'ml-result-subtitle': 'Ganancia neta',
+      'ml-r-precio-label': 'Precio',
+      'ml-r-costo-label': 'Costo',
+      'ml-r-comision-label': 'Comisión',
+      'ml-r-iva-label': 'IVA',
+      'ml-r-ganancia-label': 'Ganancia neta',
+      'amazon-hero-title': '¿Cuánto ganás en Amazon?',
+      'amazon-hero-subtitle': 'Calculá tu ganancia neta con comisiones e impuestos',
+      'amazon-venta': 'Tu venta',
+      'amazon-precio-label': 'Precio de venta (USD)',
+      'amazon-costo-label': 'Costo del producto',
+      'amazon-categoria-label': 'Categoría',
+      'amazon-como': '¿Cómo funciona?',
+      'amazon-tax-label': 'Impuesto a las ventas',
+      'amazon-shipping-label': 'Envío (est.)',
+      'amazon-result-title': 'Rentable',
+      'amazon-result-subtitle': 'Ganancia neta',
+      'amazon-r-precio-label': 'Precio',
+      'amazon-r-costo-label': 'Costo',
+      'amazon-r-comision-label': 'Comisión',
+      'amazon-r-iva-label': 'Impuesto (est.)',
+      'amazon-r-ganancia-label': 'Ganancia neta',
+      'amazon-productos-title': '📦 Herramientas Recomendadas',
+      'amazon-productos-desc': 'Suministros esenciales para vendedores online',
+      'ebay-hero-title': '¿Cuánto ganás en eBay?',
+      'ebay-hero-subtitle': 'Calculá tu ganancia neta con comisiones e impuestos',
+      'ebay-venta': 'Tu venta',
+      'ebay-precio-label': 'Precio de venta (USD)',
+      'ebay-costo-label': 'Costo del producto',
+      'ebay-tipo-label': 'Plan',
+      'ebay-como': '¿Cómo funciona?',
+      'ebay-tax-label': 'Impuesto a las ventas',
+      'ebay-shipping-label': 'Envío (est.)',
+      'ebay-result-title': 'Rentable',
+      'ebay-result-subtitle': 'Ganancia neta',
+      'ebay-r-precio-label': 'Precio',
+      'ebay-r-costo-label': 'Costo',
+      'ebay-r-comision-label': 'Comisión',
+      'ebay-r-iva-label': 'Impuesto (est.)',
+      'ebay-r-ganancia-label': 'Ganancia neta',
+      'ebay-productos-title': '📦 Herramientas Recomendadas',
+      'ebay-productos-desc': 'Suministros esenciales para vendedores',
     },
     en: {
       'menu-titulo': 'Choose your platform',
@@ -894,6 +944,56 @@
       'amazon-desc': '(USA)',
       'ebay-nombre': 'eBay',
       'ebay-desc': '(USA)',
+      'ml-hero-title': 'How much do you earn on Mercado Libre?',
+      'ml-hero-subtitle': 'Calculate your net profit with commissions and VAT',
+      'ml-venta': 'Your Sale',
+      'ml-precio-label': 'Sale Price',
+      'ml-costo-label': 'Product Cost',
+      'ml-tipo-label': 'Listing Type',
+      'ml-como': 'How it works',
+      'ml-result-title': 'Profitable',
+      'ml-result-subtitle': 'Net profit',
+      'ml-r-precio-label': 'Price',
+      'ml-r-costo-label': 'Cost',
+      'ml-r-comision-label': 'Commission',
+      'ml-r-iva-label': 'VAT',
+      'ml-r-ganancia-label': 'Net profit',
+      'amazon-hero-title': 'How much do you earn on Amazon?',
+      'amazon-hero-subtitle': 'Calculate your net profit with fees and taxes',
+      'amazon-venta': 'Your Sale',
+      'amazon-precio-label': 'Sale Price (USD)',
+      'amazon-costo-label': 'Product Cost',
+      'amazon-categoria-label': 'Category',
+      'amazon-como': 'How it works',
+      'amazon-tax-label': 'Sales Tax',
+      'amazon-shipping-label': 'Shipping (est.)',
+      'amazon-result-title': 'Profitable',
+      'amazon-result-subtitle': 'Net profit',
+      'amazon-r-precio-label': 'Price',
+      'amazon-r-costo-label': 'Cost',
+      'amazon-r-comision-label': 'Fee',
+      'amazon-r-iva-label': 'Tax (est.)',
+      'amazon-r-ganancia-label': 'Net profit',
+      'amazon-productos-title': '📦 Recommended Tools',
+      'amazon-productos-desc': 'Essential supplies for online sellers',
+      'ebay-hero-title': 'How much do you earn on eBay?',
+      'ebay-hero-subtitle': 'Calculate your net profit with fees and taxes',
+      'ebay-venta': 'Your Sale',
+      'ebay-precio-label': 'Sale Price (USD)',
+      'ebay-costo-label': 'Product Cost',
+      'ebay-tipo-label': 'Plan',
+      'ebay-como': 'How it works',
+      'ebay-tax-label': 'Sales Tax',
+      'ebay-shipping-label': 'Shipping (est.)',
+      'ebay-result-title': 'Profitable',
+      'ebay-result-subtitle': 'Net profit',
+      'ebay-r-precio-label': 'Price',
+      'ebay-r-costo-label': 'Cost',
+      'ebay-r-comision-label': 'Fee',
+      'ebay-r-iva-label': 'Tax (est.)',
+      'ebay-r-ganancia-label': 'Net profit',
+      'ebay-productos-title': '📦 Recommended Tools',
+      'ebay-productos-desc': 'Essential supplies for sellers',
     }
   };
 
@@ -983,8 +1083,9 @@
     const precio = parseFloat(document.getElementById('amazon-precio').value);
     const costo = parseFloat(document.getElementById('amazon-costo').value);
 
+    const alertMsg = idioma === 'es' ? 'Completá precio y costo' : 'Enter price and cost';
     if (!precio || !costo || precio <= 0 || costo < 0) {
-      alert('Enter price and cost');
+      alert(alertMsg);
       return;
     }
 
@@ -1007,13 +1108,13 @@
 
     if (ganancia < 0) {
       icon.textContent = '🔴';
-      title.textContent = 'Losing money';
+      title.textContent = idioma === 'es' ? 'Perdiendo plata' : 'Losing money';
     } else if (margen < 15) {
       icon.textContent = '🟡';
-      title.textContent = 'Tight margin';
+      title.textContent = idioma === 'es' ? 'Margen bajo' : 'Tight margin';
     } else {
       icon.textContent = '🟢';
-      title.textContent = 'Profitable';
+      title.textContent = idioma === 'es' ? 'Rentable' : 'Profitable';
     }
 
     document.getElementById('amazon-resultado').classList.add('visible');
@@ -1024,8 +1125,9 @@
     const precio = parseFloat(document.getElementById('ebay-precio').value);
     const costo = parseFloat(document.getElementById('ebay-costo').value);
 
+    const alertMsg = idioma === 'es' ? 'Completá precio y costo' : 'Enter price and cost';
     if (!precio || !costo || precio <= 0 || costo < 0) {
-      alert('Enter price and cost');
+      alert(alertMsg);
       return;
     }
 
@@ -1048,13 +1150,13 @@
 
     if (ganancia < 0) {
       icon.textContent = '🔴';
-      title.textContent = 'Losing money';
+      title.textContent = idioma === 'es' ? 'Perdiendo plata' : 'Losing money';
     } else if (margen < 15) {
       icon.textContent = '🟡';
-      title.textContent = 'Tight margin';
+      title.textContent = idioma === 'es' ? 'Margen bajo' : 'Tight margin';
     } else {
       icon.textContent = '🟢';
-      title.textContent = 'Profitable';
+      title.textContent = idioma === 'es' ? 'Rentable' : 'Profitable';
     }
 
     document.getElementById('ebay-resultado').classList.add('visible');
