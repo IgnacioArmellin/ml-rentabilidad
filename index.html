@@ -798,6 +798,7 @@
 
       <div class="save-row">
         <button class="btn-save" id="ml-save-btn" onclick="guardarCalculo('ml')">💾 Guardar cálculo</button>
+        <button class="btn-save" onclick="exportarImagen('ml')" style="background: linear-gradient(180deg, var(--green) 0%, #008744 100%); color: white; border: none;">📸 Compartir</button>
       </div>
 
       <div class="productos">
@@ -916,6 +917,7 @@
 
       <div class="save-row">
         <button class="btn-save" id="amazon-save-btn" onclick="guardarCalculo('amazon')">💾 Save calculation</button>
+        <button class="btn-save" onclick="exportarImagen('amazon')" style="background: linear-gradient(180deg, var(--green) 0%, #008744 100%); color: white; border: none;">📸 Share</button>
       </div>
 
       <div class="productos">
@@ -1033,6 +1035,7 @@
 
       <div class="save-row">
         <button class="btn-save" id="ebay-save-btn" onclick="guardarCalculo('ebay')">💾 Save calculation</button>
+        <button class="btn-save" onclick="exportarImagen('ebay')" style="background: linear-gradient(180deg, var(--green) 0%, #008744 100%); color: white; border: none;">📸 Share</button>
       </div>
 
       <div class="productos">
@@ -1397,6 +1400,49 @@
 
     document.getElementById('ebay-resultado').classList.add('visible');
     document.getElementById('ebay-resultado').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ===== EXPORTAR COMO IMAGEN =====
+  async function exportarImagen(plat) {
+    const elementId = plat + '-resultado';
+    const element = document.getElementById(elementId);
+
+    if (!element) return;
+
+    const btn = document.activeElement;
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = idioma === 'es' ? '⏳ Creando...' : '⏳ Creating...';
+
+    try {
+      const canvas = await html2canvas(element, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true
+      });
+
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${NOMBRES_PLAT[plat]}-calculo-${new Date().toLocaleDateString()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        btn.disabled = false;
+        btn.textContent = idioma === 'es' ? '📸 Compartir' : '📸 Share';
+      });
+    } catch (error) {
+      console.error('Error exportando imagen:', error);
+      btn.disabled = false;
+      btn.textContent = idioma === 'es' ? '✗ Error' : '✗ Error';
+      setTimeout(() => {
+        btn.textContent = idioma === 'es' ? '📸 Compartir' : '📸 Share';
+      }, 2000);
+    }
   }
 
   // ===== GUARDAR CALCULOS =====
