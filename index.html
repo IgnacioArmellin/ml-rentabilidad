@@ -3,12 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profit Calculator | Mercado Libre, Amazon & eBay | Free</title>
-  <meta name="description" content="Calculate your real profit on Mercado Libre, Amazon & eBay. Deduct fees, taxes & shipping instantly. Free, no registration." />
+  <title>Seller Profit Calculator | Mercado Libre, Amazon & eBay Fees</title>
+  <meta name="description" content="Free profit calculator for Mercado Libre, Amazon and eBay sellers. Instantly deduct fees, taxes and shipping to see your real net profit. No registration." />
+  <meta name="keywords" content="amazon fba calculator, ebay fee calculator, mercado libre calculadora, seller profit calculator, amazon seller fees, ebay profit, calculadora rentabilidad mercado libre" />
   <meta name="author" content="MLRentabilidad" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#FFE600" />
   <meta name="google-adsense-account" content="ca-pub-7098385470186490">
+  <link rel="canonical" href="https://mlrentabilidad.com/" />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Seller Profit Calculator | Mercado Libre, Amazon & eBay" />
+  <meta property="og:description" content="Calculate your real net profit on Mercado Libre, Amazon and eBay. Fees, taxes and shipping included. Free, no registration." />
+  <meta property="og:url" content="https://mlrentabilidad.com/" />
+  <meta property="og:site_name" content="MLRentabilidad" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seller Profit Calculator | Mercado Libre, Amazon & eBay" />
+  <meta name="twitter:description" content="Calculate your real net profit on Mercado Libre, Amazon and eBay. Free, no registration." />
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>" />
+
+  <!-- Schema.org: WebApplication + FAQ para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MLRentabilidad - Seller Profit Calculator",
+    "description": "Free profit calculator for Mercado Libre, Amazon and eBay sellers. Deduct fees, taxes and shipping to see your real net profit.",
+    "url": "https://mlrentabilidad.com/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does Amazon charge in seller fees?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Amazon referral fees typically range from 8% to 15% depending on the category. Electronics is around 8%, while books, home and most categories are about 15%. There may be additional FBA and shipping costs." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are eBay's selling fees?",
+        "acceptedAnswer": { "@type": "Answer", "text": "eBay's final value fee is around 12.9% for most categories, plus a small fixed fee per order. eBay Store subscribers and certain plans may see slightly different rates." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cobra Mercado Libre de comisión?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Mercado Libre cobra 0% en publicaciones Gratuitas, alrededor de 12,5% en Clásica y 16,5% en Premium, más IVA sobre la comisión y el costo de Mercado Envíos." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this profit calculator free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, the calculator is 100% free, requires no registration and gives instant results for Mercado Libre, Amazon and eBay." }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -628,6 +692,58 @@
       margin-top: 40px;
     }
 
+    /* FAQ */
+    .faq {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .faq > h2 {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 16px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.98rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--blue);
+      font-weight: 400;
+    }
+
+    .faq-item[open] summary::after { content: '−'; }
+
+    .faq-item .faq-body {
+      padding: 0 18px 18px;
+      color: #444;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
     /* COMENTARIOS / RESEÑAS */
     .resenas {
       max-width: 700px;
@@ -1191,6 +1307,36 @@
   </div>
 </div>
 
+<!-- FAQ (bueno para SEO) -->
+<div class="faq">
+  <h2 id="faq-titulo">Preguntas Frecuentes</h2>
+
+  <details class="faq-item">
+    <summary>¿Cuánto cobra Mercado Libre de comisión?</summary>
+    <div class="faq-body">Mercado Libre cobra 0% en publicaciones <strong>Gratuitas</strong>, alrededor de <strong>12,5%</strong> en Clásica y <strong>16,5%</strong> en Premium. A eso se le suma el IVA sobre la comisión y el costo de Mercado Envíos. Nuestra calculadora descuenta todo automáticamente.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>How much does Amazon charge in seller fees?</summary>
+    <div class="faq-body">Amazon referral fees usually range from <strong>8% to 15%</strong> depending on the category. Electronics is around 8%, while books, home and most categories are about 15%. There can also be FBA and shipping costs. Use the Amazon tab to estimate your real net profit.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>What are eBay's selling fees?</summary>
+    <div class="faq-body">eBay's final value fee is around <strong>12.9%</strong> for most categories, plus a small fixed fee per order. Some store plans have slightly different rates. The eBay tab deducts fees, taxes and shipping to show your net profit.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>¿La calculadora es gratis? / Is it free?</summary>
+    <div class="faq-body">Sí / Yes. Es <strong>100% gratis</strong>, sin registro y con resultado al instante para Mercado Libre, Amazon y eBay. It's 100% free, no registration required.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>¿Cómo calculo mi ganancia neta? / How do I calculate net profit?</summary>
+    <div class="faq-body">Ingresá el <strong>precio de venta</strong> y el <strong>costo del producto</strong>, elegí el tipo de publicación o categoría, y la calculadora descuenta comisiones, impuestos y envío para mostrarte tu ganancia real. Enter your sale price and product cost, pick the category, and we deduct fees, taxes and shipping.</div>
+  </details>
+</div>
+
 <!-- RESEÑAS / COMENTARIOS -->
 <div class="resenas">
   <div class="resenas-card">
@@ -1302,6 +1448,7 @@
       'resena-titulo': '⭐ Opiniones',
       'resena-sub': '¿Te sirvió la calculadora? Dejá tu opinión.',
       'resena-btn': 'Publicar opinión',
+      'faq-titulo': 'Preguntas Frecuentes',
     },
     en: {
       'menu-titulo': 'Choose your platform',
@@ -1367,6 +1514,7 @@
       'resena-titulo': '⭐ Reviews',
       'resena-sub': 'Did the calculator help? Leave a review.',
       'resena-btn': 'Post review',
+      'faq-titulo': 'Frequently Asked Questions',
     }
   };
 
