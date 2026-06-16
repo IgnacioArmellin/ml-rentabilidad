@@ -465,6 +465,161 @@
       box-shadow: 0 2px 8px rgba(52,131,250,0.2);
     }
 
+    /* NEWSLETTER */
+    .newsletter-bar {
+      background: linear-gradient(135deg, #ebf2ff 0%, #f0f7ff 100%);
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .newsletter-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-text h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .newsletter-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      min-width: 260px;
+      max-width: 420px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      background: white;
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .newsletter-form button {
+      padding: 12px 22px;
+      background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--blue-dark);
+    }
+
+    @media (max-width: 600px) {
+      .newsletter-inner { flex-direction: column; text-align: center; }
+      .newsletter-form { max-width: 100%; width: 100%; }
+    }
+
+    /* GUARDAR CALCULO */
+    .save-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-save {
+      flex: 1;
+      padding: 12px;
+      border: 1.5px solid var(--blue);
+      border-radius: var(--radius-sm);
+      background: white;
+      color: var(--blue);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.92rem;
+    }
+
+    .btn-save:hover {
+      background: #ebf2ff;
+    }
+
+    .guardados {
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .guardados-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .guardados-card h3 {
+      font-size: 1rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .guardado-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .guardado-item .info { flex: 1; }
+    .guardado-item .plat { font-weight: 700; }
+    .guardado-item .detalle { color: var(--muted); font-size: 0.82rem; }
+    .guardado-item .gan { font-weight: 800; white-space: nowrap; }
+    .guardado-item .gan.pos { color: var(--green); }
+    .guardado-item .gan.neg { color: var(--red); }
+
+    .guardado-item .del {
+      background: none;
+      border: none;
+      color: var(--red);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px 8px;
+    }
+
+    .btn-clear {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      text-decoration: underline;
+      font-weight: 400;
+    }
+
     footer {
       text-align: center;
       padding: 28px 20px;
@@ -524,6 +679,20 @@
         <div class="menu-desc" id="ebay-desc">(USA)</div>
       </div>
     </button>
+  </div>
+</div>
+
+<!-- NEWSLETTER MAILERLITE (arriba para más suscriptores) -->
+<div class="newsletter-bar">
+  <div class="newsletter-inner">
+    <div class="newsletter-text">
+      <h3 id="news-title">📧 Recibí tips para vender más</h3>
+      <p id="news-sub">Nuevas calculadoras y consejos para vendedores. Gratis.</p>
+    </div>
+    <form onsubmit="handleNewsletterSubmit(event)" class="newsletter-form">
+      <input type="email" id="news-email" placeholder="Tu email" required>
+      <button type="submit" id="news-btn">Suscribir</button>
+    </form>
   </div>
 </div>
 
@@ -625,6 +794,10 @@
           <span id="ml-r-ganancia-label">Ganancia neta</span>
           <span class="value" id="ml-r-ganancia">$0</span>
         </div>
+      </div>
+
+      <div class="save-row">
+        <button class="btn-save" id="ml-save-btn" onclick="guardarCalculo('ml')">💾 Guardar cálculo</button>
       </div>
 
       <div class="productos">
@@ -741,6 +914,10 @@
         </div>
       </div>
 
+      <div class="save-row">
+        <button class="btn-save" id="amazon-save-btn" onclick="guardarCalculo('amazon')">💾 Save calculation</button>
+      </div>
+
       <div class="productos">
         <h3 id="amazon-productos-title">📦 Herramientas Recomendadas</h3>
         <p id="amazon-productos-desc">Suministros esenciales para vendedores online</p>
@@ -854,6 +1031,10 @@
         </div>
       </div>
 
+      <div class="save-row">
+        <button class="btn-save" id="ebay-save-btn" onclick="guardarCalculo('ebay')">💾 Save calculation</button>
+      </div>
+
       <div class="productos">
         <h3 id="ebay-productos-title">📦 Herramientas Recomendadas</h3>
         <p id="ebay-productos-desc">Suministros esenciales para vendedores</p>
@@ -872,15 +1053,15 @@
   </div>
 </div>
 
-<!-- NEWSLETTER MAILERLITE -->
-<div style="background: #f0f7ff; padding: 40px 24px; text-align: center; border-top: 2px solid var(--border);">
-  <h3 style="color: var(--text); margin-bottom: 10px;">📧 Recibí actualizaciones</h3>
-  <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem;">Nuevas calculadoras y tips para vendedores</p>
-
-  <form onsubmit="handleNewsletterSubmit(event)" style="max-width: 400px; margin: 0 auto; display: flex; gap: 8px;">
-    <input type="email" placeholder="Tu email" required style="flex: 1; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; background: white;">
-    <button type="submit" style="padding: 12px 20px; background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%); color: white; border: none; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; transition: all 0.2s;">Suscribir</button>
-  </form>
+<!-- CALCULOS GUARDADOS -->
+<div class="guardados" id="guardados-seccion" style="display:none;">
+  <div class="guardados-card">
+    <h3>
+      <span id="guardados-title">💾 Mis cálculos guardados</span>
+      <button class="btn-clear" onclick="limpiarGuardados()" id="guardados-clear">Borrar todo</button>
+    </h3>
+    <div id="guardados-lista"></div>
+  </div>
 </div>
 
 <footer>
@@ -894,6 +1075,9 @@
   let tipoML = 'gratuita';
   let categoriaAmazon = 'books';
   let tipoEbay = 'standard';
+
+  // Guarda el último resultado de cada calculadora para poder guardarlo
+  let ultimoResultado = { ml: null, amazon: null, ebay: null };
 
   const textos = {
     es: {
@@ -954,6 +1138,9 @@
       'ebay-r-ganancia-label': 'Ganancia neta',
       'ebay-productos-title': '📦 Herramientas Recomendadas',
       'ebay-productos-desc': 'Suministros esenciales para vendedores',
+      'news-title': '📧 Recibí tips para vender más',
+      'news-sub': 'Nuevas calculadoras y consejos para vendedores. Gratis.',
+      'news-btn': 'Suscribir',
     },
     en: {
       'menu-titulo': 'Choose your platform',
@@ -1013,6 +1200,9 @@
       'ebay-r-ganancia-label': 'Net profit',
       'ebay-productos-title': '📦 Recommended Tools',
       'ebay-productos-desc': 'Essential supplies for sellers',
+      'news-title': '📧 Get tips to sell more',
+      'news-sub': 'New calculators and seller tips. Free.',
+      'news-btn': 'Subscribe',
     }
   };
 
@@ -1027,6 +1217,20 @@
       const el = document.getElementById(key);
       if (el) el.textContent = value;
     }
+
+    // Placeholder del email
+    const emailInput = document.getElementById('news-email');
+    if (emailInput) emailInput.placeholder = lng === 'es' ? 'Tu email' : 'Your email';
+
+    // Botones de guardar
+    const saveTxt = lng === 'es' ? '💾 Guardar cálculo' : '💾 Save calculation';
+    ['ml', 'amazon', 'ebay'].forEach(p => {
+      const b = document.getElementById(p + '-save-btn');
+      if (b) b.textContent = saveTxt;
+    });
+
+    // Refrescar lista de guardados con el idioma nuevo
+    if (typeof renderGuardados === 'function') renderGuardados();
   }
 
   function cambiarCalculadora(calc) {
@@ -1101,6 +1305,8 @@
       title.textContent = 'Rentable';
     }
 
+    ultimoResultado.ml = { precio: precio, ganancia: ganancia, moneda: '$', decimales: 0 };
+
     document.getElementById('ml-resultado').classList.add('visible');
     document.getElementById('ml-resultado').scrollIntoView({ behavior: 'smooth' });
   }
@@ -1142,6 +1348,8 @@
       icon.textContent = '🟢';
       title.textContent = idioma === 'es' ? 'Rentable' : 'Profitable';
     }
+
+    ultimoResultado.amazon = { precio: precio, ganancia: ganancia, moneda: '$', decimales: 2 };
 
     document.getElementById('amazon-resultado').classList.add('visible');
     document.getElementById('amazon-resultado').scrollIntoView({ behavior: 'smooth' });
@@ -1185,8 +1393,95 @@
       title.textContent = idioma === 'es' ? 'Rentable' : 'Profitable';
     }
 
+    ultimoResultado.ebay = { precio: precio, ganancia: ganancia, moneda: '$', decimales: 2 };
+
     document.getElementById('ebay-resultado').classList.add('visible');
     document.getElementById('ebay-resultado').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ===== GUARDAR CALCULOS =====
+  const NOMBRES_PLAT = { ml: 'Mercado Libre', amazon: 'Amazon', ebay: 'eBay' };
+
+  function getGuardados() {
+    try {
+      return JSON.parse(localStorage.getItem('calculosGuardados') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function guardarCalculo(plat) {
+    const r = ultimoResultado[plat];
+    if (!r) {
+      alert(idioma === 'es' ? 'Primero hacé un cálculo' : 'Calculate first');
+      return;
+    }
+    const lista = getGuardados();
+    lista.unshift({
+      plat: plat,
+      precio: r.precio,
+      ganancia: r.ganancia,
+      moneda: r.moneda,
+      decimales: r.decimales,
+      fecha: new Date().toLocaleDateString()
+    });
+    // Máximo 10 guardados
+    localStorage.setItem('calculosGuardados', JSON.stringify(lista.slice(0, 10)));
+
+    const btn = document.getElementById(plat + '-save-btn');
+    const original = btn.textContent;
+    btn.textContent = idioma === 'es' ? '✓ Guardado' : '✓ Saved';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+
+    renderGuardados();
+  }
+
+  function borrarGuardado(i) {
+    const lista = getGuardados();
+    lista.splice(i, 1);
+    localStorage.setItem('calculosGuardados', JSON.stringify(lista));
+    renderGuardados();
+  }
+
+  function limpiarGuardados() {
+    const msg = idioma === 'es' ? '¿Borrar todos los cálculos guardados?' : 'Delete all saved calculations?';
+    if (confirm(msg)) {
+      localStorage.removeItem('calculosGuardados');
+      renderGuardados();
+    }
+  }
+
+  function renderGuardados() {
+    const lista = getGuardados();
+    const seccion = document.getElementById('guardados-seccion');
+    const cont = document.getElementById('guardados-lista');
+
+    if (lista.length === 0) {
+      seccion.style.display = 'none';
+      return;
+    }
+
+    seccion.style.display = 'block';
+    document.getElementById('guardados-title').textContent = idioma === 'es' ? '💾 Mis cálculos guardados' : '💾 My saved calculations';
+    document.getElementById('guardados-clear').textContent = idioma === 'es' ? 'Borrar todo' : 'Clear all';
+
+    const lblPrecio = idioma === 'es' ? 'Precio' : 'Price';
+    const lblGan = idioma === 'es' ? 'Ganancia' : 'Profit';
+
+    cont.innerHTML = lista.map((g, i) => {
+      const precioFmt = g.moneda + Number(g.precio).toLocaleString(undefined, {minimumFractionDigits: g.decimales, maximumFractionDigits: g.decimales});
+      const ganFmt = g.moneda + Number(g.ganancia).toLocaleString(undefined, {minimumFractionDigits: g.decimales, maximumFractionDigits: g.decimales});
+      const ganClase = g.ganancia < 0 ? 'neg' : 'pos';
+      return `
+        <div class="guardado-item">
+          <div class="info">
+            <div class="plat">${NOMBRES_PLAT[g.plat] || g.plat}</div>
+            <div class="detalle">${lblPrecio}: ${precioFmt} · ${g.fecha}</div>
+          </div>
+          <div class="gan ${ganClase}">${ganFmt}</div>
+          <button class="del" onclick="borrarGuardado(${i})" title="${lblGan}">🗑️</button>
+        </div>`;
+    }).join('');
   }
 
   async function handleNewsletterSubmit(e) {
@@ -1231,6 +1526,7 @@
 
   window.addEventListener('load', () => {
     cambiarIdioma(idioma);
+    renderGuardados();
   });
 </script>
 
