@@ -3,12 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profit Calculator | Mercado Libre, Amazon & eBay | Free</title>
-  <meta name="description" content="Calculate your real profit on Mercado Libre, Amazon & eBay. Deduct fees, taxes & shipping instantly. Free, no registration." />
+  <title>Seller Profit Calculator | Mercado Libre, Amazon & eBay Fees</title>
+  <meta name="description" content="Free profit calculator for Mercado Libre, Amazon and eBay sellers. Instantly deduct fees, taxes and shipping to see your real net profit. No registration." />
+  <meta name="keywords" content="amazon fba calculator, ebay fee calculator, mercado libre calculadora, seller profit calculator, amazon seller fees, ebay profit, calculadora rentabilidad mercado libre" />
   <meta name="author" content="MLRentabilidad" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#FFE600" />
   <meta name="google-adsense-account" content="ca-pub-7098385470186490">
+  <link rel="canonical" href="https://mlrentabilidad.com/" />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Seller Profit Calculator | Mercado Libre, Amazon & eBay" />
+  <meta property="og:description" content="Calculate your real net profit on Mercado Libre, Amazon and eBay. Fees, taxes and shipping included. Free, no registration." />
+  <meta property="og:url" content="https://mlrentabilidad.com/" />
+  <meta property="og:site_name" content="MLRentabilidad" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seller Profit Calculator | Mercado Libre, Amazon & eBay" />
+  <meta name="twitter:description" content="Calculate your real net profit on Mercado Libre, Amazon and eBay. Free, no registration." />
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>" />
+
+  <!-- Schema.org: WebApplication + FAQ para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MLRentabilidad - Seller Profit Calculator",
+    "description": "Free profit calculator for Mercado Libre, Amazon and eBay sellers. Deduct fees, taxes and shipping to see your real net profit.",
+    "url": "https://mlrentabilidad.com/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does Amazon charge in seller fees?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Amazon referral fees typically range from 8% to 15% depending on the category. Electronics is around 8%, while books, home and most categories are about 15%. There may be additional FBA and shipping costs." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are eBay's selling fees?",
+        "acceptedAnswer": { "@type": "Answer", "text": "eBay's final value fee is around 12.9% for most categories, plus a small fixed fee per order. eBay Store subscribers and certain plans may see slightly different rates." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cobra Mercado Libre de comisión?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Mercado Libre cobra 0% en publicaciones Gratuitas, alrededor de 12,5% en Clásica y 16,5% en Premium, más IVA sobre la comisión y el costo de Mercado Envíos." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this profit calculator free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, the calculator is 100% free, requires no registration and gives instant results for Mercado Libre, Amazon and eBay." }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -465,6 +529,161 @@
       box-shadow: 0 2px 8px rgba(52,131,250,0.2);
     }
 
+    /* NEWSLETTER */
+    .newsletter-bar {
+      background: linear-gradient(135deg, #ebf2ff 0%, #f0f7ff 100%);
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .newsletter-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-text h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .newsletter-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      min-width: 260px;
+      max-width: 420px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      background: white;
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .newsletter-form button {
+      padding: 12px 22px;
+      background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--blue-dark);
+    }
+
+    @media (max-width: 600px) {
+      .newsletter-inner { flex-direction: column; text-align: center; }
+      .newsletter-form { max-width: 100%; width: 100%; }
+    }
+
+    /* GUARDAR CALCULO */
+    .save-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-save {
+      flex: 1;
+      padding: 12px;
+      border: 1.5px solid var(--blue);
+      border-radius: var(--radius-sm);
+      background: white;
+      color: var(--blue);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.92rem;
+    }
+
+    .btn-save:hover {
+      background: #ebf2ff;
+    }
+
+    .guardados {
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .guardados-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .guardados-card h3 {
+      font-size: 1rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .guardado-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .guardado-item .info { flex: 1; }
+    .guardado-item .plat { font-weight: 700; }
+    .guardado-item .detalle { color: var(--muted); font-size: 0.82rem; }
+    .guardado-item .gan { font-weight: 800; white-space: nowrap; }
+    .guardado-item .gan.pos { color: var(--green); }
+    .guardado-item .gan.neg { color: var(--red); }
+
+    .guardado-item .del {
+      background: none;
+      border: none;
+      color: var(--red);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px 8px;
+    }
+
+    .btn-clear {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      text-decoration: underline;
+      font-weight: 400;
+    }
+
     footer {
       text-align: center;
       padding: 28px 20px;
@@ -472,6 +691,182 @@
       color: var(--muted);
       margin-top: 40px;
     }
+
+    /* FAQ */
+    .faq {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .faq > h2 {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 16px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.98rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--blue);
+      font-weight: 400;
+    }
+
+    .faq-item[open] summary::after { content: '−'; }
+
+    .faq-item .faq-body {
+      padding: 0 18px 18px;
+      color: #444;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* COMENTARIOS / RESEÑAS */
+    .resenas {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .resenas-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .resenas-card > h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .resenas-sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .estrellas-input {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 14px;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .estrellas-input .star {
+      color: #d1d5db;
+      transition: color 0.15s, transform 0.15s;
+      user-select: none;
+    }
+
+    .estrellas-input .star:hover {
+      transform: scale(1.15);
+    }
+
+    .estrellas-input .star.on {
+      color: #f5a623;
+    }
+
+    .resena-form input,
+    .resena-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      background: var(--card-alt);
+      margin-bottom: 12px;
+      font-family: inherit;
+    }
+
+    .resena-form input:focus,
+    .resena-form textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: #fff;
+    }
+
+    .resena-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .resena-form button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%);
+      color: white;
+      transition: all 0.2s;
+    }
+
+    .resena-form button:hover { background: var(--blue-dark); }
+    .resena-form button:disabled { opacity: 0.6; cursor: default; }
+
+    .resena-promedio {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resena-promedio .num {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .resena-promedio .stars-static { color: #f5a623; font-size: 1.1rem; }
+    .resena-promedio .cant { color: var(--muted); font-size: 0.85rem; }
+
+    .lista-resenas { margin-top: 24px; }
+
+    .resena-item {
+      padding: 16px 0;
+      border-top: 1px solid #f1f2f4;
+    }
+
+    .resena-item .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .resena-item .autor { font-weight: 700; font-size: 0.95rem; }
+    .resena-item .fecha { color: var(--muted); font-size: 0.78rem; }
+    .resena-item .stars-static { color: #f5a623; font-size: 0.9rem; margin-bottom: 6px; }
+    .resena-item .texto { color: #333; font-size: 0.92rem; line-height: 1.5; }
 
     footer a {
       color: var(--blue);
@@ -527,6 +922,20 @@
   </div>
 </div>
 
+<!-- NEWSLETTER MAILERLITE (arriba para más suscriptores) -->
+<div class="newsletter-bar">
+  <div class="newsletter-inner">
+    <div class="newsletter-text">
+      <h3 id="news-title">📧 Recibí tips para vender más</h3>
+      <p id="news-sub">Nuevas calculadoras y consejos para vendedores. Gratis.</p>
+    </div>
+    <form onsubmit="handleNewsletterSubmit(event)" class="newsletter-form">
+      <input type="email" id="news-email" placeholder="Tu email" required>
+      <button type="submit" id="news-btn">Suscribir</button>
+    </form>
+  </div>
+</div>
+
 <!-- CALCULADORA MERCADO LIBRE -->
 <div class="calculadora activa" id="calc-ml">
   <div class="hero">
@@ -564,7 +973,7 @@
           <button class="toggle-btn" onclick="setTipoML(this, 'premium')">Premium<br><small style="font-weight:400">16,5%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularML()">Calcular →</button>
+      <button class="btn btn-calcular" onclick="calcularML()">Calcular →</button>
     </div>
 
     <div class="card">
@@ -583,15 +992,15 @@
           <span class="value">16,5%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">IVA (21%)</span>
-          <span class="value">Sobre comisión</span>
+          <span class="label" id="ml-bd-iva-label">IVA (21%)</span>
+          <span class="value" id="ml-bd-iva-val">Sobre comisión</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Envío (est.)</span>
+          <span class="label" id="ml-bd-envio-label">Envío (est.)</span>
           <span class="value">~$900-$1500</span>
         </div>
       </div>
-      <div class="tip">
+      <div class="tip" id="ml-tip">
         💡 Los valores son estimativos. Verificá en Mercado Libre Ayuda los costos exactos.
       </div>
     </div>
@@ -627,9 +1036,14 @@
         </div>
       </div>
 
+      <div class="save-row">
+        <button class="btn-save" id="ml-save-btn" onclick="guardarCalculo('ml')">💾 Guardar cálculo</button>
+        <button class="btn-save" onclick="exportarImagen('ml')" style="background: linear-gradient(180deg, var(--green) 0%, #008744 100%); color: white; border: none;">📸 Compartir</button>
+      </div>
+
       <div class="productos">
-        <h3>📦 Productos Recomendados</h3>
-        <p>Herramientas esenciales para vender en Mercado Libre</p>
+        <h3 id="ml-productos-title">📦 Productos Recomendados</h3>
+        <p id="ml-productos-desc">Herramientas esenciales para vender en Mercado Libre</p>
         <div class="productos-grid">
           <a href="https://meli.la/1fRvz4J" target="_blank" class="producto-link">Balanza Digital</a>
           <a href="https://meli.la/1o3izmY" target="_blank" class="producto-link">Balanza San Up</a>
@@ -644,69 +1058,69 @@
 <!-- CALCULADORA AMAZON -->
 <div class="calculadora" id="calc-amazon">
   <div class="hero" style="background: linear-gradient(180deg, #FF9900 0%, #FFB84D 100%);">
-    <h1 id="amazon-hero-title">How much do you earn on Amazon?</h1>
-    <p id="amazon-hero-subtitle">Calculate your net profit with fees and taxes</p>
+    <h1 id="amazon-hero-title">¿Cuánto ganás en Amazon?</h1>
+    <p id="amazon-hero-subtitle">Calculá tu ganancia neta con comisiones e impuestos</p>
     <div class="hero-badges">
-      <span>✓ Free</span>
-      <span>✓ No registration</span>
-      <span>✓ Instant result</span>
+      <span>✓ Gratis</span>
+      <span>✓ Sin registro</span>
+      <span>✓ Resultado al instante</span>
     </div>
   </div>
 
   <div class="container">
     <div class="card">
-      <h2 id="amazon-venta">Your Sale</h2>
+      <h2 id="amazon-venta">Tu venta</h2>
       <div class="field">
-        <label id="amazon-precio-label">Sale Price (USD)</label>
+        <label id="amazon-precio-label">Precio de venta (USD)</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="amazon-precio" placeholder="50" min="0" step="0.01">
         </div>
       </div>
       <div class="field">
-        <label id="amazon-costo-label">Product Cost</label>
+        <label id="amazon-costo-label">Costo del producto</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="amazon-costo" placeholder="25" min="0" step="0.01">
         </div>
       </div>
       <div class="field">
-        <label id="amazon-categoria-label">Category</label>
+        <label id="amazon-categoria-label">Categoría</label>
         <div class="toggle-group" id="amazon-categorias">
-          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')">Books<br><small style="font-weight:400">15%</small></button>
-          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')">Electronics<br><small style="font-weight:400">8%</small></button>
-          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')">Home<br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')"><span id="amazon-cat-books">Libros</span><br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')"><span id="amazon-cat-elec">Electrónica</span><br><small style="font-weight:400">8%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')"><span id="amazon-cat-home">Hogar</span><br><small style="font-weight:400">15%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularAmazon()">Calculate →</button>
+      <button class="btn btn-calcular" onclick="calcularAmazon()">Calcular →</button>
     </div>
 
     <div class="card">
-      <h2 id="amazon-como">How it works</h2>
+      <h2 id="amazon-como">¿Cómo funciona?</h2>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">📚 Books</span>
+          <span class="label" id="amazon-bd-books">📚 Libros</span>
           <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">📱 Electronics</span>
+          <span class="label" id="amazon-bd-elec">📱 Electrónica</span>
           <span class="value">8%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">🏠 Home & Garden</span>
+          <span class="label" id="amazon-bd-home">🏠 Hogar y Jardín</span>
           <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Sales Tax</span>
+          <span class="label" id="amazon-tax-label">Impuesto a las ventas</span>
           <span class="value">~8-10%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Shipping (est.)</span>
+          <span class="label" id="amazon-shipping-label">Envío (est.)</span>
           <span class="value">$5-$15</span>
         </div>
       </div>
-      <div class="tip">
-        💡 Amazon fees vary by category. Check your category's exact fee.
+      <div class="tip" id="amazon-tip">
+        💡 Las comisiones de Amazon varían según la categoría. Verificá la comisión exacta en tu categoría.
       </div>
     </div>
 
@@ -714,41 +1128,50 @@
       <div class="result-header">
         <div class="semaforo" id="amazon-semaforo">✅</div>
         <div>
-          <div class="result-title" id="amazon-result-title">Profitable</div>
-          <div class="result-subtitle" id="amazon-result-subtitle">Net profit</div>
+          <div class="result-title" id="amazon-result-title">Rentable</div>
+          <div class="result-subtitle" id="amazon-result-subtitle">Ganancia neta</div>
         </div>
       </div>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">Price</span>
+          <span class="label" id="amazon-r-precio-label">Precio</span>
           <span class="value pos" id="amazon-r-precio">$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Cost</span>
+          <span class="label" id="amazon-r-costo-label">Costo</span>
           <span class="value neg" id="amazon-r-costo">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label" id="amazon-r-comision-label">Fee</span>
+          <span class="label" id="amazon-r-comision-label">Comisión</span>
           <span class="value neg" id="amazon-r-comision">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Tax (est.)</span>
+          <span class="label" id="amazon-r-iva-label">Impuesto (est.)</span>
           <span class="value neg" id="amazon-r-iva">-$0</span>
         </div>
         <div class="breakdown-row total">
-          <span>Net Profit</span>
+          <span id="amazon-r-ganancia-label">Ganancia neta</span>
           <span class="value" id="amazon-r-ganancia">$0</span>
         </div>
       </div>
 
+      <div class="save-row">
+        <button class="btn-save" id="amazon-save-btn" onclick="guardarCalculo('amazon')">💾 Save calculation</button>
+        <button class="btn-save" onclick="exportarImagen('amazon')" style="background: linear-gradient(180deg, var(--green) 0%, #008744 100%); color: white; border: none;">📸 Share</button>
+      </div>
+
       <div class="productos">
-        <h3>📦 Recommended Tools</h3>
-        <p>Essential supplies for online sellers</p>
+        <h3 id="amazon-productos-title">📦 Herramientas Recomendadas</h3>
+        <p id="amazon-productos-desc">Suministros esenciales para vendedores online</p>
         <div class="productos-grid">
-          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Scales</a>
-          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Printers</a>
-          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Mailers</a>
-          <a href="https://amazon.com/s?k=packing+tape" target="_blank" class="producto-link">Tape</a>
+          <a href="https://amazon.com/s?k=shipping+scale&tag=techgearlab-20" target="_blank" class="producto-link">Balanzas</a>
+          <a href="https://amazon.com/s?k=thermal+label+printer&tag=techgearlab-20" target="_blank" class="producto-link">Impresoras</a>
+          <a href="https://amazon.com/s?k=poly+mailers&tag=techgearlab-20" target="_blank" class="producto-link">Sobres</a>
+          <a href="https://amazon.com/s?k=packing+tape&tag=techgearlab-20" target="_blank" class="producto-link">Cinta</a>
+          <a href="https://amazon.com/s?k=kraft+boxes&tag=techgearlab-20" target="_blank" class="producto-link">Cajas</a>
+          <a href="https://amazon.com/s?k=bubble+mailers&tag=techgearlab-20" target="_blank" class="producto-link">Sobres Acolchados</a>
+          <a href="https://amazon.com/s?k=shipping+label+printer&tag=techgearlab-20" target="_blank" class="producto-link">Etiquetador</a>
+          <a href="https://amazon.com/s?k=packing+supplies&tag=techgearlab-20" target="_blank" class="producto-link">Pack Completo</a>
         </div>
       </div>
     </div>
@@ -758,27 +1181,27 @@
 <!-- CALCULADORA EBAY -->
 <div class="calculadora" id="calc-ebay">
   <div class="hero" style="background: linear-gradient(180deg, #E53238 0%, #FF6B6B 100%);">
-    <h1 id="ebay-hero-title">How much do you earn on eBay?</h1>
-    <p id="ebay-hero-subtitle">Calculate your net profit with fees and taxes</p>
+    <h1 id="ebay-hero-title">¿Cuánto ganás en eBay?</h1>
+    <p id="ebay-hero-subtitle">Calculá tu ganancia neta con comisiones e impuestos</p>
     <div class="hero-badges">
-      <span>✓ Free</span>
-      <span>✓ No registration</span>
-      <span>✓ Instant result</span>
+      <span>✓ Gratis</span>
+      <span>✓ Sin registro</span>
+      <span>✓ Resultado al instante</span>
     </div>
   </div>
 
   <div class="container">
     <div class="card">
-      <h2 id="ebay-venta">Your Sale</h2>
+      <h2 id="ebay-venta">Tu venta</h2>
       <div class="field">
-        <label id="ebay-precio-label">Sale Price (USD)</label>
+        <label id="ebay-precio-label">Precio de venta (USD)</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="ebay-precio" placeholder="50" min="0" step="0.01">
         </div>
       </div>
       <div class="field">
-        <label id="ebay-costo-label">Product Cost</label>
+        <label id="ebay-costo-label">Costo del producto</label>
         <div class="prefix-wrap">
           <span>$</span>
           <input type="number" id="ebay-costo" placeholder="25" min="0" step="0.01">
@@ -791,11 +1214,11 @@
           <button class="toggle-btn" onclick="setTipoEbay(this, 'plus')">eBay Plus<br><small style="font-weight:400">14.5%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularEbay()">Calculate →</button>
+      <button class="btn btn-calcular" onclick="calcularEbay()">Calcular →</button>
     </div>
 
     <div class="card">
-      <h2 id="ebay-como">How it works</h2>
+      <h2 id="ebay-como">¿Cómo funciona?</h2>
       <div class="breakdown">
         <div class="breakdown-row">
           <span class="label">🔵 eBay Standard</span>
@@ -806,16 +1229,16 @@
           <span class="value">14.5%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Sales Tax</span>
+          <span class="label" id="ebay-tax-label">Impuesto a las ventas</span>
           <span class="value">~8-10%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Shipping (est.)</span>
+          <span class="label" id="ebay-shipping-label">Envío (est.)</span>
           <span class="value">$5-$15</span>
         </div>
       </div>
-      <div class="tip">
-        💡 Always factor in fees and shipping before listing. Most new sellers underestimate costs.
+      <div class="tip" id="ebay-tip">
+        💡 Siempre considera las comisiones y envío antes de listar. La mayoría de vendedores nuevos subestiman los costos.
       </div>
     </div>
 
@@ -823,50 +1246,141 @@
       <div class="result-header">
         <div class="semaforo" id="ebay-semaforo">✅</div>
         <div>
-          <div class="result-title" id="ebay-result-title">Profitable</div>
-          <div class="result-subtitle" id="ebay-result-subtitle">Net profit</div>
+          <div class="result-title" id="ebay-result-title">Rentable</div>
+          <div class="result-subtitle" id="ebay-result-subtitle">Ganancia neta</div>
         </div>
       </div>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">Price</span>
+          <span class="label" id="ebay-r-precio-label">Precio</span>
           <span class="value pos" id="ebay-r-precio">$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Cost</span>
+          <span class="label" id="ebay-r-costo-label">Costo</span>
           <span class="value neg" id="ebay-r-costo">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label" id="ebay-r-comision-label">Fee</span>
+          <span class="label" id="ebay-r-comision-label">Comisión</span>
           <span class="value neg" id="ebay-r-comision">-$0</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Tax (est.)</span>
+          <span class="label" id="ebay-r-iva-label">Impuesto (est.)</span>
           <span class="value neg" id="ebay-r-iva">-$0</span>
         </div>
         <div class="breakdown-row total">
-          <span>Net Profit</span>
+          <span id="ebay-r-ganancia-label">Ganancia neta</span>
           <span class="value" id="ebay-r-ganancia">$0</span>
         </div>
       </div>
 
+      <div class="save-row">
+        <button class="btn-save" id="ebay-save-btn" onclick="guardarCalculo('ebay')">💾 Save calculation</button>
+        <button class="btn-save" onclick="exportarImagen('ebay')" style="background: linear-gradient(180deg, var(--green) 0%, #008744 100%); color: white; border: none;">📸 Share</button>
+      </div>
+
       <div class="productos">
-        <h3>📦 Recommended Tools</h3>
-        <p>Essential supplies for sellers</p>
+        <h3 id="ebay-productos-title">📦 Herramientas Recomendadas</h3>
+        <p id="ebay-productos-desc">Suministros esenciales para vendedores</p>
         <div class="productos-grid">
-          <a href="https://amazon.com/s?k=shipping+scale" target="_blank" class="producto-link">Scales</a>
-          <a href="https://amazon.com/s?k=thermal+label+printer" target="_blank" class="producto-link">Printers</a>
-          <a href="https://amazon.com/s?k=poly+mailers" target="_blank" class="producto-link">Mailers</a>
-          <a href="https://amazon.com/s?k=boxes" target="_blank" class="producto-link">Boxes</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=shipping+scale" target="_blank" class="producto-link">Balanzas</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=thermal+label+printer" target="_blank" class="producto-link">Impresoras</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=poly+mailers" target="_blank" class="producto-link">Sobres</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=boxes" target="_blank" class="producto-link">Cajas</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=bubble+mailers" target="_blank" class="producto-link">Sobres Acolchados</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=packing+tape" target="_blank" class="producto-link">Cinta</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=shipping+supplies+kit" target="_blank" class="producto-link">Kit Envío</a>
+          <a href="https://www.ebay.com/sch/i.html?_nkw=label+printer" target="_blank" class="producto-link">Impresora Etiquetas</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- CALCULOS GUARDADOS -->
+<div class="guardados" id="guardados-seccion" style="display:none;">
+  <div class="guardados-card">
+    <h3>
+      <span id="guardados-title">💾 Mis cálculos guardados</span>
+      <button class="btn-clear" onclick="limpiarGuardados()" id="guardados-clear">Borrar todo</button>
+    </h3>
+    <div id="guardados-lista"></div>
+  </div>
+</div>
+
+<!-- FAQ (bueno para SEO) -->
+<div class="faq">
+  <h2 id="faq-titulo">Preguntas Frecuentes</h2>
+
+  <details class="faq-item">
+    <summary id="faq-q1">¿Cuánto cobra Mercado Libre de comisión?</summary>
+    <div class="faq-body" id="faq-a1">Mercado Libre cobra 0% en publicaciones <strong>Gratuitas</strong>, alrededor de <strong>12,5%</strong> en Clásica y <strong>16,5%</strong> en Premium. A eso se le suma el IVA sobre la comisión y el costo de Mercado Envíos. Nuestra calculadora descuenta todo automáticamente.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary id="faq-q2">¿Cuánto cobra Amazon de comisión?</summary>
+    <div class="faq-body" id="faq-a2">Las comisiones de Amazon suelen ir del <strong>8% al 15%</strong> según la categoría. Electrónica ronda el 8%, mientras que libros, hogar y la mayoría de categorías están cerca del 15%. También puede haber costos de FBA y envío. Usá la calculadora de Amazon para estimar tu ganancia neta real.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary id="faq-q3">¿Cuánto cobra eBay de comisión?</summary>
+    <div class="faq-body" id="faq-a3">La comisión por venta de eBay ronda el <strong>12,9%</strong> en la mayoría de las categorías, más una pequeña tarifa fija por orden. Algunos planes de tienda tienen tarifas distintas. La calculadora de eBay descuenta comisiones, impuestos y envío para mostrarte tu ganancia neta.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary id="faq-q4">¿La calculadora es gratis?</summary>
+    <div class="faq-body" id="faq-a4">Sí. Es <strong>100% gratis</strong>, sin registro y con resultado al instante para Mercado Libre, Amazon y eBay.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary id="faq-q5">¿Cómo calculo mi ganancia neta?</summary>
+    <div class="faq-body" id="faq-a5">Ingresá el <strong>precio de venta</strong> y el <strong>costo del producto</strong>, elegí el tipo de publicación o categoría, y la calculadora descuenta comisiones, impuestos y envío para mostrarte tu ganancia real.</div>
+  </details>
+</div>
+
+<!-- RESEÑAS / COMENTARIOS -->
+<div class="resenas">
+  <div class="resenas-card">
+    <h3 id="resena-titulo">⭐ Opiniones</h3>
+    <p class="resena-sub" id="resena-sub">¿Te sirvió la calculadora? Dejá tu opinión.</p>
+
+    <div class="resena-promedio" id="resena-promedio" style="display:none;">
+      <span class="num" id="resena-prom-num">0.0</span>
+      <div>
+        <div class="stars-static" id="resena-prom-stars">★★★★★</div>
+        <div class="cant" id="resena-prom-cant">0 opiniones</div>
+      </div>
+    </div>
+
+    <form class="resena-form" onsubmit="enviarComentario(event)">
+      <div class="estrellas-input" id="estrellas-input">
+        <span class="star" data-val="1">★</span>
+        <span class="star" data-val="2">★</span>
+        <span class="star" data-val="3">★</span>
+        <span class="star" data-val="4">★</span>
+        <span class="star" data-val="5">★</span>
+      </div>
+      <input type="text" id="resena-nombre" placeholder="Tu nombre" maxlength="50" required>
+      <textarea id="resena-texto" placeholder="Escribí tu opinión..." maxlength="500" required></textarea>
+      <button type="submit" id="resena-btn">Publicar opinión</button>
+    </form>
+
+    <div class="lista-resenas" id="lista-resenas"></div>
+  </div>
+</div>
+
 <footer>
   <strong>MLRentabilidad</strong> — Calculadora GRATIS para vendedores en Mercado Libre, Amazon y eBay.<br>
   Los valores son estimativos. Verificá los costos exactos en cada plataforma.
+  <br><br>
+  <span style="font-size:0.74rem; color:#9aa0a6; display:block; max-width:640px; margin:0 auto; line-height:1.5;">
+    MLRentabilidad es una herramienta independiente. <strong>No</strong> está afiliada, asociada, autorizada ni respaldada por
+    Mercado Libre, Amazon, eBay ni ninguna de sus subsidiarias. Todas las marcas, logos y nombres comerciales pertenecen a
+    sus respectivos dueños y se usan solo con fines descriptivos.
+    <br><br>
+    <em>MLRentabilidad is an independent tool. It is <strong>not</strong> affiliated with, associated with, authorized or endorsed by
+    Mercado Libre, Amazon, eBay or any of their subsidiaries. All trademarks, logos and brand names are the property of their
+    respective owners and are used for descriptive purposes only.</em>
+  </span>
 </footer>
 
 <script>
@@ -875,6 +1389,9 @@
   let tipoML = 'gratuita';
   let categoriaAmazon = 'books';
   let tipoEbay = 'standard';
+
+  // Guarda el último resultado de cada calculadora para poder guardarlo
+  let ultimoResultado = { ml: null, amazon: null, ebay: null };
 
   const textos = {
     es: {
@@ -885,6 +1402,77 @@
       'amazon-desc': '(USA)',
       'ebay-nombre': 'eBay',
       'ebay-desc': '(USA)',
+      'ml-hero-title': '¿Cuánto ganás en Mercado Libre?',
+      'ml-hero-subtitle': 'Calculá tu ganancia neta con comisiones y IVA',
+      'ml-venta': 'Tu venta',
+      'ml-precio-label': 'Precio de venta',
+      'ml-costo-label': 'Costo del producto',
+      'ml-tipo-label': 'Tipo de publicación',
+      'ml-como': '¿Cómo funciona?',
+      'ml-result-title': 'Rentable',
+      'ml-result-subtitle': 'Ganancia neta',
+      'ml-r-precio-label': 'Precio',
+      'ml-r-costo-label': 'Costo',
+      'ml-r-comision-label': 'Comisión',
+      'ml-r-iva-label': 'IVA',
+      'ml-r-ganancia-label': 'Ganancia neta',
+      'amazon-hero-title': '¿Cuánto ganás en Amazon?',
+      'amazon-hero-subtitle': 'Calculá tu ganancia neta con comisiones e impuestos',
+      'amazon-venta': 'Tu venta',
+      'amazon-precio-label': 'Precio de venta (USD)',
+      'amazon-costo-label': 'Costo del producto',
+      'amazon-categoria-label': 'Categoría',
+      'amazon-como': '¿Cómo funciona?',
+      'amazon-tax-label': 'Impuesto a las ventas',
+      'amazon-shipping-label': 'Envío (est.)',
+      'amazon-result-title': 'Rentable',
+      'amazon-result-subtitle': 'Ganancia neta',
+      'amazon-r-precio-label': 'Precio',
+      'amazon-r-costo-label': 'Costo',
+      'amazon-r-comision-label': 'Comisión',
+      'amazon-r-iva-label': 'Impuesto (est.)',
+      'amazon-r-ganancia-label': 'Ganancia neta',
+      'amazon-productos-title': '📦 Herramientas Recomendadas',
+      'amazon-productos-desc': 'Suministros esenciales para vendedores online',
+      'ebay-hero-title': '¿Cuánto ganás en eBay?',
+      'ebay-hero-subtitle': 'Calculá tu ganancia neta con comisiones e impuestos',
+      'ebay-venta': 'Tu venta',
+      'ebay-precio-label': 'Precio de venta (USD)',
+      'ebay-costo-label': 'Costo del producto',
+      'ebay-tipo-label': 'Plan',
+      'ebay-como': '¿Cómo funciona?',
+      'ebay-tax-label': 'Impuesto a las ventas',
+      'ebay-shipping-label': 'Envío (est.)',
+      'ebay-result-title': 'Rentable',
+      'ebay-result-subtitle': 'Ganancia neta',
+      'ebay-r-precio-label': 'Precio',
+      'ebay-r-costo-label': 'Costo',
+      'ebay-r-comision-label': 'Comisión',
+      'ebay-r-iva-label': 'Impuesto (est.)',
+      'ebay-r-ganancia-label': 'Ganancia neta',
+      'ebay-productos-title': '📦 Herramientas Recomendadas',
+      'ebay-productos-desc': 'Suministros esenciales para vendedores',
+      'news-title': '📧 Recibí tips para vender más',
+      'news-sub': 'Nuevas calculadoras y consejos para vendedores. Gratis.',
+      'news-btn': 'Suscribir',
+      'resena-titulo': '⭐ Opiniones',
+      'resena-sub': '¿Te sirvió la calculadora? Dejá tu opinión.',
+      'resena-btn': 'Publicar opinión',
+      'faq-titulo': 'Preguntas Frecuentes',
+      'ml-bd-iva-label': 'IVA (21%)',
+      'ml-bd-iva-val': 'Sobre comisión',
+      'ml-bd-envio-label': 'Envío (est.)',
+      'ml-tip': '💡 Los valores son estimativos. Verificá en Mercado Libre Ayuda los costos exactos.',
+      'ml-productos-title': '📦 Productos Recomendados',
+      'ml-productos-desc': 'Herramientas esenciales para vender en Mercado Libre',
+      'amazon-cat-books': 'Libros',
+      'amazon-cat-elec': 'Electrónica',
+      'amazon-cat-home': 'Hogar',
+      'amazon-bd-books': '📚 Libros',
+      'amazon-bd-elec': '📱 Electrónica',
+      'amazon-bd-home': '🏠 Hogar y Jardín',
+      'amazon-tip': '💡 Las comisiones de Amazon varían según la categoría. Verificá la comisión exacta en tu categoría.',
+      'ebay-tip': '💡 Siempre considera las comisiones y envío antes de listar. La mayoría de vendedores nuevos subestiman los costos.',
     },
     en: {
       'menu-titulo': 'Choose your platform',
@@ -894,6 +1482,77 @@
       'amazon-desc': '(USA)',
       'ebay-nombre': 'eBay',
       'ebay-desc': '(USA)',
+      'ml-hero-title': 'How much do you earn on Mercado Libre?',
+      'ml-hero-subtitle': 'Calculate your net profit with commissions and VAT',
+      'ml-venta': 'Your Sale',
+      'ml-precio-label': 'Sale Price',
+      'ml-costo-label': 'Product Cost',
+      'ml-tipo-label': 'Listing Type',
+      'ml-como': 'How it works',
+      'ml-result-title': 'Profitable',
+      'ml-result-subtitle': 'Net profit',
+      'ml-r-precio-label': 'Price',
+      'ml-r-costo-label': 'Cost',
+      'ml-r-comision-label': 'Commission',
+      'ml-r-iva-label': 'VAT',
+      'ml-r-ganancia-label': 'Net profit',
+      'amazon-hero-title': 'How much do you earn on Amazon?',
+      'amazon-hero-subtitle': 'Calculate your net profit with fees and taxes',
+      'amazon-venta': 'Your Sale',
+      'amazon-precio-label': 'Sale Price (USD)',
+      'amazon-costo-label': 'Product Cost',
+      'amazon-categoria-label': 'Category',
+      'amazon-como': 'How it works',
+      'amazon-tax-label': 'Sales Tax',
+      'amazon-shipping-label': 'Shipping (est.)',
+      'amazon-result-title': 'Profitable',
+      'amazon-result-subtitle': 'Net profit',
+      'amazon-r-precio-label': 'Price',
+      'amazon-r-costo-label': 'Cost',
+      'amazon-r-comision-label': 'Fee',
+      'amazon-r-iva-label': 'Tax (est.)',
+      'amazon-r-ganancia-label': 'Net profit',
+      'amazon-productos-title': '📦 Recommended Tools',
+      'amazon-productos-desc': 'Essential supplies for online sellers',
+      'ebay-hero-title': 'How much do you earn on eBay?',
+      'ebay-hero-subtitle': 'Calculate your net profit with fees and taxes',
+      'ebay-venta': 'Your Sale',
+      'ebay-precio-label': 'Sale Price (USD)',
+      'ebay-costo-label': 'Product Cost',
+      'ebay-tipo-label': 'Plan',
+      'ebay-como': 'How it works',
+      'ebay-tax-label': 'Sales Tax',
+      'ebay-shipping-label': 'Shipping (est.)',
+      'ebay-result-title': 'Profitable',
+      'ebay-result-subtitle': 'Net profit',
+      'ebay-r-precio-label': 'Price',
+      'ebay-r-costo-label': 'Cost',
+      'ebay-r-comision-label': 'Fee',
+      'ebay-r-iva-label': 'Tax (est.)',
+      'ebay-r-ganancia-label': 'Net profit',
+      'ebay-productos-title': '📦 Recommended Tools',
+      'ebay-productos-desc': 'Essential supplies for sellers',
+      'news-title': '📧 Get tips to sell more',
+      'news-sub': 'New calculators and seller tips. Free.',
+      'news-btn': 'Subscribe',
+      'resena-titulo': '⭐ Reviews',
+      'resena-sub': 'Did the calculator help? Leave a review.',
+      'resena-btn': 'Post review',
+      'faq-titulo': 'Frequently Asked Questions',
+      'ml-bd-iva-label': 'VAT (21%)',
+      'ml-bd-iva-val': 'On commission',
+      'ml-bd-envio-label': 'Shipping (est.)',
+      'ml-tip': '💡 Values are estimates. Check Mercado Libre Help for exact costs.',
+      'ml-productos-title': '📦 Recommended Products',
+      'ml-productos-desc': 'Essential tools to sell on Mercado Libre',
+      'amazon-cat-books': 'Books',
+      'amazon-cat-elec': 'Electronics',
+      'amazon-cat-home': 'Home',
+      'amazon-bd-books': '📚 Books',
+      'amazon-bd-elec': '📱 Electronics',
+      'amazon-bd-home': '🏠 Home & Garden',
+      'amazon-tip': '💡 Amazon fees vary by category. Check the exact fee for your category.',
+      'ebay-tip': '💡 Always factor in fees and shipping before listing. Most new sellers underestimate costs.',
     }
   };
 
@@ -908,7 +1567,93 @@
       const el = document.getElementById(key);
       if (el) el.textContent = value;
     }
+
+    // Placeholder del email
+    const emailInput = document.getElementById('news-email');
+    if (emailInput) emailInput.placeholder = lng === 'es' ? 'Tu email' : 'Your email';
+
+    // Placeholders del formulario de opiniones
+    const rNombre = document.getElementById('resena-nombre');
+    const rTexto = document.getElementById('resena-texto');
+    if (rNombre) rNombre.placeholder = lng === 'es' ? 'Tu nombre' : 'Your name';
+    if (rTexto) rTexto.placeholder = lng === 'es' ? 'Escribí tu opinión...' : 'Write your review...';
+
+    // Botones de guardar
+    const saveTxt = lng === 'es' ? '💾 Guardar cálculo' : '💾 Save calculation';
+    ['ml', 'amazon', 'ebay'].forEach(p => {
+      const b = document.getElementById(p + '-save-btn');
+      if (b) b.textContent = saveTxt;
+    });
+
+    // Badges del hero (se repiten en las 3 calculadoras)
+    const badges = lng === 'es'
+      ? ['✓ Gratis', '✓ Sin registro', '✓ Resultado al instante']
+      : ['✓ Free', '✓ No sign-up', '✓ Instant result'];
+    document.querySelectorAll('.hero-badges').forEach(group => {
+      group.querySelectorAll('span').forEach((s, i) => {
+        if (badges[i]) s.textContent = badges[i];
+      });
+    });
+
+    // Botones "Calcular →"
+    const calcTxt = lng === 'es' ? 'Calcular →' : 'Calculate →';
+    document.querySelectorAll('.btn-calcular').forEach(b => { b.textContent = calcTxt; });
+
+    // Botón del newsletter (si no está en proceso de envío)
+    const newsBtn = document.getElementById('news-btn');
+    if (newsBtn && !newsBtn.disabled) newsBtn.textContent = lng === 'es' ? 'Suscribir' : 'Subscribe';
+
+    // Re-traducir el título del resultado si ya hay un cálculo en pantalla
+    ['ml', 'amazon', 'ebay'].forEach(p => {
+      const card = document.getElementById(p + '-resultado');
+      const r = ultimoResultado[p];
+      if (card && card.classList.contains('visible') && r) {
+        const margen = (r.ganancia / r.precio) * 100;
+        const title = document.getElementById(p + '-result-title');
+        if (r.ganancia < 0) title.textContent = lng === 'es' ? 'Perdiendo plata' : 'Losing money';
+        else if (margen < 15) title.textContent = lng === 'es' ? 'Margen bajo' : 'Tight margin';
+        else title.textContent = lng === 'es' ? 'Rentable' : 'Profitable';
+      }
+    });
+
+    // FAQ (con negritas -> innerHTML)
+    const faq = faqTextos[lng];
+    for (const [key, value] of Object.entries(faq)) {
+      const el = document.getElementById(key);
+      if (el) el.innerHTML = value;
+    }
+
+    // Refrescar lista de guardados y reseñas con el idioma nuevo
+    if (typeof renderGuardados === 'function') renderGuardados();
+    if (typeof cargarComentarios === 'function') cargarComentarios();
   }
+
+  const faqTextos = {
+    es: {
+      'faq-q1': '¿Cuánto cobra Mercado Libre de comisión?',
+      'faq-a1': 'Mercado Libre cobra 0% en publicaciones <strong>Gratuitas</strong>, alrededor de <strong>12,5%</strong> en Clásica y <strong>16,5%</strong> en Premium. A eso se le suma el IVA sobre la comisión y el costo de Mercado Envíos. Nuestra calculadora descuenta todo automáticamente.',
+      'faq-q2': '¿Cuánto cobra Amazon de comisión?',
+      'faq-a2': 'Las comisiones de Amazon suelen ir del <strong>8% al 15%</strong> según la categoría. Electrónica ronda el 8%, mientras que libros, hogar y la mayoría de categorías están cerca del 15%. También puede haber costos de FBA y envío. Usá la calculadora de Amazon para estimar tu ganancia neta real.',
+      'faq-q3': '¿Cuánto cobra eBay de comisión?',
+      'faq-a3': 'La comisión por venta de eBay ronda el <strong>12,9%</strong> en la mayoría de las categorías, más una pequeña tarifa fija por orden. Algunos planes de tienda tienen tarifas distintas. La calculadora de eBay descuenta comisiones, impuestos y envío para mostrarte tu ganancia neta.',
+      'faq-q4': '¿La calculadora es gratis?',
+      'faq-a4': 'Sí. Es <strong>100% gratis</strong>, sin registro y con resultado al instante para Mercado Libre, Amazon y eBay.',
+      'faq-q5': '¿Cómo calculo mi ganancia neta?',
+      'faq-a5': 'Ingresá el <strong>precio de venta</strong> y el <strong>costo del producto</strong>, elegí el tipo de publicación o categoría, y la calculadora descuenta comisiones, impuestos y envío para mostrarte tu ganancia real.',
+    },
+    en: {
+      'faq-q1': 'How much does Mercado Libre charge in fees?',
+      'faq-a1': 'Mercado Libre charges 0% on <strong>Free</strong> listings, around <strong>12.5%</strong> on Classic and <strong>16.5%</strong> on Premium. On top of that there is VAT on the commission and the Mercado Envíos shipping cost. Our calculator deducts everything automatically.',
+      'faq-q2': 'How much does Amazon charge in seller fees?',
+      'faq-a2': 'Amazon referral fees usually range from <strong>8% to 15%</strong> depending on the category. Electronics is around 8%, while books, home and most categories are about 15%. There can also be FBA and shipping costs. Use the Amazon calculator to estimate your real net profit.',
+      'faq-q3': "What are eBay's selling fees?",
+      'faq-a3': "eBay's final value fee is around <strong>12.9%</strong> for most categories, plus a small fixed fee per order. Some store plans have slightly different rates. The eBay calculator deducts fees, taxes and shipping to show your net profit.",
+      'faq-q4': 'Is this calculator free?',
+      'faq-a4': "Yes. It's <strong>100% free</strong>, no registration required, with instant results for Mercado Libre, Amazon and eBay.",
+      'faq-q5': 'How do I calculate my net profit?',
+      'faq-a5': 'Enter the <strong>sale price</strong> and the <strong>product cost</strong>, pick the listing type or category, and the calculator deducts fees, taxes and shipping to show your real profit.',
+    }
+  };
 
   function cambiarCalculadora(calc) {
     document.querySelectorAll('.calculadora').forEach(c => c.classList.remove('activa'));
@@ -918,6 +1663,13 @@
     event.target.closest('.menu-btn').classList.add('active');
 
     calculadoraActiva = calc;
+
+    // Cambiar idioma automáticamente según la plataforma
+    if (calc === 'ml') {
+      cambiarIdioma('es');
+    } else if (calc === 'amazon' || calc === 'ebay') {
+      cambiarIdioma('en');
+    }
   }
 
   function setTipoML(btn, tipo) {
@@ -975,6 +1727,8 @@
       title.textContent = 'Rentable';
     }
 
+    ultimoResultado.ml = { precio: precio, ganancia: ganancia, moneda: '$', decimales: 0 };
+
     document.getElementById('ml-resultado').classList.add('visible');
     document.getElementById('ml-resultado').scrollIntoView({ behavior: 'smooth' });
   }
@@ -983,8 +1737,9 @@
     const precio = parseFloat(document.getElementById('amazon-precio').value);
     const costo = parseFloat(document.getElementById('amazon-costo').value);
 
+    const alertMsg = idioma === 'es' ? 'Completá precio y costo' : 'Enter price and cost';
     if (!precio || !costo || precio <= 0 || costo < 0) {
-      alert('Enter price and cost');
+      alert(alertMsg);
       return;
     }
 
@@ -1007,14 +1762,16 @@
 
     if (ganancia < 0) {
       icon.textContent = '🔴';
-      title.textContent = 'Losing money';
+      title.textContent = idioma === 'es' ? 'Perdiendo plata' : 'Losing money';
     } else if (margen < 15) {
       icon.textContent = '🟡';
-      title.textContent = 'Tight margin';
+      title.textContent = idioma === 'es' ? 'Margen bajo' : 'Tight margin';
     } else {
       icon.textContent = '🟢';
-      title.textContent = 'Profitable';
+      title.textContent = idioma === 'es' ? 'Rentable' : 'Profitable';
     }
+
+    ultimoResultado.amazon = { precio: precio, ganancia: ganancia, moneda: '$', decimales: 2 };
 
     document.getElementById('amazon-resultado').classList.add('visible');
     document.getElementById('amazon-resultado').scrollIntoView({ behavior: 'smooth' });
@@ -1024,8 +1781,9 @@
     const precio = parseFloat(document.getElementById('ebay-precio').value);
     const costo = parseFloat(document.getElementById('ebay-costo').value);
 
+    const alertMsg = idioma === 'es' ? 'Completá precio y costo' : 'Enter price and cost';
     if (!precio || !costo || precio <= 0 || costo < 0) {
-      alert('Enter price and cost');
+      alert(alertMsg);
       return;
     }
 
@@ -1048,21 +1806,331 @@
 
     if (ganancia < 0) {
       icon.textContent = '🔴';
-      title.textContent = 'Losing money';
+      title.textContent = idioma === 'es' ? 'Perdiendo plata' : 'Losing money';
     } else if (margen < 15) {
       icon.textContent = '🟡';
-      title.textContent = 'Tight margin';
+      title.textContent = idioma === 'es' ? 'Margen bajo' : 'Tight margin';
     } else {
       icon.textContent = '🟢';
-      title.textContent = 'Profitable';
+      title.textContent = idioma === 'es' ? 'Rentable' : 'Profitable';
     }
+
+    ultimoResultado.ebay = { precio: precio, ganancia: ganancia, moneda: '$', decimales: 2 };
 
     document.getElementById('ebay-resultado').classList.add('visible');
     document.getElementById('ebay-resultado').scrollIntoView({ behavior: 'smooth' });
   }
 
+  // ===== EXPORTAR COMO IMAGEN =====
+  async function exportarImagen(plat) {
+    const elementId = plat + '-resultado';
+    const element = document.getElementById(elementId);
+
+    if (!element) return;
+
+    const btn = document.activeElement;
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = idioma === 'es' ? '⏳ Creando...' : '⏳ Creating...';
+
+    try {
+      const canvas = await html2canvas(element, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true
+      });
+
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${NOMBRES_PLAT[plat]}-calculo-${new Date().toLocaleDateString()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        btn.disabled = false;
+        btn.textContent = idioma === 'es' ? '📸 Compartir' : '📸 Share';
+      });
+    } catch (error) {
+      console.error('Error exportando imagen:', error);
+      btn.disabled = false;
+      btn.textContent = idioma === 'es' ? '✗ Error' : '✗ Error';
+      setTimeout(() => {
+        btn.textContent = idioma === 'es' ? '📸 Compartir' : '📸 Share';
+      }, 2000);
+    }
+  }
+
+  // ===== GUARDAR CALCULOS =====
+  const NOMBRES_PLAT = { ml: 'Mercado Libre', amazon: 'Amazon', ebay: 'eBay' };
+
+  function getGuardados() {
+    try {
+      return JSON.parse(localStorage.getItem('calculosGuardados') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function guardarCalculo(plat) {
+    const r = ultimoResultado[plat];
+    if (!r) {
+      alert(idioma === 'es' ? 'Primero hacé un cálculo' : 'Calculate first');
+      return;
+    }
+    const lista = getGuardados();
+    lista.unshift({
+      plat: plat,
+      precio: r.precio,
+      ganancia: r.ganancia,
+      moneda: r.moneda,
+      decimales: r.decimales,
+      fecha: new Date().toLocaleDateString()
+    });
+    // Máximo 10 guardados
+    localStorage.setItem('calculosGuardados', JSON.stringify(lista.slice(0, 10)));
+
+    const btn = document.getElementById(plat + '-save-btn');
+    const original = btn.textContent;
+    btn.textContent = idioma === 'es' ? '✓ Guardado' : '✓ Saved';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+
+    renderGuardados();
+  }
+
+  function borrarGuardado(i) {
+    const lista = getGuardados();
+    lista.splice(i, 1);
+    localStorage.setItem('calculosGuardados', JSON.stringify(lista));
+    renderGuardados();
+  }
+
+  function limpiarGuardados() {
+    const msg = idioma === 'es' ? '¿Borrar todos los cálculos guardados?' : 'Delete all saved calculations?';
+    if (confirm(msg)) {
+      localStorage.removeItem('calculosGuardados');
+      renderGuardados();
+    }
+  }
+
+  function renderGuardados() {
+    const lista = getGuardados();
+    const seccion = document.getElementById('guardados-seccion');
+    const cont = document.getElementById('guardados-lista');
+
+    if (lista.length === 0) {
+      seccion.style.display = 'none';
+      return;
+    }
+
+    seccion.style.display = 'block';
+    document.getElementById('guardados-title').textContent = idioma === 'es' ? '💾 Mis cálculos guardados' : '💾 My saved calculations';
+    document.getElementById('guardados-clear').textContent = idioma === 'es' ? 'Borrar todo' : 'Clear all';
+
+    const lblPrecio = idioma === 'es' ? 'Precio' : 'Price';
+    const lblGan = idioma === 'es' ? 'Ganancia' : 'Profit';
+
+    cont.innerHTML = lista.map((g, i) => {
+      const precioFmt = g.moneda + Number(g.precio).toLocaleString(undefined, {minimumFractionDigits: g.decimales, maximumFractionDigits: g.decimales});
+      const ganFmt = g.moneda + Number(g.ganancia).toLocaleString(undefined, {minimumFractionDigits: g.decimales, maximumFractionDigits: g.decimales});
+      const ganClase = g.ganancia < 0 ? 'neg' : 'pos';
+      return `
+        <div class="guardado-item">
+          <div class="info">
+            <div class="plat">${NOMBRES_PLAT[g.plat] || g.plat}</div>
+            <div class="detalle">${lblPrecio}: ${precioFmt} · ${g.fecha}</div>
+          </div>
+          <div class="gan ${ganClase}">${ganFmt}</div>
+          <button class="del" onclick="borrarGuardado(${i})" title="${lblGan}">🗑️</button>
+        </div>`;
+    }).join('');
+  }
+
+  async function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const button = e.target.querySelector('button');
+
+    button.disabled = true;
+    button.textContent = idioma === 'es' ? 'Enviando...' : 'Sending...';
+
+    try {
+      const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Nvbm5lY3QubWFpbGVybGl0ZS5jb20iLCJhdWQiOiJodHRwczovL2FwaS5tYWlsZXJsaXRlLmNvbSIsImlhdCI6MTczMDQ5MzEwOCwiZXhwIjoyMDQ1ODUzMTA4LCJzdWIiOiI0OTUzNjMxIn0.IpBw0GgvQYBzIpE9pFpCQhMV-fpPOuQyXlEQo0RTN4Q'
+        },
+        body: JSON.stringify({
+          email: email,
+          groups: [89568768]
+        })
+      });
+
+      if (response.ok) {
+        button.textContent = idioma === 'es' ? '✓ Suscrito' : '✓ Subscribed';
+        e.target.reset();
+        setTimeout(() => {
+          button.disabled = false;
+          button.textContent = idioma === 'es' ? 'Suscribir' : 'Subscribe';
+        }, 3000);
+      } else {
+        throw new Error('Error en la suscripción');
+      }
+    } catch (error) {
+      button.textContent = '✗ Error';
+      button.disabled = false;
+      setTimeout(() => {
+        button.textContent = idioma === 'es' ? 'Suscribir' : 'Subscribe';
+      }, 3000);
+    }
+  }
+
+  // ===== COMENTARIOS / RESEÑAS (Supabase) =====
+  const SUPABASE_URL = 'https://gdobcxqokckbsxahskjg.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_LH-KRd3kpmJRRW6u9CoS6w_sRqm4h2c';
+  let estrellasSeleccionadas = 0;
+
+  // Selector de estrellas
+  document.getElementById('estrellas-input').addEventListener('click', (e) => {
+    if (e.target.classList.contains('star')) {
+      estrellasSeleccionadas = parseInt(e.target.dataset.val);
+      pintarEstrellas(estrellasSeleccionadas);
+    }
+  });
+  document.getElementById('estrellas-input').addEventListener('mouseover', (e) => {
+    if (e.target.classList.contains('star')) {
+      pintarEstrellas(parseInt(e.target.dataset.val));
+    }
+  });
+  document.getElementById('estrellas-input').addEventListener('mouseleave', () => {
+    pintarEstrellas(estrellasSeleccionadas);
+  });
+
+  function pintarEstrellas(n) {
+    document.querySelectorAll('#estrellas-input .star').forEach(s => {
+      s.classList.toggle('on', parseInt(s.dataset.val) <= n);
+    });
+  }
+
+  function estrellasTexto(n) {
+    return '★★★★★☆☆☆☆☆'.slice(5 - n, 10 - n);
+  }
+
+  async function cargarComentarios() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/comentarios?select=*&order=created_at.desc&limit=100`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      renderComentarios(data);
+    } catch (e) {
+      console.error('Error cargando comentarios:', e);
+    }
+  }
+
+  function renderComentarios(data) {
+    const lista = document.getElementById('lista-resenas');
+    const promBox = document.getElementById('resena-promedio');
+
+    if (!data || data.length === 0) {
+      promBox.style.display = 'none';
+      lista.innerHTML = `<p style="color:var(--muted);font-size:0.9rem;text-align:center;padding:16px;">${idioma === 'es' ? 'Sé el primero en opinar 🙌' : 'Be the first to review 🙌'}</p>`;
+      return;
+    }
+
+    // Promedio
+    const total = data.reduce((s, c) => s + (c.estrellas || 0), 0);
+    const prom = (total / data.length).toFixed(1);
+    promBox.style.display = 'flex';
+    document.getElementById('resena-prom-num').textContent = prom;
+    document.getElementById('resena-prom-stars').textContent = estrellasTexto(Math.round(prom));
+    document.getElementById('resena-prom-cant').textContent = data.length + (idioma === 'es' ? ' opiniones' : ' reviews');
+
+    // Lista
+    lista.innerHTML = data.map(c => {
+      const fecha = c.created_at ? new Date(c.created_at).toLocaleDateString() : '';
+      const nombre = escapeHtml(c.nombre || (idioma === 'es' ? 'Anónimo' : 'Anonymous'));
+      const texto = escapeHtml(c.comentario || '');
+      return `
+        <div class="resena-item">
+          <div class="top">
+            <span class="autor">${nombre}</span>
+            <span class="fecha">${fecha}</span>
+          </div>
+          <div class="stars-static">${estrellasTexto(c.estrellas || 0)}</div>
+          <div class="texto">${texto}</div>
+        </div>`;
+    }).join('');
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  async function enviarComentario(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('resena-nombre').value.trim();
+    const texto = document.getElementById('resena-texto').value.trim();
+    const btn = document.getElementById('resena-btn');
+
+    if (estrellasSeleccionadas === 0) {
+      alert(idioma === 'es' ? 'Elegí cuántas estrellas (1 a 5)' : 'Pick a rating (1 to 5 stars)');
+      return;
+    }
+    if (!nombre || !texto) {
+      alert(idioma === 'es' ? 'Completá tu nombre y opinión' : 'Enter your name and review');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = idioma === 'es' ? 'Enviando...' : 'Sending...';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/comentarios`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ nombre: nombre, estrellas: estrellasSeleccionadas, comentario: texto })
+      });
+
+      if (!res.ok) throw new Error('Error al enviar');
+
+      // Limpiar form
+      document.getElementById('resena-nombre').value = '';
+      document.getElementById('resena-texto').value = '';
+      estrellasSeleccionadas = 0;
+      pintarEstrellas(0);
+      btn.textContent = idioma === 'es' ? '✓ ¡Gracias!' : '✓ Thanks!';
+      await cargarComentarios();
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = idioma === 'es' ? 'Publicar opinión' : 'Post review';
+      }, 2000);
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.textContent = idioma === 'es' ? '✗ Error, reintentá' : '✗ Error, try again';
+      setTimeout(() => {
+        btn.textContent = idioma === 'es' ? 'Publicar opinión' : 'Post review';
+      }, 2500);
+    }
+  }
+
   window.addEventListener('load', () => {
     cambiarIdioma(idioma);
+    renderGuardados();
+    cargarComentarios();
   });
 </script>
 
