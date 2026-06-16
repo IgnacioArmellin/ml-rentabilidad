@@ -628,6 +628,130 @@
       margin-top: 40px;
     }
 
+    /* COMENTARIOS / RESEÑAS */
+    .resenas {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .resenas-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .resenas-card > h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .resenas-sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .estrellas-input {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 14px;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .estrellas-input .star {
+      color: #d1d5db;
+      transition: color 0.15s, transform 0.15s;
+      user-select: none;
+    }
+
+    .estrellas-input .star:hover {
+      transform: scale(1.15);
+    }
+
+    .estrellas-input .star.on {
+      color: #f5a623;
+    }
+
+    .resena-form input,
+    .resena-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      background: var(--card-alt);
+      margin-bottom: 12px;
+      font-family: inherit;
+    }
+
+    .resena-form input:focus,
+    .resena-form textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: #fff;
+    }
+
+    .resena-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .resena-form button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(180deg, var(--blue) 0%, #2f78e8 100%);
+      color: white;
+      transition: all 0.2s;
+    }
+
+    .resena-form button:hover { background: var(--blue-dark); }
+    .resena-form button:disabled { opacity: 0.6; cursor: default; }
+
+    .resena-promedio {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resena-promedio .num {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .resena-promedio .stars-static { color: #f5a623; font-size: 1.1rem; }
+    .resena-promedio .cant { color: var(--muted); font-size: 0.85rem; }
+
+    .lista-resenas { margin-top: 24px; }
+
+    .resena-item {
+      padding: 16px 0;
+      border-top: 1px solid #f1f2f4;
+    }
+
+    .resena-item .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .resena-item .autor { font-weight: 700; font-size: 0.95rem; }
+    .resena-item .fecha { color: var(--muted); font-size: 0.78rem; }
+    .resena-item .stars-static { color: #f5a623; font-size: 0.9rem; margin-bottom: 6px; }
+    .resena-item .texto { color: #333; font-size: 0.92rem; line-height: 1.5; }
+
     footer a {
       color: var(--blue);
       text-decoration: none;
@@ -1067,6 +1191,37 @@
   </div>
 </div>
 
+<!-- RESEÑAS / COMENTARIOS -->
+<div class="resenas">
+  <div class="resenas-card">
+    <h3 id="resena-titulo">⭐ Opiniones</h3>
+    <p class="resena-sub" id="resena-sub">¿Te sirvió la calculadora? Dejá tu opinión.</p>
+
+    <div class="resena-promedio" id="resena-promedio" style="display:none;">
+      <span class="num" id="resena-prom-num">0.0</span>
+      <div>
+        <div class="stars-static" id="resena-prom-stars">★★★★★</div>
+        <div class="cant" id="resena-prom-cant">0 opiniones</div>
+      </div>
+    </div>
+
+    <form class="resena-form" onsubmit="enviarComentario(event)">
+      <div class="estrellas-input" id="estrellas-input">
+        <span class="star" data-val="1">★</span>
+        <span class="star" data-val="2">★</span>
+        <span class="star" data-val="3">★</span>
+        <span class="star" data-val="4">★</span>
+        <span class="star" data-val="5">★</span>
+      </div>
+      <input type="text" id="resena-nombre" placeholder="Tu nombre" maxlength="50" required>
+      <textarea id="resena-texto" placeholder="Escribí tu opinión..." maxlength="500" required></textarea>
+      <button type="submit" id="resena-btn">Publicar opinión</button>
+    </form>
+
+    <div class="lista-resenas" id="lista-resenas"></div>
+  </div>
+</div>
+
 <footer>
   <strong>MLRentabilidad</strong> — Calculadora GRATIS para vendedores en Mercado Libre, Amazon y eBay.<br>
   Los valores son estimativos. Verificá los costos exactos en cada plataforma.
@@ -1144,6 +1299,9 @@
       'news-title': '📧 Recibí tips para vender más',
       'news-sub': 'Nuevas calculadoras y consejos para vendedores. Gratis.',
       'news-btn': 'Suscribir',
+      'resena-titulo': '⭐ Opiniones',
+      'resena-sub': '¿Te sirvió la calculadora? Dejá tu opinión.',
+      'resena-btn': 'Publicar opinión',
     },
     en: {
       'menu-titulo': 'Choose your platform',
@@ -1206,6 +1364,9 @@
       'news-title': '📧 Get tips to sell more',
       'news-sub': 'New calculators and seller tips. Free.',
       'news-btn': 'Subscribe',
+      'resena-titulo': '⭐ Reviews',
+      'resena-sub': 'Did the calculator help? Leave a review.',
+      'resena-btn': 'Post review',
     }
   };
 
@@ -1224,6 +1385,12 @@
     // Placeholder del email
     const emailInput = document.getElementById('news-email');
     if (emailInput) emailInput.placeholder = lng === 'es' ? 'Tu email' : 'Your email';
+
+    // Placeholders del formulario de opiniones
+    const rNombre = document.getElementById('resena-nombre');
+    const rTexto = document.getElementById('resena-texto');
+    if (rNombre) rNombre.placeholder = lng === 'es' ? 'Tu nombre' : 'Your name';
+    if (rTexto) rTexto.placeholder = lng === 'es' ? 'Escribí tu opinión...' : 'Write your review...';
 
     // Botones de guardar
     const saveTxt = lng === 'es' ? '💾 Guardar cálculo' : '💾 Save calculation';
@@ -1570,9 +1737,148 @@
     }
   }
 
+  // ===== COMENTARIOS / RESEÑAS (Supabase) =====
+  const SUPABASE_URL = 'https://gdobcxqokckbsxahskjg.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_LH-KRd3kpmJRRW6u9CoS6w_sRqm4h2c';
+  let estrellasSeleccionadas = 0;
+
+  // Selector de estrellas
+  document.getElementById('estrellas-input').addEventListener('click', (e) => {
+    if (e.target.classList.contains('star')) {
+      estrellasSeleccionadas = parseInt(e.target.dataset.val);
+      pintarEstrellas(estrellasSeleccionadas);
+    }
+  });
+  document.getElementById('estrellas-input').addEventListener('mouseover', (e) => {
+    if (e.target.classList.contains('star')) {
+      pintarEstrellas(parseInt(e.target.dataset.val));
+    }
+  });
+  document.getElementById('estrellas-input').addEventListener('mouseleave', () => {
+    pintarEstrellas(estrellasSeleccionadas);
+  });
+
+  function pintarEstrellas(n) {
+    document.querySelectorAll('#estrellas-input .star').forEach(s => {
+      s.classList.toggle('on', parseInt(s.dataset.val) <= n);
+    });
+  }
+
+  function estrellasTexto(n) {
+    return '★★★★★☆☆☆☆☆'.slice(5 - n, 10 - n);
+  }
+
+  async function cargarComentarios() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/comentarios?select=*&order=created_at.desc&limit=100`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      renderComentarios(data);
+    } catch (e) {
+      console.error('Error cargando comentarios:', e);
+    }
+  }
+
+  function renderComentarios(data) {
+    const lista = document.getElementById('lista-resenas');
+    const promBox = document.getElementById('resena-promedio');
+
+    if (!data || data.length === 0) {
+      promBox.style.display = 'none';
+      lista.innerHTML = `<p style="color:var(--muted);font-size:0.9rem;text-align:center;padding:16px;">${idioma === 'es' ? 'Sé el primero en opinar 🙌' : 'Be the first to review 🙌'}</p>`;
+      return;
+    }
+
+    // Promedio
+    const total = data.reduce((s, c) => s + (c.estrellas || 0), 0);
+    const prom = (total / data.length).toFixed(1);
+    promBox.style.display = 'flex';
+    document.getElementById('resena-prom-num').textContent = prom;
+    document.getElementById('resena-prom-stars').textContent = estrellasTexto(Math.round(prom));
+    document.getElementById('resena-prom-cant').textContent = data.length + (idioma === 'es' ? ' opiniones' : ' reviews');
+
+    // Lista
+    lista.innerHTML = data.map(c => {
+      const fecha = c.created_at ? new Date(c.created_at).toLocaleDateString() : '';
+      const nombre = escapeHtml(c.nombre || (idioma === 'es' ? 'Anónimo' : 'Anonymous'));
+      const texto = escapeHtml(c.comentario || '');
+      return `
+        <div class="resena-item">
+          <div class="top">
+            <span class="autor">${nombre}</span>
+            <span class="fecha">${fecha}</span>
+          </div>
+          <div class="stars-static">${estrellasTexto(c.estrellas || 0)}</div>
+          <div class="texto">${texto}</div>
+        </div>`;
+    }).join('');
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  async function enviarComentario(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('resena-nombre').value.trim();
+    const texto = document.getElementById('resena-texto').value.trim();
+    const btn = document.getElementById('resena-btn');
+
+    if (estrellasSeleccionadas === 0) {
+      alert(idioma === 'es' ? 'Elegí cuántas estrellas (1 a 5)' : 'Pick a rating (1 to 5 stars)');
+      return;
+    }
+    if (!nombre || !texto) {
+      alert(idioma === 'es' ? 'Completá tu nombre y opinión' : 'Enter your name and review');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = idioma === 'es' ? 'Enviando...' : 'Sending...';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/comentarios`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ nombre: nombre, estrellas: estrellasSeleccionadas, comentario: texto })
+      });
+
+      if (!res.ok) throw new Error('Error al enviar');
+
+      // Limpiar form
+      document.getElementById('resena-nombre').value = '';
+      document.getElementById('resena-texto').value = '';
+      estrellasSeleccionadas = 0;
+      pintarEstrellas(0);
+      btn.textContent = idioma === 'es' ? '✓ ¡Gracias!' : '✓ Thanks!';
+      await cargarComentarios();
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = idioma === 'es' ? 'Publicar opinión' : 'Post review';
+      }, 2000);
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.textContent = idioma === 'es' ? '✗ Error, reintentá' : '✗ Error, try again';
+      setTimeout(() => {
+        btn.textContent = idioma === 'es' ? 'Publicar opinión' : 'Post review';
+      }, 2500);
+    }
+  }
+
   window.addEventListener('load', () => {
     cambiarIdioma(idioma);
     renderGuardados();
+    cargarComentarios();
   });
 </script>
 
