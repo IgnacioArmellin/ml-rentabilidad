@@ -973,7 +973,7 @@
           <button class="toggle-btn" onclick="setTipoML(this, 'premium')">Premium<br><small style="font-weight:400">16,5%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularML()">Calcular →</button>
+      <button class="btn btn-calcular" onclick="calcularML()">Calcular →</button>
     </div>
 
     <div class="card">
@@ -992,15 +992,15 @@
           <span class="value">16,5%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">IVA (21%)</span>
-          <span class="value">Sobre comisión</span>
+          <span class="label" id="ml-bd-iva-label">IVA (21%)</span>
+          <span class="value" id="ml-bd-iva-val">Sobre comisión</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">Envío (est.)</span>
+          <span class="label" id="ml-bd-envio-label">Envío (est.)</span>
           <span class="value">~$900-$1500</span>
         </div>
       </div>
-      <div class="tip">
+      <div class="tip" id="ml-tip">
         💡 Los valores son estimativos. Verificá en Mercado Libre Ayuda los costos exactos.
       </div>
     </div>
@@ -1042,8 +1042,8 @@
       </div>
 
       <div class="productos">
-        <h3>📦 Productos Recomendados</h3>
-        <p>Herramientas esenciales para vender en Mercado Libre</p>
+        <h3 id="ml-productos-title">📦 Productos Recomendados</h3>
+        <p id="ml-productos-desc">Herramientas esenciales para vender en Mercado Libre</p>
         <div class="productos-grid">
           <a href="https://meli.la/1fRvz4J" target="_blank" class="producto-link">Balanza Digital</a>
           <a href="https://meli.la/1o3izmY" target="_blank" class="producto-link">Balanza San Up</a>
@@ -1087,27 +1087,27 @@
       <div class="field">
         <label id="amazon-categoria-label">Categoría</label>
         <div class="toggle-group" id="amazon-categorias">
-          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')">Libros<br><small style="font-weight:400">15%</small></button>
-          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')">Electrónica<br><small style="font-weight:400">8%</small></button>
-          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')">Hogar<br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn active" onclick="setCategoriaAmazon(this, 'books')"><span id="amazon-cat-books">Libros</span><br><small style="font-weight:400">15%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'electronics')"><span id="amazon-cat-elec">Electrónica</span><br><small style="font-weight:400">8%</small></button>
+          <button class="toggle-btn" onclick="setCategoriaAmazon(this, 'home')"><span id="amazon-cat-home">Hogar</span><br><small style="font-weight:400">15%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularAmazon()">Calcular →</button>
+      <button class="btn btn-calcular" onclick="calcularAmazon()">Calcular →</button>
     </div>
 
     <div class="card">
       <h2 id="amazon-como">¿Cómo funciona?</h2>
       <div class="breakdown">
         <div class="breakdown-row">
-          <span class="label">📚 Libros</span>
+          <span class="label" id="amazon-bd-books">📚 Libros</span>
           <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">📱 Electrónica</span>
+          <span class="label" id="amazon-bd-elec">📱 Electrónica</span>
           <span class="value">8%</span>
         </div>
         <div class="breakdown-row">
-          <span class="label">🏠 Hogar y Jardín</span>
+          <span class="label" id="amazon-bd-home">🏠 Hogar y Jardín</span>
           <span class="value">15%</span>
         </div>
         <div class="breakdown-row">
@@ -1119,7 +1119,7 @@
           <span class="value">$5-$15</span>
         </div>
       </div>
-      <div class="tip">
+      <div class="tip" id="amazon-tip">
         💡 Las comisiones de Amazon varían según la categoría. Verificá la comisión exacta en tu categoría.
       </div>
     </div>
@@ -1214,7 +1214,7 @@
           <button class="toggle-btn" onclick="setTipoEbay(this, 'plus')">eBay Plus<br><small style="font-weight:400">14.5%</small></button>
         </div>
       </div>
-      <button class="btn" onclick="calcularEbay()">Calcular →</button>
+      <button class="btn btn-calcular" onclick="calcularEbay()">Calcular →</button>
     </div>
 
     <div class="card">
@@ -1237,7 +1237,7 @@
           <span class="value">$5-$15</span>
         </div>
       </div>
-      <div class="tip">
+      <div class="tip" id="ebay-tip">
         💡 Siempre considera las comisiones y envío antes de listar. La mayoría de vendedores nuevos subestiman los costos.
       </div>
     </div>
@@ -1312,28 +1312,28 @@
   <h2 id="faq-titulo">Preguntas Frecuentes</h2>
 
   <details class="faq-item">
-    <summary>¿Cuánto cobra Mercado Libre de comisión?</summary>
-    <div class="faq-body">Mercado Libre cobra 0% en publicaciones <strong>Gratuitas</strong>, alrededor de <strong>12,5%</strong> en Clásica y <strong>16,5%</strong> en Premium. A eso se le suma el IVA sobre la comisión y el costo de Mercado Envíos. Nuestra calculadora descuenta todo automáticamente.</div>
+    <summary id="faq-q1">¿Cuánto cobra Mercado Libre de comisión?</summary>
+    <div class="faq-body" id="faq-a1">Mercado Libre cobra 0% en publicaciones <strong>Gratuitas</strong>, alrededor de <strong>12,5%</strong> en Clásica y <strong>16,5%</strong> en Premium. A eso se le suma el IVA sobre la comisión y el costo de Mercado Envíos. Nuestra calculadora descuenta todo automáticamente.</div>
   </details>
 
   <details class="faq-item">
-    <summary>How much does Amazon charge in seller fees?</summary>
-    <div class="faq-body">Amazon referral fees usually range from <strong>8% to 15%</strong> depending on the category. Electronics is around 8%, while books, home and most categories are about 15%. There can also be FBA and shipping costs. Use the Amazon tab to estimate your real net profit.</div>
+    <summary id="faq-q2">¿Cuánto cobra Amazon de comisión?</summary>
+    <div class="faq-body" id="faq-a2">Las comisiones de Amazon suelen ir del <strong>8% al 15%</strong> según la categoría. Electrónica ronda el 8%, mientras que libros, hogar y la mayoría de categorías están cerca del 15%. También puede haber costos de FBA y envío. Usá la calculadora de Amazon para estimar tu ganancia neta real.</div>
   </details>
 
   <details class="faq-item">
-    <summary>What are eBay's selling fees?</summary>
-    <div class="faq-body">eBay's final value fee is around <strong>12.9%</strong> for most categories, plus a small fixed fee per order. Some store plans have slightly different rates. The eBay tab deducts fees, taxes and shipping to show your net profit.</div>
+    <summary id="faq-q3">¿Cuánto cobra eBay de comisión?</summary>
+    <div class="faq-body" id="faq-a3">La comisión por venta de eBay ronda el <strong>12,9%</strong> en la mayoría de las categorías, más una pequeña tarifa fija por orden. Algunos planes de tienda tienen tarifas distintas. La calculadora de eBay descuenta comisiones, impuestos y envío para mostrarte tu ganancia neta.</div>
   </details>
 
   <details class="faq-item">
-    <summary>¿La calculadora es gratis? / Is it free?</summary>
-    <div class="faq-body">Sí / Yes. Es <strong>100% gratis</strong>, sin registro y con resultado al instante para Mercado Libre, Amazon y eBay. It's 100% free, no registration required.</div>
+    <summary id="faq-q4">¿La calculadora es gratis?</summary>
+    <div class="faq-body" id="faq-a4">Sí. Es <strong>100% gratis</strong>, sin registro y con resultado al instante para Mercado Libre, Amazon y eBay.</div>
   </details>
 
   <details class="faq-item">
-    <summary>¿Cómo calculo mi ganancia neta? / How do I calculate net profit?</summary>
-    <div class="faq-body">Ingresá el <strong>precio de venta</strong> y el <strong>costo del producto</strong>, elegí el tipo de publicación o categoría, y la calculadora descuenta comisiones, impuestos y envío para mostrarte tu ganancia real. Enter your sale price and product cost, pick the category, and we deduct fees, taxes and shipping.</div>
+    <summary id="faq-q5">¿Cómo calculo mi ganancia neta?</summary>
+    <div class="faq-body" id="faq-a5">Ingresá el <strong>precio de venta</strong> y el <strong>costo del producto</strong>, elegí el tipo de publicación o categoría, y la calculadora descuenta comisiones, impuestos y envío para mostrarte tu ganancia real.</div>
   </details>
 </div>
 
@@ -1459,6 +1459,20 @@
       'resena-sub': '¿Te sirvió la calculadora? Dejá tu opinión.',
       'resena-btn': 'Publicar opinión',
       'faq-titulo': 'Preguntas Frecuentes',
+      'ml-bd-iva-label': 'IVA (21%)',
+      'ml-bd-iva-val': 'Sobre comisión',
+      'ml-bd-envio-label': 'Envío (est.)',
+      'ml-tip': '💡 Los valores son estimativos. Verificá en Mercado Libre Ayuda los costos exactos.',
+      'ml-productos-title': '📦 Productos Recomendados',
+      'ml-productos-desc': 'Herramientas esenciales para vender en Mercado Libre',
+      'amazon-cat-books': 'Libros',
+      'amazon-cat-elec': 'Electrónica',
+      'amazon-cat-home': 'Hogar',
+      'amazon-bd-books': '📚 Libros',
+      'amazon-bd-elec': '📱 Electrónica',
+      'amazon-bd-home': '🏠 Hogar y Jardín',
+      'amazon-tip': '💡 Las comisiones de Amazon varían según la categoría. Verificá la comisión exacta en tu categoría.',
+      'ebay-tip': '💡 Siempre considera las comisiones y envío antes de listar. La mayoría de vendedores nuevos subestiman los costos.',
     },
     en: {
       'menu-titulo': 'Choose your platform',
@@ -1525,6 +1539,20 @@
       'resena-sub': 'Did the calculator help? Leave a review.',
       'resena-btn': 'Post review',
       'faq-titulo': 'Frequently Asked Questions',
+      'ml-bd-iva-label': 'VAT (21%)',
+      'ml-bd-iva-val': 'On commission',
+      'ml-bd-envio-label': 'Shipping (est.)',
+      'ml-tip': '💡 Values are estimates. Check Mercado Libre Help for exact costs.',
+      'ml-productos-title': '📦 Recommended Products',
+      'ml-productos-desc': 'Essential tools to sell on Mercado Libre',
+      'amazon-cat-books': 'Books',
+      'amazon-cat-elec': 'Electronics',
+      'amazon-cat-home': 'Home',
+      'amazon-bd-books': '📚 Books',
+      'amazon-bd-elec': '📱 Electronics',
+      'amazon-bd-home': '🏠 Home & Garden',
+      'amazon-tip': '💡 Amazon fees vary by category. Check the exact fee for your category.',
+      'ebay-tip': '💡 Always factor in fees and shipping before listing. Most new sellers underestimate costs.',
     }
   };
 
@@ -1557,9 +1585,75 @@
       if (b) b.textContent = saveTxt;
     });
 
-    // Refrescar lista de guardados con el idioma nuevo
+    // Badges del hero (se repiten en las 3 calculadoras)
+    const badges = lng === 'es'
+      ? ['✓ Gratis', '✓ Sin registro', '✓ Resultado al instante']
+      : ['✓ Free', '✓ No sign-up', '✓ Instant result'];
+    document.querySelectorAll('.hero-badges').forEach(group => {
+      group.querySelectorAll('span').forEach((s, i) => {
+        if (badges[i]) s.textContent = badges[i];
+      });
+    });
+
+    // Botones "Calcular →"
+    const calcTxt = lng === 'es' ? 'Calcular →' : 'Calculate →';
+    document.querySelectorAll('.btn-calcular').forEach(b => { b.textContent = calcTxt; });
+
+    // Botón del newsletter (si no está en proceso de envío)
+    const newsBtn = document.getElementById('news-btn');
+    if (newsBtn && !newsBtn.disabled) newsBtn.textContent = lng === 'es' ? 'Suscribir' : 'Subscribe';
+
+    // Re-traducir el título del resultado si ya hay un cálculo en pantalla
+    ['ml', 'amazon', 'ebay'].forEach(p => {
+      const card = document.getElementById(p + '-resultado');
+      const r = ultimoResultado[p];
+      if (card && card.classList.contains('visible') && r) {
+        const margen = (r.ganancia / r.precio) * 100;
+        const title = document.getElementById(p + '-result-title');
+        if (r.ganancia < 0) title.textContent = lng === 'es' ? 'Perdiendo plata' : 'Losing money';
+        else if (margen < 15) title.textContent = lng === 'es' ? 'Margen bajo' : 'Tight margin';
+        else title.textContent = lng === 'es' ? 'Rentable' : 'Profitable';
+      }
+    });
+
+    // FAQ (con negritas -> innerHTML)
+    const faq = faqTextos[lng];
+    for (const [key, value] of Object.entries(faq)) {
+      const el = document.getElementById(key);
+      if (el) el.innerHTML = value;
+    }
+
+    // Refrescar lista de guardados y reseñas con el idioma nuevo
     if (typeof renderGuardados === 'function') renderGuardados();
+    if (typeof cargarComentarios === 'function') cargarComentarios();
   }
+
+  const faqTextos = {
+    es: {
+      'faq-q1': '¿Cuánto cobra Mercado Libre de comisión?',
+      'faq-a1': 'Mercado Libre cobra 0% en publicaciones <strong>Gratuitas</strong>, alrededor de <strong>12,5%</strong> en Clásica y <strong>16,5%</strong> en Premium. A eso se le suma el IVA sobre la comisión y el costo de Mercado Envíos. Nuestra calculadora descuenta todo automáticamente.',
+      'faq-q2': '¿Cuánto cobra Amazon de comisión?',
+      'faq-a2': 'Las comisiones de Amazon suelen ir del <strong>8% al 15%</strong> según la categoría. Electrónica ronda el 8%, mientras que libros, hogar y la mayoría de categorías están cerca del 15%. También puede haber costos de FBA y envío. Usá la calculadora de Amazon para estimar tu ganancia neta real.',
+      'faq-q3': '¿Cuánto cobra eBay de comisión?',
+      'faq-a3': 'La comisión por venta de eBay ronda el <strong>12,9%</strong> en la mayoría de las categorías, más una pequeña tarifa fija por orden. Algunos planes de tienda tienen tarifas distintas. La calculadora de eBay descuenta comisiones, impuestos y envío para mostrarte tu ganancia neta.',
+      'faq-q4': '¿La calculadora es gratis?',
+      'faq-a4': 'Sí. Es <strong>100% gratis</strong>, sin registro y con resultado al instante para Mercado Libre, Amazon y eBay.',
+      'faq-q5': '¿Cómo calculo mi ganancia neta?',
+      'faq-a5': 'Ingresá el <strong>precio de venta</strong> y el <strong>costo del producto</strong>, elegí el tipo de publicación o categoría, y la calculadora descuenta comisiones, impuestos y envío para mostrarte tu ganancia real.',
+    },
+    en: {
+      'faq-q1': 'How much does Mercado Libre charge in fees?',
+      'faq-a1': 'Mercado Libre charges 0% on <strong>Free</strong> listings, around <strong>12.5%</strong> on Classic and <strong>16.5%</strong> on Premium. On top of that there is VAT on the commission and the Mercado Envíos shipping cost. Our calculator deducts everything automatically.',
+      'faq-q2': 'How much does Amazon charge in seller fees?',
+      'faq-a2': 'Amazon referral fees usually range from <strong>8% to 15%</strong> depending on the category. Electronics is around 8%, while books, home and most categories are about 15%. There can also be FBA and shipping costs. Use the Amazon calculator to estimate your real net profit.',
+      'faq-q3': "What are eBay's selling fees?",
+      'faq-a3': "eBay's final value fee is around <strong>12.9%</strong> for most categories, plus a small fixed fee per order. Some store plans have slightly different rates. The eBay calculator deducts fees, taxes and shipping to show your net profit.",
+      'faq-q4': 'Is this calculator free?',
+      'faq-a4': "Yes. It's <strong>100% free</strong>, no registration required, with instant results for Mercado Libre, Amazon and eBay.",
+      'faq-q5': 'How do I calculate my net profit?',
+      'faq-a5': 'Enter the <strong>sale price</strong> and the <strong>product cost</strong>, pick the listing type or category, and the calculator deducts fees, taxes and shipping to show your real profit.',
+    }
+  };
 
   function cambiarCalculadora(calc) {
     document.querySelectorAll('.calculadora').forEach(c => c.classList.remove('activa'));
@@ -1861,7 +1955,7 @@
     const button = e.target.querySelector('button');
 
     button.disabled = true;
-    button.textContent = 'Enviando...';
+    button.textContent = idioma === 'es' ? 'Enviando...' : 'Sending...';
 
     try {
       const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
@@ -1877,11 +1971,11 @@
       });
 
       if (response.ok) {
-        button.textContent = '✓ Suscrito';
+        button.textContent = idioma === 'es' ? '✓ Suscrito' : '✓ Subscribed';
         e.target.reset();
         setTimeout(() => {
           button.disabled = false;
-          button.textContent = 'Suscribir';
+          button.textContent = idioma === 'es' ? 'Suscribir' : 'Subscribe';
         }, 3000);
       } else {
         throw new Error('Error en la suscripción');
@@ -1890,7 +1984,7 @@
       button.textContent = '✗ Error';
       button.disabled = false;
       setTimeout(() => {
-        button.textContent = 'Suscribir';
+        button.textContent = idioma === 'es' ? 'Suscribir' : 'Subscribe';
       }, 3000);
     }
   }
